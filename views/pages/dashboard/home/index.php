@@ -6,7 +6,7 @@
 					<div class="col-12 col-sm-7">
 						<div class="d-flex align-items-center gap-3 mb-5">
 							<img
-								src="assets/images/avatars/01.png"
+								src="<?php echo $base_url ?>/assets/images/avatars/01.png"
 								class="rounded-circle bg-grd-info p-1"
 								width="60"
 								height="60"
@@ -57,7 +57,7 @@
 					<div class="col-12 col-sm-5">
 						<div class="welcome-back-img pt-4">
 							<img
-								src="assets/images/gallery/welcome-back-3.png"
+								src="<?php echo $base_url ?>/assets/images/gallery/welcome-back-3.png"
 								height="180"
 								alt="" />
 						</div>
@@ -576,7 +576,7 @@
 					<div class="d-flex align-items-center gap-4">
 						<div class="d-flex align-items-center gap-3 flex-grow-1">
 							<img
-								src="assets/images/apps/17.png"
+								src="<?php echo $base_url ?>/assets/images/apps/17.png"
 								width="32"
 								alt="" />
 							<p class="mb-0">Facebook</p>
@@ -594,7 +594,7 @@
 					<div class="d-flex align-items-center gap-4">
 						<div class="d-flex align-items-center gap-3 flex-grow-1">
 							<img
-								src="assets/images/apps/18.png"
+								src="<?php echo $base_url ?>/assets/images/apps/18.png"
 								width="32"
 								alt="" />
 							<p class="mb-0">LinkedIn</p>
@@ -612,7 +612,7 @@
 					<div class="d-flex align-items-center gap-4">
 						<div class="d-flex align-items-center gap-3 flex-grow-1">
 							<img
-								src="assets/images/apps/19.png"
+								src="<?php echo $base_url ?>/assets/images/apps/19.png"
 								width="32"
 								alt="" />
 							<p class="mb-0">Instagram</p>
@@ -630,7 +630,7 @@
 					<div class="d-flex align-items-center gap-4">
 						<div class="d-flex align-items-center gap-3 flex-grow-1">
 							<img
-								src="assets/images/apps/20.png"
+								src="<?php echo $base_url ?>/assets/images/apps/20.png"
 								width="32"
 								alt="" />
 							<p class="mb-0">Snapchat</p>
@@ -648,7 +648,7 @@
 					<div class="d-flex align-items-center gap-4">
 						<div class="d-flex align-items-center gap-3 flex-grow-1">
 							<img
-								src="assets/images/apps/05.png"
+								src="<?php echo $base_url ?>/assets/images/apps/05.png"
 								width="32"
 								alt="" />
 							<p class="mb-0">Google</p>
@@ -666,7 +666,7 @@
 					<div class="d-flex align-items-center gap-4">
 						<div class="d-flex align-items-center gap-3 flex-grow-1">
 							<img
-								src="assets/images/apps/08.png"
+								src="<?php echo $base_url ?>/assets/images/apps/08.png"
 								width="32"
 								alt="" />
 							<p class="mb-0">Altaba</p>
@@ -684,7 +684,7 @@
 					<div class="d-flex align-items-center gap-4">
 						<div class="d-flex align-items-center gap-3 flex-grow-1">
 							<img
-								src="assets/images/apps/07.png"
+								src="<?php echo $base_url ?>/assets/images/apps/07.png"
 								width="32"
 								alt="" />
 							<p class="mb-0">Spotify</p>
@@ -742,7 +742,7 @@
 					<div class="d-flex flex-column gap-3">
 						<div class="d-flex align-items-center gap-3">
 							<img
-								src="assets/images/avatars/01.png"
+								src="<?php echo $base_url ?>/assets/images/avatars/01.png"
 								width="45"
 								height="45"
 								class="rounded-circle"
@@ -759,7 +759,7 @@
 						</div>
 						<div class="d-flex align-items-center gap-3">
 							<img
-								src="assets/images/avatars/02.png"
+								src="<?php echo $base_url ?>/assets/images/avatars/02.png"
 								width="45"
 								height="45"
 								class="rounded-circle"
@@ -776,7 +776,7 @@
 						</div>
 						<div class="d-flex align-items-center gap-3">
 							<img
-								src="assets/images/avatars/03.png"
+								src="<?php echo $base_url ?>/assets/images/avatars/03.png"
 								width="45"
 								height="45"
 								class="rounded-circle"
@@ -793,7 +793,7 @@
 						</div>
 						<div class="d-flex align-items-center gap-3">
 							<img
-								src="assets/images/avatars/04.png"
+								src="<?php echo $base_url ?>/assets/images/avatars/04.png"
 								width="45"
 								height="45"
 								class="rounded-circle"
@@ -810,7 +810,7 @@
 						</div>
 						<div class="d-flex align-items-center gap-3">
 							<img
-								src="assets/images/avatars/05.png"
+								src="<?php echo $base_url ?>/assets/images/avatars/05.png"
 								width="45"
 								height="45"
 								class="rounded-circle"
@@ -827,7 +827,7 @@
 						</div>
 						<div class="d-flex align-items-center gap-3">
 							<img
-								src="assets/images/avatars/06.png"
+								src="<?php echo $base_url ?>/assets/images/avatars/06.png"
 								width="45"
 								height="45"
 								class="rounded-circle"
@@ -844,7 +844,7 @@
 						</div>
 						<div class="d-flex align-items-center gap-3">
 							<img
-								src="assets/images/avatars/08.png"
+								src="<?php echo $base_url ?>/assets/images/avatars/08.png"
 								width="45"
 								height="45"
 								class="rounded-circle"
@@ -940,7 +940,7 @@
 									<div class="d-flex align-items-center gap-3">
 										<div class="">
 											<img
-												src="assets/images/top-products/01.png"
+												src="<?php echo $base_url ?>/assets/images/top-products/01.png"
 												class="rounded-circle"
 												width="50"
 												height="50"
@@ -966,7 +966,7 @@
 									<div class="d-flex align-items-center gap-3">
 										<div class="">
 											<img
-												src="assets/images/top-products/02.png"
+												src="<?php echo $base_url ?>/assets/images/top-products/02.png"
 												class="rounded-circle"
 												width="50"
 												height="50"
@@ -992,7 +992,7 @@
 									<div class="d-flex align-items-center gap-3">
 										<div class="">
 											<img
-												src="assets/images/top-products/03.png"
+												src="<?php echo $base_url ?>/assets/images/top-products/03.png"
 												class="rounded-circle"
 												width="50"
 												height="50"
@@ -1018,7 +1018,7 @@
 									<div class="d-flex align-items-center gap-3">
 										<div class="">
 											<img
-												src="assets/images/top-products/04.png"
+												src="<?php echo $base_url ?>/assets/images/top-products/04.png"
 												class="rounded-circle"
 												width="50"
 												height="50"
@@ -1044,7 +1044,7 @@
 									<div class="d-flex align-items-center gap-3">
 										<div class="">
 											<img
-												src="assets/images/top-products/06.png"
+												src="<?php echo $base_url ?>/assets/images/top-products/06.png"
 												class="rounded-circle"
 												width="50"
 												height="50"

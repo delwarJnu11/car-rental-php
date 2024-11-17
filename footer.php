@@ -206,12 +206,10 @@
   </div>
 </div>
 <!--start switcher-->
-
-<!--bootstrap js-->
-<script src="<?php echo $base_url; ?>/assets/js/bootstrap.bundle.min.js"></script>
-
 <!--plugins-->
 <script src="<?php echo $base_url; ?>/assets/js/jquery.min.js"></script>
+<!--bootstrap js-->
+<script src="<?php echo $base_url; ?>/assets/js/bootstrap.bundle.min.js"></script>
 <!--plugins-->
 <script src="<?php echo $base_url; ?>/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 <script src="<?php echo $base_url; ?>/assets/plugins/metismenu/metisMenu.min.js"></script>
@@ -225,6 +223,8 @@
 <script src="<?php echo $base_url; ?>/assets/js/dashboard1.js"></script>
 <script>
   new PerfectScrollbar(".user-list")
+</script>
+
 </script>
 <svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;">
   <defs id="SvgjsDefs1002"></defs>

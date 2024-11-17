@@ -21,11 +21,14 @@ $roles = Role::get_roles();
                         <?php foreach ($roles as $role): ?>
                             <tr>
                                 <th scope="row"><?= $role['id'] ?></th>
-                                <td><?= $role['name'] ?></td>
+                                <td><?= $role['role_name'] ?></td>
                                 <td><?= $role['created_at'] ?></td>
                                 <td>
                                     <a class="btn btn-primary" href="/role/edit/<?= $role['id'] ?>">Edit</a>
-                                    <a class="btn btn-danger" href="">Delete</a>
+                                    <a type="button"
+                                        class="btn btn-grd-primary px-4"
+                                        href="/role/delete/<?= $role['id'] ?>">Delete</a>
+
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -33,6 +36,5 @@ $roles = Role::get_roles();
                 </table>
             </div>
         </div>
-
     </div>
 </div>

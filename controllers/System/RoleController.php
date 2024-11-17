@@ -50,4 +50,17 @@ class RoleController
          }
       }
    }
+
+   // Delete
+   function delete($id){
+      view("system", $id);
+   }
+
+   // confirm Delete
+   function confirm_delete($id){
+      $result = Role::delete_role($id);
+      if($result){
+         redirect("index");
+      }
+   }
 }

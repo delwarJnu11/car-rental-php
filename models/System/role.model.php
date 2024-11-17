@@ -18,7 +18,7 @@ class Role
     function create_role()
     {
         global $db, $tx;
-        $stmnt = $db->prepare("INSERT INTO {$tx}roles(name)VALUES( ?)");
+        $stmnt = $db->prepare("INSERT INTO {$tx}roles(role_name)VALUES( ?)");
         $stmnt->bind_param("s", $this->name);
         return $stmnt->execute();
     }
