@@ -33,6 +33,17 @@
         </li>
       </ul>
     </li>
+    <li class="">
+      <a href="javascript:;" class="has-arrow" aria-expanded="true">
+        <div class="parent-icon"><i class="material-icons-outlined">book_online</i>
+        </div>
+        <div class="menu-title">Booking</div>
+      </a>
+      <ul class="mm-collapse" style="height: 0px;">
+        <li><a href=""><i class="material-icons-outlined">arrow_right</i>All Bookings</a>
+        </li>
+      </ul>
+    </li>
   </ul>
   <!--end navigation-->
 </div>
