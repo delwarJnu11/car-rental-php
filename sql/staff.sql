@@ -9,10 +9,14 @@ CREATE TABLE IF NOT EXISTS car_staff(
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- staff user
+-- User
 CREATE TABLE IF NOT EXISTS car_users(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    phone VARCHAR(20) NOT NULL UNIQUE,
+    email VARCHAR(80) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
     role_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -27,7 +31,7 @@ CREATE TABLE IF NOT EXISTS car_staff_salary(
     allowance DECIMAL(10,2),
     deduction DECIMAL(10,2),
     net_salary DECIMAL(15,2) NOT NULL,
-    salary_status VARCHAR(30) ENUM("PAID", "UNPAID"),
+    salary_status_id VARCHAR(30), -- ENUM("PAID", "UNPAID")
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

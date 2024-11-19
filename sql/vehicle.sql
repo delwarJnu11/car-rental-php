@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS car_vehicles(
     vehicle_type_id INT NOT NULL,
     vehicle_status_id INT NOT NULL,
     vehicle_engine_type_id INT NOT NULL,
-    vehicle_review_id INT NOT NULL,
+    -- vehicle_review_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

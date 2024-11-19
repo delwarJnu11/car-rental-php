@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS car_booking_status(
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Booking Status
+-- Booking
 CREATE TABLE IF NOT EXISTS car_bookings(
     id INT AUTO_INCREMENT PRIMARY KEY,
     vehicle_id INT NOT NULL,
@@ -19,12 +19,13 @@ CREATE TABLE IF NOT EXISTS car_bookings(
     drop_off_location VARCHAR(255) NOT NULL,
     rent_amount DECIMAL(10,2) NOT NULL,
     final_amount_after_discount DECIMAL(10,2) NOT NULL,
+    paid_amount DECIMAL(15,2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Booking Payments Table
-CREATE TABLE IF NOT EXISTS car_bookings(
+CREATE TABLE IF NOT EXISTS car_payments(
     id INT AUTO_INCREMENT PRIMARY KEY,
     booking_id INT NOT NULL,
     customer_id INT NOT NULL,
