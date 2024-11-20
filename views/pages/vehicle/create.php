@@ -1,10 +1,3 @@
-<?php
-
-$roles = Role::get_roles();
-
-?>
-
-
 <div class="row">
     <div class="col-12 col-xl-8 mx-auto">
         <div class="card rounded-4 border-top border-4 border-primary border-gradient-1">
@@ -39,9 +32,7 @@ $roles = Role::get_roles();
                         <label for="input7" class="form-label">Role</label>
                         <select id="input7" name="role_id" class="form-select">
                             <option selected="">Select Role</option>
-                            <?php foreach ($roles as $role): ?>
-                                <option value="<?= $role['id'] ?>"><?= $role['role_name'] ?></option>
-                            <?php endforeach ?>
+                            <option selected="">Option 1</option>
                         </select>
                     </div>
                     <div class="col-md-12">

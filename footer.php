@@ -7,7 +7,7 @@
 <!--end overlay-->
 
 <!--start footer-->
-<footer class="page-footer">
+<footer class="page-footer text-white py-2 position-fixed bottom-0" style="background-color: #0F1535;">
   <p class="mb-0">Copyright © 2024. All right reserved.</p>
 </footer>
 <!--end footer-->

@@ -17,7 +17,7 @@ class RoleController
 
    function save()
    {
-      if (isset($_POST['create_role'])) {
+      if (isset($_POST['add_role'])) {
          $role = $_POST['role_name'];
          if ($role) {
             $role_obj = new Role(null, $role);
@@ -52,14 +52,16 @@ class RoleController
    }
 
    // Delete
-   function delete($id){
+   function delete($id)
+   {
       view("system", $id);
    }
 
    // confirm Delete
-   function confirm_delete($id){
+   function confirm_delete($id)
+   {
       $result = Role::delete_role($id);
-      if($result){
+      if ($result) {
          redirect("index");
       }
    }

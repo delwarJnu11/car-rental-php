@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS car_vehicles(
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     vehicle_name VARCHAR(255) NOT NULL,
     model VARCHAR(100) NOT NULL,
     year VARCHAR(20) NOT NULL,
@@ -19,7 +19,6 @@ CREATE TABLE IF NOT EXISTS car_vehicles(
     vehicle_type_id INT NOT NULL,
     vehicle_status_id INT NOT NULL,
     vehicle_engine_type_id INT NOT NULL,
-    -- vehicle_review_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

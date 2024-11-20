@@ -31,7 +31,15 @@ CREATE TABLE IF NOT EXISTS car_payments(
     customer_id INT NOT NULL,
     total_amount DECIMAL(10,2) NOT NULL,
     payment_method VARCHAR(50),
-    payment_status VARCHAR(50) ENUM("PAID", "UNPAID", "PARTIAL PAID"),
+    payment_status_id VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Booking Status
+CREATE TABLE IF NOT EXISTS car_payment_status(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    payment_status VARCHAR(40) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

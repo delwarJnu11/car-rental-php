@@ -1,27 +1,29 @@
 <?php session_start();
 require_once("configs/db_config.php");
+include_once("models/System/user.model.php");
 $base_url = "cpanel";
 //require_once("library/classes/system_log.class.php");
 
 if (isset($_POST["btnSignIn"])) {
 
-  $username = trim($_POST["txtUsername"]);
+  $email = trim($_POST["txtEmail"]);
   $password = trim($_POST["txtPassword"]);
-  //echo $username," ",$password;
+  // echo $email, " ", $password;
+  // die();
   //$result=$db->query("select u.id,u.username,r.name from {$tx}users u,{$tx}roles r where r.id=u.role_id and u.username='$username' and u.password='$password'");
-  $result = $db->query("select u.id,u.full_name,u.password,u.email,u.photo,u.mobile,u.role_id,r.role_name role from {$tx}users u,{$tx}roles r where r.id=u.role_id and u.name='$username' and u.inactive=0");
+  // $result = $db->query("select u.id,u.full_name,u.password,u.email,u.photo,u.mobile,u.role_id,r.role_name role from {$tx}users u,{$tx}roles r where r.id=u.role_id and u.name='$username' and u.inactive=0");
 
 
-  $user = $result->fetch_object();
+  $user = User::get_user($email);
 
   if ($user && password_verify($password, $user->password)) {
 
     $_SESSION["uid"] = $user->id;
-    $_SESSION["uname"] = $user->full_name;
-    $_SESSION["uphoto"] = $user->photo;
+    // $_SESSION["uname"] = $user->full_name;
+    // $_SESSION["uphoto"] = $user->photo;
     $_SESSION["email"] = $user->email;
-    $_SESSION["mobile"] = $user->mobile;
-    $_SESSION["role_id"] = $user->role_id;
+    $_SESSION["mobile"] = $user->phone;
+    // $_SESSION["role_id"] = $user->role_id;
     $_SESSION["urole"] = $user->role;
 
     header("location:home");
@@ -85,8 +87,8 @@ if (isset($_POST["btnSignIn"])) {
               <div class="form-body my-5">
                 <form class="row g-3" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
                   <div class="col-12">
-                    <label for="txtUsername" class="form-label">Email</label>
-                    <input type="text" class="form-control" name="txtUsername" id="txtUsername" placeholder="jhon@example.com">
+                    <label for="txtEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="txtEmail" id="txtEmail" placeholder="jhon@example.com">
                   </div>
                   <div class="col-12">
                     <label for="txtPassword" class="form-label">Password</label>
@@ -212,4 +214,5 @@ if (isset($_POST["btnSignIn"])) {
     });
   </script>
 </body>
+
 </html>

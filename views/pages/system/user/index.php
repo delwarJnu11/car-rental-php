@@ -1,5 +1,5 @@
 <?php
-$roles = Role::get_roles();
+$users = User::get_users();
 ?>
 
 <div class="row">
@@ -12,29 +12,28 @@ $roles = Role::get_roles();
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Role Name</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Date</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Role</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($roles as $role): ?>
+                        <?php foreach ($users as $user): ?>
                             <tr>
-                                <th scope="row"><?= $role['id'] ?></th>
-                                <td><?= $role['role_name'] ?></td>
+                                <th scope="row"><?= $user['id'] ?></th>
+                                <td><?= $user['first_name'] ?></td>
+                                <td><?= $user['last_name'] ?></td>
+                                <td><?= $user['phone'] ?></td>
+                                <td><?= $user['email'] ?></td>
+                                <td><?= $user['role'] ?></td>
                                 <td>
-                                    <?= date("g:i a", strtotime(explode(" ", $role['created_at'])[1])) ?>
-                                </td>
-                                <td>
-                                    <?= date("F j,Y", strtotime(explode(" ", $role['created_at'])[0]))
-                                    ?>
-                                </td>
-                                <td>
-                                    <a class="btn btn-sm text-warning" href="/role/edit/<?= $role['id'] ?>" title="Edit">
+                                    <a class="btn btn-sm text-warning" href="/user/edit/<?= $user['id'] ?>" title="Edit">
                                         <i class="material-icons-outlined">edit</i>
                                     </a>
-                                    <a class="btn btn-sm text-danger" href="/role/delete/<?= $role['id'] ?>" title="Delete">
+                                    <a class="btn btn-sm text-danger" href="/user/delete/<?= $user['id'] ?>" title="Delete">
                                         <i class="material-icons-outlined">delete</i>
                                     </a>
                                 </td>

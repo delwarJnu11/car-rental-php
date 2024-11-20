@@ -18,7 +18,7 @@ class Role
     function create_role()
     {
         global $db, $tx;
-        $stmnt = $db->prepare("INSERT INTO {$tx}roles(role_name)VALUES( ?)");
+        $stmnt = $db->prepare("INSERT INTO {$tx}roles(role_name)VALUES(?)");
         $stmnt->bind_param("s", $this->name);
         return $stmnt->execute();
     }
@@ -31,7 +31,8 @@ class Role
         $stmnt->execute();
         $result = $stmnt->get_result();
         if ($result) {
-            return $result->fetch_all(MYSQLI_ASSOC);
+            $roles = $result->fetch_all(MYSQLI_ASSOC);
+            return $roles;
         } else {
             return [];
         }
@@ -56,7 +57,7 @@ class Role
     function update_role()
     {
         global $db, $tx;
-        $stmnt = $db->prepare("UPDATE {$tx}roles SET name = ? WHERE id = ?");
+        $stmnt = $db->prepare("UPDATE {$tx}roles SET role_name = ? WHERE id = ?");
         $stmnt->bind_param("si", $this->name, $this->id);
         return $stmnt->execute();
     }
