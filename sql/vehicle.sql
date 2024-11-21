@@ -87,13 +87,13 @@ CREATE TABLE IF NOT EXISTS car_reviews(
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Vehicle  Insurance
-CREATE TABLE IF NOT EXISTS car_insurance(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    vehicle_id INT NOT NULL,
-    expiry_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    insurance_provider VARCHAR(100) NOT NULL,
-    document VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+-- -- Vehicle  Insurance
+-- CREATE TABLE IF NOT EXISTS car_insurance(
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     vehicle_id INT NOT NULL,
+--     expiry_date TIMESTAMP NOT NULL,
+--     insurance_provider VARCHAR(100) NOT NULL,
+--     document VARCHAR(100) NOT NULL,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );

@@ -16,6 +16,7 @@ if (isset($_POST["btnSignIn"])) {
 
   $user = User::get_user($email);
 
+  
   if ($user && password_verify($password, $user->password)) {
 
     $_SESSION["uid"] = $user->id;

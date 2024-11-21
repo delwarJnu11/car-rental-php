@@ -47,7 +47,7 @@
       <ul>
         <li><a href="#"><i class="material-icons-outlined">arrow_right</i>All Vehicle</a>
         </li>
-        <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Add Vehicle</a>
+        <li><a href="<?= $base_url?>/vehicle/create"><i class="material-icons-outlined">arrow_right</i>Add Vehicle</a>
         </li>
         <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Available Vehicle</a>
         </li>

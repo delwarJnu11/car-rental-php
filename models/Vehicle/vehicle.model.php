@@ -18,13 +18,15 @@ class Vehicle
     public $image;
     public $vehicle_licence_documents;
     public $vehicle_insurance_documents;
+    public $expiry_date;
+    public $insurance_provider;
     public $is_ac;
     public $vehicle_owner_id;
     public $vehicle_type_id;
     public $vehicle_status_id;
     public $vehicle_engine_type_id;
 
-    public function __construct($id, $vehicle_name, $model, $year, $door, $seats, $capacity, $luggage_capacity, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, $image, $vehicle_licence_documents, $vehicle_insurance_documents, $is_ac, $vehicle_owner_id, $vehicle_type_id, $vehicle_status_id, $vehicle_engine_type_id)
+    public function __construct($id, $vehicle_name, $model, $year, $door, $seats, $capacity, $luggage_capacity, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, $image, $vehicle_licence_documents, $vehicle_insurance_documents, $expiry_date, $insurance_provider,$is_ac, $vehicle_owner_id, $vehicle_type_id, $vehicle_status_id, $vehicle_engine_type_id)
     {
         $this->id = $id;
         $this->vehicle_name = $vehicle_name;
@@ -42,6 +44,8 @@ class Vehicle
         $this->image = $image;
         $this->vehicle_licence_documents = $vehicle_licence_documents;
         $this->vehicle_insurance_documents = $vehicle_insurance_documents;
+        $this->expiry_date = $expiry_date;
+        $this->insurance_provider = $insurance_provider;
         $this->is_ac = $is_ac;
         $this->vehicle_owner_id = $vehicle_owner_id;
         $this->vehicle_type_id = $vehicle_type_id;
@@ -53,8 +57,8 @@ class Vehicle
     public function create_vehicle()
     {
         global $db, $tx;
-        $stmnt = $db->prepare("INSERT INTO {$tx}vehicles(id, vehicle_name, model, year, door, seats, capacity, luggage_capacity, description, price_per_hour, price_per_day, price_per_week, discount_price, image, vehicle_licence_documents, vehicle_insurance_documents, is_ac, vehicle_owner_id, vehicle_type_id, vehicle_status_id, vehicle_engine_type_id)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmnt->bind_param("issssssssddddsssiiiii", $this->id, $this->vehicle_name, $this->model, $this->year, $this->door, $this->seats, $this->capacity, $this->luggage_capacity, $this->description, $this->price_per_hour, $this->price_per_day, $this->price_per_week, $this->discount_price, $this->image, $this->vehicle_licence_documents, $this->vehicle_insurance_documents, $this->is_ac, $this->vehicle_owner_id, $this->vehicle_type_id, $this->vehicle_status_id, $this->vehicle_engine_type_id);
+        $stmnt = $db->prepare("INSERT INTO {$tx}vehicles(id, vehicle_name, model, year, door, seats, capacity, luggage_capacity, description, price_per_hour, price_per_day, price_per_week, discount_price, image, vehicle_licence_documents, vehicle_insurance_documents, expiry_date, insurance_provider, is_ac, vehicle_owner_id, vehicle_type_id, vehicle_status_id, vehicle_engine_type_id)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmnt->bind_param("issssssssssddddsssiiiii", $this->id, $this->vehicle_name, $this->model, $this->year, $this->door, $this->seats, $this->capacity, $this->luggage_capacity, $this->description, $this->price_per_hour, $this->price_per_day, $this->price_per_week, $this->discount_price, $this->image, $this->vehicle_licence_documents, $this->vehicle_insurance_documents, $this->expiry_date, $this->insurance_provider, $this->is_ac, $this->vehicle_owner_id, $this->vehicle_type_id, $this->vehicle_status_id, $this->vehicle_engine_type_id);
         return $stmnt->execute();
     }
 
@@ -93,8 +97,8 @@ class Vehicle
     public function update_vehicle()
     {
         global $db, $tx;
-        $stmnt = $db->prepare("UPDATE {$tx}vehicles SET vehicle_name = ?, model = ?, year = ?, door = ?, seats = ?, capacity = ?, luggage_capacity = ?, description = ?, price_per_hour = ?, price_per_day = ?, price_per_week = ?, discount_price = ?, image = ?, vehicle_licence_documents = ?, vehicle_insurance_documents = ?, is_ac = ?, vehicle_owner_id = ?, vehicle_type_id = ?, vehicle_status_id = ?, vehicle_engine_type_id = ? WHERE id = ?");
-        $stmnt->bind_param("ssssssssddddsssiiiiii", $this->vehicle_name, $this->model, $this->year, $this->door, $this->seats, $this->capacity, $this->luggage_capacity, $this->description, $this->price_per_hour, $this->price_per_day, $this->price_per_week, $this->discount_price, $this->image, $this->vehicle_licence_documents, $this->vehicle_insurance_documents, $this->is_ac, $this->vehicle_owner_id, $this->vehicle_type_id, $this->vehicle_status_id, $this->vehicle_engine_type_id, $this->id);
+        $stmnt = $db->prepare("UPDATE {$tx}vehicles SET vehicle_name = ?, model = ?, year = ?, door = ?, seats = ?, capacity = ?, luggage_capacity = ?, description = ?, price_per_hour = ?, price_per_day = ?, price_per_week = ?, discount_price = ?, image = ?, vehicle_licence_documents = ?, vehicle_insurance_documents = ?, , expiry_date = ?, insurance_provider = ?, is_ac = ?, vehicle_owner_id = ?, vehicle_type_id = ?, vehicle_status_id = ?, vehicle_engine_type_id = ? WHERE id = ?");
+        $stmnt->bind_param("ssssssssddddsssssiiiiii", $this->vehicle_name, $this->model, $this->year, $this->door, $this->seats, $this->capacity, $this->luggage_capacity, $this->description, $this->price_per_hour, $this->price_per_day, $this->price_per_week, $this->discount_price, $this->image, $this->vehicle_licence_documents, $this->vehicle_insurance_documents, $this->expiry_date, $this->insurance_provider, $this->is_ac, $this->vehicle_owner_id, $this->vehicle_type_id, $this->vehicle_status_id, $this->vehicle_engine_type_id, $this->id);
         return $stmnt->execute();
     }
 
