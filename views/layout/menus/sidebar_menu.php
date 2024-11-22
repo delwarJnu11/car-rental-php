@@ -110,18 +110,49 @@
       <a class="has-arrow" href="javascript:;">
         <div class="parent-icon"><i class="material-icons-outlined">group_add</i>
         </div>
-        <div class="menu-title">Staff</div>
+        <div class="menu-title">Staff Management</div>
       </a>
       <ul>
-        <li><a href="#"><i class="material-icons-outlined">arrow_right</i>All Staff</a>
-        </li>
-        <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Task Assigned Staff</a>
-        </li>
-        <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Salary Tracking</a>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Staff</a>
+          <ul>
+            <li><a href="<?= $base_url ?>/staff"><i class="material-icons-outlined">arrow_right</i>All Staff</a>
+            </li>
+            <li><a href="<?= $base_url ?>/staff/create"><i class="material-icons-outlined">arrow_right</i>Add Vehicle</a>
+            </li>
+            <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Processing Tasks</a>
+            </li>
+            <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Salary Tracking</a>
+            </li>
         </li>
       </ul>
     </li>
-    <!-- Dashboard Staff Management Menu End -->
+    <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Staff Designation</a>
+      <ul>
+        <li><a href="<?= $base_url ?>/designation"><i class="material-icons-outlined">arrow_right</i>Staff Designations</a>
+        </li>
+        <li><a href="<?= $base_url ?>/designation/create"><i class="material-icons-outlined">arrow_right</i>Add Designation</a>
+        </li>
+      </ul>
+    </li>
+    <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Task status</a>
+      <ul>
+        <li><a href="<?= $base_url ?>/task_status"><i class="material-icons-outlined">arrow_right</i>All Task Status</a>
+        </li>
+        <li><a href="<?= $base_url ?>/task_status/create"><i class="material-icons-outlined">arrow_right</i>Add Task Status</a>
+        </li>
+      </ul>
+    </li>
+    <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Salary Status</a>
+      <ul>
+        <li><a href="<?= $base_url ?>/salary_status"><i class="material-icons-outlined">arrow_right</i>Salary Status</a>
+        </li>
+        <li><a href="<?= $base_url ?>/salary_status/create"><i class="material-icons-outlined">arrow_right</i>Add Salary Status</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  </li>
+  <!-- Dashboard Staff Management Menu End -->
   </ul>
   <!--end navigation-->
 </div>

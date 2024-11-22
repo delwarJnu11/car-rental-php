@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS car_vehicle_owner(
 );
 
 -- Vehicle Commission Type
-CREATE TABLE IF NOT EXISTS car_maintenance_types(
+CREATE TABLE IF NOT EXISTS car_commission_types(
     id INT AUTO_INCREMENT PRIMARY KEY,
     commission_type_name VARCHAR(30),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

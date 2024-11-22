@@ -14,30 +14,17 @@ CREATE TABLE IF NOT EXISTS car_staff(
     state VARCHAR(50) NOT NULL,
     city VARCHAR(10) NOT NULL,
     country VARCHAR(10) NOT NULL,
-    designation VARCHAR(50) NOT NULL,
+    designation_id INT NOT NULL,
     date_of_hire DATE NOT NULL,
     salary DECIMAL(15,2) DEFAULT(10000.00),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- User
-CREATE TABLE IF NOT EXISTS car_users(
+-- Staff Designation
+CREATE TABLE IF NOT EXISTS car_staff_designations(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    phone VARCHAR(20) NOT NULL UNIQUE,
-    email VARCHAR(80) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    role_id INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Staff Roles Table
-CREATE TABLE IF NOT EXISTS car_roles(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    role_name VARCHAR(50) NOT NULL UNIQUE,
+    designation_name VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
