@@ -80,6 +80,9 @@ $uid = $_SESSION["uid"];
 	<link
 		href="<?php echo $base_url ?>/sass/responsive.css"
 		rel="stylesheet" />
+	<link
+		href="<?php echo $base_url ?>/css/mystyle.css"
+		rel="stylesheet" />
 </head>
 
 <body>

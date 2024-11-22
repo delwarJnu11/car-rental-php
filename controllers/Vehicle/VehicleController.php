@@ -1,17 +1,21 @@
 <?php
 
-class VehicleController{
-    
-    function index(){
+class VehicleController
+{
+
+    function index()
+    {
         view("Vehicle");
     }
 
-    function create(){
+    function create()
+    {
         view("Vehicle");
     }
 
-    function save(){
-        if(isset($_POST['add_vehicle'])){
+    function save()
+    {
+        if (isset($_POST['add_vehicle'])) {
             $vehicle_name = htmlspecialchars(strip_tags($_POST['vehicle_name']));
             $model_name = htmlspecialchars(strip_tags($_POST['model_name']));
             $year = htmlspecialchars(strip_tags($_POST['year']));
@@ -32,9 +36,8 @@ class VehicleController{
             $description = htmlspecialchars(strip_tags($_POST['description']));
             $isAc = htmlspecialchars(strip_tags($_POST['isAc']));
 
+            // convert isAc value as Integer
             $isAc = $isAc === 'on' ? 1 : 0;
-            echo $isAc;
-            // echo $vehicle_name, $model_name, $year, $door, $seats, $luggage, $capacity, $price_per_hour, $price_per_day, $price_per_week, $discount_price, $owner_id, $vehicle_type_id, $vehicle_status_id, $vehicle_engine_id, $expiry_date, $insurance_provider, $description, $isAc;
 
             // Capture Photo from user
             $vehicle_photo = $_FILES['vehicle_image'];
@@ -46,8 +49,15 @@ class VehicleController{
             $license = upload($vehicle_license);
             $insurance = upload($vehicle_insurance);
 
-            if($vehicle_name && $model_name && $year && $door && $seats && $luggage && $capacity && $price_per_hour && $price_per_day && $price_per_week && $discount_price && $owner_id && $vehicle_type_id && $vehicle_status_id && $vehicle_engine_id && $expiry_date && $insurance_provider && $image && $license && $insurance){
-                echo "Hello";
+            // check all required fields
+            if ($vehicle_name && $model_name && $year && $door && $seats && $luggage && $capacity && $price_per_hour && $price_per_day && $price_per_week && $discount_price && $owner_id && $vehicle_type_id && $vehicle_status_id && $vehicle_engine_id && $expiry_date && $insurance_provider && $image && $license && $insurance) {
+                // Create vehicle Object
+                $new_vehicle = new Vehicle(null, $vehicle_name, $model_name, $year, $door, $seats, $capacity, $luggage, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, $image, $license, $insurance, $expiry_date, $insurance_provider,  $isAc, $owner_id, $vehicle_type_id, $vehicle_status_id, $vehicle_engine_id);
+                $result = $new_vehicle->create_vehicle();
+                // success result
+                if ($result) {
+                    redirect("index");
+                }
             }
 
             // echo "<pre>";

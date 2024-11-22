@@ -56,32 +56,32 @@
                         <label for="input11" class="form-label">Owner</label>
                         <select id="input11" name="owner_id" class="form-select">
                             <option selected="">Select Owner</option>
-                            <option>Owner 1</option>
-                            <option>Owner 2</option>
+                            <option value="1">Owner 1</option>
+                            <option value="2">Owner 2</option>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="input12" class="form-label">Vehicle Type</label>
                         <select id="input12" name="vehicle_type_id" class="form-select">
                             <option selected="">Select Vehicle Type</option>
-                            <option>Vehicle Type 1</option>
-                            <option>Vehicle Type 2</option>
+                            <option value="1">Vehicle Type 1</option>
+                            <option value="2">Vehicle Type 2</option>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="input13" class="form-label">Vehicle Status</label>
                         <select id="input13" name="vehicle_status_id" class="form-select">
                             <option selected="">Select Vehicle Status</option>
-                            <option>Vehicle Status 1</option>
-                            <option>Vehicle Status 2</option>
+                            <option value="1">Vehicle Status 1</option>
+                            <option value="2">Vehicle Status 2</option>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="input14" class="form-label">Vehicle Engine Type</label>
                         <select id="input14" name="vehicle_engine_id" class="form-select">
                             <option selected="">Select Vehicle Engine Type</option>
-                            <option>Vehicle Engine Type 1</option>
-                            <option>Vehicle Engine Type 2</option>
+                            <option value="1">Vehicle Engine Type 1</option>
+                            <option value="2">Vehicle Engine Type 2</option>
                         </select>
                     </div>
                     <div class="col-md-6">
