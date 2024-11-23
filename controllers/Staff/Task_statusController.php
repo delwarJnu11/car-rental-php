@@ -12,7 +12,7 @@ class Task_statusController
         view("staff");
     }
 
-    // save Salary Status
+    // save Task Status
     function save()
     {
         if (isset($_POST['create'])) {
@@ -29,13 +29,13 @@ class Task_statusController
         }
     }
 
-    // Edit Salary Status
+    // Edit Task Status
     function edit($id)
     {
         view("staff", TaskStatus::get_task_status($id));
     }
 
-    // Edit Salary Status
+    // Edit Task Status
     function update()
     {
         if (isset($_POST['update'])) {

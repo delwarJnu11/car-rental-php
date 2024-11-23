@@ -117,7 +117,7 @@
           <ul>
             <li><a href="<?= $base_url ?>/staff"><i class="material-icons-outlined">arrow_right</i>All Staff</a>
             </li>
-            <li><a href="<?= $base_url ?>/staff/create"><i class="material-icons-outlined">arrow_right</i>Add Vehicle</a>
+            <li><a href="<?= $base_url ?>/staff/create"><i class="material-icons-outlined">arrow_right</i>Add Staff</a>
             </li>
             <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Processing Tasks</a>
             </li>

@@ -31,8 +31,8 @@ $vehicles = Vehicle::get_vehicles();
                                 <td><?= $vehicle['vehicle_name'] ?></td>
                                 <td><?= $vehicle['model'] ?></td>
                                 <td><?= $vehicle['vehicle_owner_id'] ?></td>
-                                <td><?= $vehicle['vehicle_type_id'] ?></td>
-                                <td><?= $vehicle['vehicle_status_id'] ?></td>
+                                <td><?= $vehicle['vehicle_type_name'] ?></td>
+                                <td><?= $vehicle['vehicle_status'] ?></td>
                                 <td>
                                     <div class="d-flex justify-content-center align-items-center gap-2" style="height: 100%;">
                                         <a

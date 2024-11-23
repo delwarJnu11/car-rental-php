@@ -55,7 +55,7 @@ class Staff
     public static function get_all_staff()
     {
         global $db, $tx;
-        $stmnt = $db->prepare("SELECT * FROM {$tx}staff");
+        $stmnt = $db->prepare("SELECT s.*, d.designation_name FROM {$tx}staff s JOIN {$tx}staff_designations d ON s.designation_id = d.id");
         $stmnt->execute();
         $result = $stmnt->get_result();
         if ($result) {
