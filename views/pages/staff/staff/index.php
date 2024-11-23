@@ -1,5 +1,5 @@
 <?php
-    $all_staff = Staff::get_all_staff();
+$all_staff = Staff::get_all_staff();
 ?>
 
 <div class="row">
@@ -25,12 +25,12 @@
                         <?php foreach ($all_staff as $staff): ?>
                             <tr>
                                 <th scope="row">
-                                    <img width="60" height="60" src="<?= $base_url;?>/img/staff/<?= $staff['image'];?>" alt="">
+                                    <img width="60" height="60" src="<?= $base_url; ?>/img/staff/<?= $staff['image']; ?>" alt="">
                                 </th>
-                                <td><?= $staff['first_name']." ".$staff['last_name'] ?></td>
+                                <td><?= $staff['first_name'] . " " . $staff['last_name'] ?></td>
                                 <td><?= $staff['phone'] ?></td>
                                 <td><?= $staff['email'] ?></td>
-                                <td><?= $staff['house_no'], $staff['road_no'], $staff['city'] ?></td>
+                                <td><?= $staff['house_no'] . ", " . $staff['road_no'] . ", " . $staff['city'] ?></td>
                                 <td><?= $staff['designation_name'] ?></td>
                                 <td><?= $staff['salary'] ?></td>
                                 <td>

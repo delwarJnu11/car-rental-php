@@ -126,6 +126,14 @@
         </li>
       </ul>
     </li>
+    <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Staff Task</a>
+      <ul>
+        <li><a href="<?= $base_url ?>/staff_task"><i class="material-icons-outlined">arrow_right</i>Tasks</a>
+        </li>
+        <li><a href="<?= $base_url ?>/staff_task/create"><i class="material-icons-outlined">arrow_right</i>Task Assign</a>
+        </li>
+      </ul>
+    </li>
     <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Staff Designation</a>
       <ul>
         <li><a href="<?= $base_url ?>/designation"><i class="material-icons-outlined">arrow_right</i>Staff Designations</a>
