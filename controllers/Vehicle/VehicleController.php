@@ -19,6 +19,7 @@ class VehicleController
             $vehicle_name = htmlspecialchars(strip_tags($_POST['vehicle_name']));
             $model_name = htmlspecialchars(strip_tags($_POST['model_name']));
             $year = htmlspecialchars(strip_tags($_POST['year']));
+            $license_no = htmlspecialchars(strip_tags($_POST['license']));
             $door = htmlspecialchars(strip_tags($_POST['door']));
             $seats = htmlspecialchars(strip_tags($_POST['seats']));
             $luggage = htmlspecialchars(strip_tags($_POST['luggage']));
@@ -45,14 +46,14 @@ class VehicleController
             $vehicle_insurance = $_FILES['vehicle_insurance'];
 
             //Store this in Database
-            $image = upload($vehicle_photo);
-            $license = upload($vehicle_license);
-            $insurance = upload($vehicle_insurance);
+            $image = upload($vehicle_photo, "img/vehicle",$license_no);
+            $license = upload($vehicle_license, "img/vehicle/license",$license_no);
+            $insurance = upload($vehicle_insurance, "img/vehicle/insurance",$license_no);
 
             // check all required fields
-            if ($vehicle_name && $model_name && $year && $door && $seats && $luggage && $capacity && $price_per_hour && $price_per_day && $price_per_week && $discount_price && $owner_id && $vehicle_type_id && $vehicle_status_id && $vehicle_engine_id && $expiry_date && $insurance_provider && $image && $license && $insurance) {
+            if ($vehicle_name && $model_name && $year && $license_no && $door && $seats && $luggage && $capacity && $price_per_hour && $price_per_day && $price_per_week && $discount_price && $owner_id && $vehicle_type_id && $vehicle_status_id && $vehicle_engine_id && $expiry_date && $insurance_provider && $image && $license && $insurance) {
                 // Create vehicle Object
-                $new_vehicle = new Vehicle(null, $vehicle_name, $model_name, $year, $door, $seats, $capacity, $luggage, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, $image, $license, $insurance, $expiry_date, $insurance_provider,  $isAc, $owner_id, $vehicle_type_id, $vehicle_status_id, $vehicle_engine_id);
+                $new_vehicle = new Vehicle(null, $vehicle_name, $model_name, $year, $license_no, $door, $seats, $capacity, $luggage, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, $image, $license, $insurance, $expiry_date, $insurance_provider,  $isAc, $owner_id, $vehicle_type_id, $vehicle_status_id, $vehicle_engine_id);
                 $result = $new_vehicle->create_vehicle();
                 // success result
                 if ($result) {
@@ -60,11 +61,6 @@ class VehicleController
                 }
             }
 
-            // echo "<pre>";
-
-            // print_r($vehicle_photo);
-            // print_r($vehicle_license);
-            // print_r($vehicle_insurance);
 
 
         }

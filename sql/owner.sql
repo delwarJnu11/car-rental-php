@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS car_vehicle_owner(
     commission_type_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+);    
 
 -- Vehicle Commission Type
 CREATE TABLE IF NOT EXISTS car_commission_types(

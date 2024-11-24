@@ -26,7 +26,7 @@ $vehicles = Vehicle::get_vehicles();
                         <?php foreach ($vehicles as $vehicle): ?>
                             <tr class="text-center">
                                 <td>
-                                    <img width="70" height="70" src="<?= $base_url ?>/img/<?= $vehicle['image'] ?>" alt="">
+                                    <img width="70" height="70" src="<?= $base_url ?>/img/vehicle/<?= $vehicle['image'] ?>" alt="">
                                 </td>
                                 <td><?= $vehicle['vehicle_name'] ?></td>
                                 <td><?= $vehicle['model'] ?></td>

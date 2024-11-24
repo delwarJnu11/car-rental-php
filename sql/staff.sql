@@ -62,7 +62,9 @@ CREATE TABLE IF NOT EXISTS car_task_status(
 -- Staff Task Table
 CREATE TABLE IF NOT EXISTS car_staff_task(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    assign_by INT NOT NULL,
+    task_assign_by_staff_id INT NOT NULL,
+    task_assign_to_staff_id INT NOT NULL,
+    vehicle_id INT NOT NULL,
     task_status_id INT NOT NULL,
     task_description VARCHAR(255) NOT NULL,
     task_assign_date DATE NOT NULL,

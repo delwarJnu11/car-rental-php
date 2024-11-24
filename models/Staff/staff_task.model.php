@@ -5,17 +5,19 @@ class StaffTask
     public $id;
     public $task_assign_by_staff_id;
     public $task_assign_to_staff_id;
+    public $vehicle_no;
     public $task_status_id;
     public $task_description;
     public $task_assign_date;
     public $task_completion_date;
 
     // constructor
-    public function __construct($id, $assign_by, $assign_to, $task_status_id, $task_description, $task_assign_date, $task_completion_date)
+    public function __construct($id, $assign_by, $assign_to, $vehicle_no, $task_status_id, $task_description, $task_assign_date, $task_completion_date)
     {
         $this->id = $id;
         $this->task_assign_by_staff_id = $assign_by;
         $this->task_assign_to_staff_id = $assign_to;
+        $this->vehicle_no = $vehicle_no;
         $this->task_status_id = $task_status_id;
         $this->task_description = $task_description;
         $this->task_assign_date = $task_assign_date;
@@ -26,8 +28,8 @@ class StaffTask
     public function create_task()
     {
         global $db, $tx;
-        $stmnt =  $db->prepare("INSERT INTO {$tx}staff_task(id, task_assign_by_staff_id,task_assign_to_staff_id, task_status_id, task_description, task_assign_date, task_completion_date)VALUES(?, ?, ?, ?, ?, ?, ?)");
-        $stmnt->bind_param("iiiisss", $this->id, $this->task_assign_by_staff_id, $this->task_assign_to_staff_id, $this->task_status_id, $this->task_description, $this->task_assign_date, $this->task_completion_date);
+        $stmnt =  $db->prepare("INSERT INTO {$tx}staff_task(id, task_assign_by_staff_id,task_assign_to_staff_id, vehicle_no, task_status_id, task_description, task_assign_date, task_completion_date)VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmnt->bind_param("iiiiisss", $this->id, $this->task_assign_by_staff_id, $this->task_assign_to_staff_id, $this->vehicle_no, $this->task_status_id, $this->task_description, $this->task_assign_date, $this->task_completion_date);
         return $stmnt->execute();
     }
 
@@ -47,11 +49,12 @@ class StaffTask
     }
 
     // Get Single Staff's Task
-    public static function get_task($id)
+    public static function get_task($value)
     {
         global $db, $tx;
-        $stmnt = $db->prepare("SELECT * FROM {$tx}staff_task WHERE id = ?");
-        $stmnt->bind_param("i", $id);
+        $type = is_numeric($value) ? "i" : "s";
+        $stmnt = $db->prepare("SELECT * FROM {$tx}staff_task WHERE id = ? OR vehicle_no = ?");
+        $stmnt->bind_param($type . $type, $value, $value);
         $stmnt->execute();
         $result = $stmnt->get_result();
         if ($result) {

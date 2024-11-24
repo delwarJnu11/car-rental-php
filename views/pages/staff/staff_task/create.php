@@ -2,6 +2,9 @@
 
 $all_staff = Staff::get_all_staff();
 $all_task_status = TaskStatus::get_all_task_status();
+$vehicles = Vehicle::get_vehicles();
+echo "<br>";
+print_r($vehicles);
 
 ?>
 
@@ -22,6 +25,15 @@ $all_task_status = TaskStatus::get_all_task_status();
                             <option value="">Select Staff</option>
                             <?php foreach ($all_staff as $staff): ?>
                                 <option value="<?= $staff['id']; ?>"><?= $staff['first_name'] . " " . $staff['last_name']; ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="vehicle_no" class="form-label">Vehicle No</label>
+                        <select name="vehicle_no" id="vehicle_no" class="form-select">
+                            <option value="">Select Vehicle</option>
+                            <?php foreach ($vehicles as $vehicle): ?>
+                                <option value="<?= $vehicle['license_no']; ?>"><?= $vehicle['vehicle_name'] . "-" . $vehicle['license_no']; ?></option>
                             <?php endforeach ?>
                         </select>
                     </div>

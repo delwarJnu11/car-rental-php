@@ -28,6 +28,10 @@
                         <input type="text" name="year" class="form-control" id="input3" placeholder="Year">
                     </div>
                     <div class="col-md-4">
+                        <label for="license" class="form-label">License No</label>
+                        <input type="text" name="license" class="form-control" id="license" placeholder="License NO...">
+                    </div>
+                    <div class="col-md-4">
                         <label for="input4" class="form-label">Door</label>
                         <input type="text" name="door" class="form-control" id="input4" placeholder="Enter Door">
                     </div>
@@ -94,13 +98,13 @@
                             <?php endforeach ?>
                         </select>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <label for="input20" class="form-label">Insurance Provider</label>
+                        <input type="text" name="insurance_provider" class="form-control" id="input20" placeholder="Insurance Provider">
+                    </div>
+                    <div class="col-md-4">
                         <label for="input19" class="form-label">Insurance Expire Date</label>
                         <input type="date" name="expiry_date" class="form-control" id="input19">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="input20" class="form-label">Insurance Provider</label>
-                        <input type="text" name="insurance_provider" class="form-control" id="input20">
                     </div>
                     <div class="col-md-12">
                         <label for="input23" class="form-label">Description</label>
