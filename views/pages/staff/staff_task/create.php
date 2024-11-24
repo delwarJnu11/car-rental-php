@@ -3,8 +3,6 @@
 $all_staff = Staff::get_all_staff();
 $all_task_status = TaskStatus::get_all_task_status();
 $vehicles = Vehicle::get_vehicles();
-echo "<br>";
-print_r($vehicles);
 
 ?>
 
@@ -19,7 +17,7 @@ print_r($vehicles);
                     </div>
                 </div>
                 <form action="/staff_task/save" method="POST" class="row g-4">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="input1" class="form-label">Assign To</label>
                         <select name="assign_to" id="input1" class="form-select">
                             <option value="">Select Staff</option>
