@@ -66,8 +66,8 @@ $designations = Designation::get_all_designation();
                         <label for="input13" class="form-label">Designation</label>
                         <select name="designation_id" id="input13" class="form-select">
                             <option value="">Select Designation</option>
-                            <?php foreach($designations as $designation): ?>
-                                <option value="<?= $designation['id'];?>"><?= $designation['designation_name'];?></option>
+                            <?php foreach ($designations as $designation): ?>
+                                <option value="<?= $designation['id']; ?>"><?= $designation['designation_name']; ?></option>
                             <?php endforeach ?>
                         </select>
                     </div>
@@ -90,7 +90,7 @@ $designations = Designation::get_all_designation();
                     </div>
                     <div class="col-md-12">
                         <div class="d-md-flex d-grid align-items-center gap-3">
-                            <button type="submit" name="create" class="btn btn-grd-primary px-4">Add New Staff</button>
+                            <button type="submit" name="create" class="btn btn-grd-primary px-4 text-white">Add New Staff</button>
                         </div>
                     </div>
                 </form>

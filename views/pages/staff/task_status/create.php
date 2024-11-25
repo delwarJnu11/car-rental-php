@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-12 col-xl-8 mx-auto">
+    <div class="col-12 col-xl-12 mx-auto">
         <div class="card rounded-4 border-top border-4 border-primary border-gradient-1">
             <div class="card-body p-4">
                 <div class="d-flex align-items-start justify-content-between mb-3">

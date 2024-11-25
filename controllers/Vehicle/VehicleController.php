@@ -46,9 +46,9 @@ class VehicleController
             $vehicle_insurance = $_FILES['vehicle_insurance'];
 
             //Store this in Database
-            $image = upload($vehicle_photo, "img/vehicle",$license_no);
-            $license = upload($vehicle_license, "img/vehicle/license",$license_no);
-            $insurance = upload($vehicle_insurance, "img/vehicle/insurance",$license_no);
+            $image = upload($vehicle_photo, "img/vehicle", $license_no);
+            $license = upload($vehicle_license, "img/vehicle/license", $license_no);
+            $insurance = upload($vehicle_insurance, "img/vehicle/insurance", $license_no);
 
             // check all required fields
             if ($vehicle_name && $model_name && $year && $license_no && $door && $seats && $luggage && $capacity && $price_per_hour && $price_per_day && $price_per_week && $discount_price && $owner_id && $vehicle_type_id && $vehicle_status_id && $vehicle_engine_id && $expiry_date && $insurance_provider && $image && $license && $insurance) {
@@ -60,9 +60,12 @@ class VehicleController
                     redirect("index");
                 }
             }
-
-
-
         }
+    }
+
+    // Edit vehicle Data
+    function edit($id)
+    {
+        view("Vehicle", Vehicle::get_vehicle($id));
     }
 }

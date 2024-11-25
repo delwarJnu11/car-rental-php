@@ -99,8 +99,8 @@ class Vehicle
     public function update_vehicle()
     {
         global $db, $tx;
-        $stmnt = $db->prepare("UPDATE {$tx}vehicles SET vehicle_name = ?, model = ?, year = ?, door = ?, seats = ?, capacity = ?, luggage_capacity = ?, description = ?, price_per_hour = ?, price_per_day = ?, price_per_week = ?, discount_price = ?, image = ?, vehicle_licence_documents = ?, vehicle_insurance_documents = ?, , expiry_date = ?, insurance_provider = ?, is_ac = ?, vehicle_owner_id = ?, vehicle_type_id = ?, vehicle_status_id = ?, vehicle_engine_type_id = ? WHERE id = ?");
-        $stmnt->bind_param("ssssssssddddsssssiiiiii", $this->vehicle_name, $this->model, $this->year, $this->door, $this->seats, $this->capacity, $this->luggage_capacity, $this->description, $this->price_per_hour, $this->price_per_day, $this->price_per_week, $this->discount_price, $this->image, $this->vehicle_licence_documents, $this->vehicle_insurance_documents, $this->expiry_date, $this->insurance_provider, $this->is_ac, $this->vehicle_owner_id, $this->vehicle_type_id, $this->vehicle_status_id, $this->vehicle_engine_type_id, $this->id);
+        $stmnt = $db->prepare("UPDATE {$tx}vehicles SET vehicle_name = ?, model = ?, year = ?, seats = ?, capacity = ?, luggage_capacity = ?, description = ?, price_per_hour = ?, price_per_day = ?, price_per_week = ?, discount_price = ?, expiry_date = ?, insurance_provider = ?, vehicle_owner_id = ?, vehicle_status_id = ? WHERE id = ?");
+        $stmnt->bind_param("sssssssddddssiii", $this->vehicle_name, $this->model, $this->year, $this->seats, $this->capacity, $this->luggage_capacity, $this->description, $this->price_per_hour, $this->price_per_day, $this->price_per_week, $this->discount_price, $this->expiry_date, $this->insurance_provider, $this->vehicle_owner_id, $this->vehicle_status_id, $this->id);
         return $stmnt->execute();
     }
 

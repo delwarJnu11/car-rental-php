@@ -188,6 +188,10 @@
   </li>
   </ul>
   </li>
+  <li class="text-center mt-2">
+    <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="<?= $base_url ?>/logout.php"><i
+        class="material-icons-outlined">power_settings_new</i>Logout</a>
+  </li>
   <!-- Dashboard Owner Management Menu End -->
   </ul>
   <!--end navigation-->

@@ -6,14 +6,14 @@
 					<div class="col-12 col-sm-7">
 						<div class="d-flex align-items-center gap-3 mb-5">
 							<img
-								src="<?php echo $base_url ?>/assets/images/avatars/01.png"
+								src="<?php echo $base_url ?>/img/users/<?= $_SESSION["uphoto"] ?>"
 								class="rounded-circle bg-grd-info p-1"
 								width="60"
 								height="60"
 								alt="user" />
 							<div class="">
 								<p class="mb-0 fw-semibold">Welcome back</p>
-								<h4 class="fw-semibold mb-0 fs-4 mb-0"><?= $_SESSION['uid'];?></h4>
+								<h4 class="fw-semibold mb-0 fs-4 mb-0"><?= $_SESSION['fname'] . " " . $_SESSION['lname']; ?></h4>
 							</div>
 						</div>
 						<div class="d-flex align-items-center gap-5">

@@ -24,10 +24,13 @@ class UserController
             $password = htmlspecialchars(strip_tags($_POST['password']));
             $role_id = htmlspecialchars(strip_tags($_POST['role_id']));
 
+            $photo = $_FILES['image'];
+            $image_name = upload($photo, "img/users");
+
             if ($first_name && $last_name && $phone && $email && $password && $role_id) {
-                $newUser = new User(null, $first_name, $last_name, $phone, $email, password_hash($password, PASSWORD_BCRYPT), $role_id);
-                $result = $newUser->create_user();
-                if ($result) {
+                $newUser = new User(null, $first_name, $last_name, $phone, $email, password_hash($password, PASSWORD_BCRYPT), $role_id, $image_name);
+                $user_id = $newUser->create_user();
+                if ($user_id) {
                     redirect("index");
                 }
             }

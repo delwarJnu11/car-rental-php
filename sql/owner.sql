@@ -1,7 +1,6 @@
 -- vehicle Owner Table
 CREATE TABLE IF NOT EXISTS car_vehicle_owner(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    vehicle_id INT NOT NULL,
     user_id INT NOT NULL,
     commission_rate DECIMAL(15,2) NOT NULL,
     commission_type_id INT NOT NULL,

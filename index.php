@@ -16,16 +16,15 @@ if (isset($_POST["btnSignIn"])) {
 
   $user = User::get_user($email);
 
-  
   if ($user && password_verify($password, $user->password)) {
 
     $_SESSION["uid"] = $user->id;
-    // $_SESSION["fname"] = $user->first_name;
-    // $_SESSION["lname"] = $user->last_name;
-    // $_SESSION["uphoto"] = $user->photo;
+    $_SESSION["fname"] = $user->first_name;
+    $_SESSION["lname"] = $user->last_name;
+    $_SESSION["uphoto"] = $user->image;
     $_SESSION["email"] = $user->email;
     $_SESSION["mobile"] = $user->phone;
-    // $_SESSION["role_id"] = $user->role_id;
+    $_SESSION["role_id"] = $user->role_id;
     $_SESSION["urole"] = $user->role;
 
     header("location:home");
@@ -176,7 +175,7 @@ if (isset($_POST["btnSignIn"])) {
 
       rememberStatus();
 
-      $('#txtUsername').on("input", function() {
+      $('#txtEmail').on("input", function() {
         remember();
       });
 
@@ -191,7 +190,7 @@ if (isset($_POST["btnSignIn"])) {
       function remember() {
         if ($('#chkRemember').is(':checked')) {
           // save username and password
-          localStorage.username = $('#txtUsername').val().trim();
+          localStorage.username = $('#txtEmail').val().trim();
           localStorage.pass = $('#txtPassword').val().trim();
           localStorage.chkbox = $('#chkRemember').val();
         } else {
@@ -204,11 +203,11 @@ if (isset($_POST["btnSignIn"])) {
       function rememberStatus() {
         if (localStorage.chkbox && localStorage.chkbox != '') {
           $('#chkRemember').attr('checked', 'checked');
-          $('#txtUsername').val(localStorage.username);
+          $('#txtEmail').val(localStorage.username);
           $('#txtPassword').val(localStorage.pass);
         } else {
           $('#chkRemember').removeAttr('checked');
-          $('#txtUsername').val('');
+          $('#txtEmail').val('');
           $('#txtPassword').val('');
         }
       }

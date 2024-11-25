@@ -36,9 +36,6 @@ $designations = Designation::get_all_designation();
                                     <a class="btn btn-sm text-warning" href="/designation/edit/<?= $designation['id'] ?>" title="Edit">
                                         <i class="material-icons-outlined">edit</i>
                                     </a>
-                                    <a class="btn btn-sm text-danger" href="/designation/delete/<?= $designation['id'] ?>" title="Delete">
-                                        <i class="material-icons-outlined">delete</i>
-                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

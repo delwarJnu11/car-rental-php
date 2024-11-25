@@ -9,8 +9,9 @@ class User
 	public $email;
 	public $password;
 	public $role_id;
+	public $image;
 
-	function __construct($id, $fname, $lname, $phone, $email, $password, $role_id)
+	function __construct($id, $fname, $lname, $phone, $email, $password, $role_id, $image = null)
 	{
 		$this->id = $id;
 		$this->first_name = $fname;
@@ -19,20 +20,27 @@ class User
 		$this->email = $email;
 		$this->password = $password;
 		$this->role_id = $role_id;
+		$this->image = $image;
 	}
 
 	// Create User
 	public function create_user()
 	{
 		global $db, $tx;
-		$stmnt = $db->prepare("INSERT INTO {$tx}users(id, first_name, last_name, phone, email, password, role_id) VALUES(?, ?, ?, ?, ?, ?, ?)");
-		$stmnt->bind_param("isssssi", $this->id, $this->first_name, $this->last_name, $this->phone, $this->email, $this->password, $this->role_id);
+
+		// Modify query to include the image field
+		$stmnt = $db->prepare("INSERT INTO {$tx}users(id, first_name, last_name, phone, email, password, role_id, image) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+		$stmnt->bind_param("isssssis", $this->id, $this->first_name, $this->last_name, $this->phone, $this->email, $this->password, $this->role_id, $this->image);
+
 		$result = $stmnt->execute();
-		return $result;
+		if ($result) {
+			return $db->insert_id;
+		} else {
+			return false;
+		}
 	}
 
 	// Get All Users
-	// select u.id,u.full_name,u.password,u.email,u.photo,u.mobile,u.role_id,r.role_name role from {$tx}users u,{$tx}roles r where r.id=u.role_id and u.name='$username' and u.inactive=0"
 	public static function get_users()
 	{
 		global $db;
@@ -73,7 +81,7 @@ class User
 		return $stmnt->execute();
 	}
 
-	// Delete user
+	// Delete User
 	public static function delete_user($id)
 	{
 		global $db, $tx;
@@ -84,6 +92,7 @@ class User
 }
 
 ?>
+
 
 <?php
 	// class User {
