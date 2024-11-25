@@ -20,7 +20,8 @@ if (isset($_POST["btnSignIn"])) {
   if ($user && password_verify($password, $user->password)) {
 
     $_SESSION["uid"] = $user->id;
-    // $_SESSION["uname"] = $user->full_name;
+    // $_SESSION["fname"] = $user->first_name;
+    // $_SESSION["lname"] = $user->last_name;
     // $_SESSION["uphoto"] = $user->photo;
     $_SESSION["email"] = $user->email;
     $_SESSION["mobile"] = $user->phone;
