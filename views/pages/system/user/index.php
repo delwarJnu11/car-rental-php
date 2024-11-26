@@ -33,9 +33,6 @@ $users = User::get_users();
                                     <a class="btn btn-sm text-warning" href="/user/edit/<?= $user['id'] ?>" title="Edit">
                                         <i class="material-icons-outlined">edit</i>
                                     </a>
-                                    <a class="btn btn-sm text-danger" href="/user/delete/<?= $user['id'] ?>" title="Delete">
-                                        <i class="material-icons-outlined">delete</i>
-                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

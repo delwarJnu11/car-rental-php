@@ -15,7 +15,7 @@ $commission_types = CommissionType::get_commission_types();
                         <h5 class="mb-4 fw-bold">Add Owner</h5>
                     </div>
                 </div>
-                <form action="/owner/save" method="POST" class="row g-4">
+                <form action="/owner/save" method="POST" enctype="multipart/form-data" class="row g-4">
                     <div class="col-md-6">
                         <label for="input1" class="form-label">First Name</label>
                         <input type="text" name="first_name" class="form-control" id="input1" placeholder="First Name">

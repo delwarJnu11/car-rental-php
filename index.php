@@ -49,7 +49,7 @@ if (isset($_POST["btnSignIn"])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>I-SHOP | Log in (v2)</title>
+  <title>Rental Management | Log in</title>
 
   <!--favicon-->
   <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png">

@@ -14,7 +14,7 @@ $roles = Role::get_roles();
                         <h5 class="mb-0 fw-bold">Add User</h5>
                     </div>
                 </div>
-                <form action="/user/save" method="POST" class="row g-4">
+                <form action="/user/save" method="POST" enctype="multipart/form-data" class="row g-4">
                     <div class="col-md-6">
                         <label for="input1" class="form-label">First Name</label>
                         <input type="text" name="first_name" class="form-control" id="input1" placeholder="First Name">

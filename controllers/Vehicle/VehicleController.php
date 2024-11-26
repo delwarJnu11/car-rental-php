@@ -68,4 +68,39 @@ class VehicleController
     {
         view("Vehicle", Vehicle::get_vehicle($id));
     }
+
+    // update vehicle data
+    function update(){
+        if(isset($_POST['update'])){
+            $id = $_POST['id'];
+            $vehicle_name = htmlspecialchars(strip_tags($_POST['vehicle_name']));
+            $model_name = htmlspecialchars(strip_tags($_POST['model_name']));
+            $year = htmlspecialchars(strip_tags($_POST['year']));
+            $seats = htmlspecialchars(strip_tags($_POST['seats']));
+            $luggage = htmlspecialchars(strip_tags($_POST['luggage']));
+            $capacity = htmlspecialchars(strip_tags($_POST['capacity']));
+            $price_per_hour = htmlspecialchars(strip_tags($_POST['price_per_hour']));
+            $price_per_day = htmlspecialchars(strip_tags($_POST['price_per_day']));
+            $price_per_week = htmlspecialchars(strip_tags($_POST['price_per_week']));
+            $discount_price = htmlspecialchars(strip_tags($_POST['discount_price']));
+            $owner_id = htmlspecialchars(strip_tags($_POST['owner_id']));
+            $vehicle_status_id = htmlspecialchars(strip_tags($_POST['vehicle_status_id']));
+            $expiry_date = htmlspecialchars(strip_tags($_POST['expiry_date']));
+            $insurance_provider = htmlspecialchars(strip_tags($_POST['insurance_provider']));
+            $description = htmlspecialchars(strip_tags($_POST['description']));
+
+
+            // check all required fields
+            if ($vehicle_name && $model_name && $year && $seats && $luggage && $capacity && $price_per_hour && $price_per_day && $price_per_week && $discount_price && $owner_id && $vehicle_status_id && $expiry_date && $insurance_provider) {
+                // Create vehicle Object
+                $new_vehicle = new Vehicle($id, $vehicle_name, $model_name, $year, "", "", $seats, $capacity, $luggage, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, "", "", "", $expiry_date, $insurance_provider,  "", $owner_id, "", $vehicle_status_id, "");
+                $result = $new_vehicle->update_vehicle();
+                // success result
+                if ($result) {
+                    redirect("index");
+                }
+            }
+        
+        }
+    }
 }

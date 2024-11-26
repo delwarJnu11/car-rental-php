@@ -36,9 +36,6 @@ $vehicle_engine_types = VehicleEngineType::get_all_vehicle_engine_type();
                                     <a class="btn btn-sm text-warning" href="/vehicle_engine_type/edit/<?= $vehicle_engine_type['id'] ?>" title="Edit">
                                         <i class="material-icons-outlined">edit</i>
                                     </a>
-                                    <a class="btn btn-sm text-danger" href="/vehicle_engine_type/delete/<?= $vehicle_engine_type['id'] ?>" title="Delete">
-                                        <i class="material-icons-outlined">delete</i>
-                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

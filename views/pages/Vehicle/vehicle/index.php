@@ -26,11 +26,11 @@ $vehicles = Vehicle::get_vehicles();
                         <?php foreach ($vehicles as $vehicle): ?>
                             <tr class="text-center">
                                 <td>
-                                    <img width="70" height="70" src="<?= $base_url ?>/img/vehicle/<?= $vehicle['image'] ?>" alt="">
+                                    <img width="70" height="60" class="bg-grd-warning" src="<?= $base_url ?>/img/vehicle/<?= $vehicle['image'] ?>" alt="">
                                 </td>
                                 <td><?= $vehicle['vehicle_name'] ?></td>
                                 <td><?= $vehicle['model'] ?></td>
-                                <td><?= $vehicle['vehicle_owner_id'] ?></td>
+                                <td><?= $vehicle['first_name']. " ". $vehicle['last_name'] ?></td>
                                 <td><?= $vehicle['vehicle_type_name'] ?></td>
                                 <td><?= $vehicle['vehicle_status'] ?></td>
                                 <td>

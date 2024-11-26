@@ -5,6 +5,8 @@ $vehicle_statuses = VehicleStatus::get_all_vehicle_status();
 $vehicle_engine_types = VehicleEngineType::get_all_vehicle_engine_type();
 $owners = Owner::get_owners();
 
+// print_r(explode(" ", $vehicle->expiry_date)[0]);
+
 ?>
 <!-- Vehicle Register Form -->
 <div class="row">
@@ -17,6 +19,7 @@ $owners = Owner::get_owners();
                     </div>
                 </div>
                 <form action="/vehicle/update" method="POST" enctype="multipart/form-data" class="row g-4">
+                    <input type="hidden" name="id" value="<?= $vehicle->id;?>">
                     <div class="col-md-4">
                         <label for="input1" class="form-label">Vehicle Name</label>
                         <input type="text" name="vehicle_name" class="form-control" id="input1" value="<?= $vehicle->vehicle_name ?>">
@@ -62,7 +65,7 @@ $owners = Owner::get_owners();
                         <select id="input11" name="owner_id" class="form-select">
                             <option selected="">Select Owner</option>
                             <?php foreach ($owners as $owner): ?>
-                                <option <?= $vehicle->owner_id === $owner['id'] ? "selected" : "" ?> value="<?= $owner['id'] ?>"><?= $owner['first_name'] . " " . $owner['last_name'] ?></option>
+                                <option <?= $vehicle->vehicle_owner_id === $owner['id'] ? "selected" : "" ?> value="<?= $owner['id'] ?>"><?= $owner['first_name'] . " " . $owner['last_name'] ?></option>
                             <?php endforeach ?>
                         </select>
                     </div>
@@ -81,7 +84,7 @@ $owners = Owner::get_owners();
                     </div>
                     <div class="col-md-4">
                         <label for="input19" class="form-label">Insurance Expire Date</label>
-                        <input type="date" name="expiry_date" class="form-control" id="input19" value="<?= $vehicle->expiry_date ?>">
+                        <input type="date" name="expiry_date" class="form-control" id="input19" value="<?= explode(" ", $vehicle->expiry_date)[0] ?>">
                     </div>
                     <div class="col-md-12">
                         <label for="input23" class="form-label">Description</label>

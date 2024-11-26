@@ -34,9 +34,6 @@ $roles = Role::get_roles();
                                     <a class="btn btn-sm text-warning" href="/role/edit/<?= $role['id'] ?>" title="Edit">
                                         <i class="material-icons-outlined">edit</i>
                                     </a>
-                                    <a class="btn btn-sm text-danger" href="/role/delete/<?= $role['id'] ?>" title="Delete">
-                                        <i class="material-icons-outlined">delete</i>
-                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

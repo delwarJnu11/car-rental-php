@@ -10,17 +10,19 @@ $uid = $_SESSION["uid"];
 
 
 ?>
+<!-- data-bs-theme="blue-theme" -->
 <!DOCTYPE html>
 <html
 	lang="en"
-	data-bs-theme="blue-theme">
+	data-bs-theme="blue-theme"
+	>
 
 <head>
 	<meta charset="utf-8" />
 	<meta
 		name="viewport"
 		content="width=device-width, initial-scale=1" />
-	<title>Maxton | Bootstrap 5 Admin Dashboard Template</title>
+	<title>Car Rental Agency Management</title>
 	<!--favicon-->
 	<link
 		rel="icon"

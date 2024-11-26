@@ -36,9 +36,6 @@ $all_task_status = TaskStatus::get_all_task_status();
                                     <a class="btn btn-sm text-warning" href="/task_status/edit/<?= $task['id'] ?>" title="Edit">
                                         <i class="material-icons-outlined">edit</i>
                                     </a>
-                                    <a class="btn btn-sm text-danger" href="/task_status/delete/<?= $task['id'] ?>" title="Delete">
-                                        <i class="material-icons-outlined">delete</i>
-                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

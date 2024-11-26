@@ -73,4 +73,22 @@ class OwnerController
             }
         }
     }
+
+    // delete 
+    function delete($id){
+        view("owners", $id);
+    }
+
+    // confirm delete
+    function confirm_delete($id){
+        $result = Owner::delete_owner($id);
+        if($result){
+            redirect("index");
+        }
+    }
+
+    // cancel 
+    function cancel(){
+        redirect("index");
+    }
 }

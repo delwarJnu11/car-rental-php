@@ -95,7 +95,7 @@
     <!-- Dashboard Bookings Management Menu Start -->
     <li>
       <a class="has-arrow" href="javascript:;">
-        <div class="parent-icon"><i class="material-icons-outlined">list</i>
+        <div class="parent-icon"><i class="material-icons-outlined">dataset</i>
         </div>
         <div class="menu-title">Bookings</div>
       </a>

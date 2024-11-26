@@ -3,6 +3,7 @@
     $vehicle_types = VehicleType::get_vehicle_types();
     $vehicle_statuses = VehicleStatus::get_all_vehicle_status();
     $vehicle_engine_types = VehicleEngineType::get_all_vehicle_engine_type();
+    $owners = Owner::get_owners();
 ?>
 <!-- Vehicle Register Form -->
 <div class="row">
@@ -67,8 +68,9 @@
                         <label for="input11" class="form-label">Owner</label>
                         <select id="input11" name="owner_id" class="form-select">
                             <option selected="">Select Owner</option>
-                            <option value="1">Owner 1</option>
-                            <option value="2">Owner 2</option>
+                            <?php foreach($owners as $owner): ?>
+                            <option value="<?= $owner['id'];?>"><?= $owner['first_name']. " ". $owner['last_name'];?></option>
+                            <?php endforeach ?>
                         </select>
                     </div>
                     <div class="col-md-4">

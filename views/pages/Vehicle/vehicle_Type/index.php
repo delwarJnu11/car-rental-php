@@ -36,9 +36,6 @@ $vehicleTypes = VehicleType::get_vehicle_types();
                                     <a class="btn btn-sm text-warning" href="/vehicle_type/edit/<?= $vehicleType['id'] ?>" title="Edit">
                                         <i class="material-icons-outlined">edit</i>
                                     </a>
-                                    <a class="btn btn-sm text-danger" href="/vehicle_type/delete/<?= $vehicleType['id'] ?>" title="Delete">
-                                        <i class="material-icons-outlined">delete</i>
-                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

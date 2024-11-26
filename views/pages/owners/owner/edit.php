@@ -35,7 +35,7 @@ $commission_types = CommissionType::get_commission_types();
                     </div>
                     <div class="col-md-6">
                         <label for="input11" class="form-label">Commission Rate</label>
-                        <input type="text" name="commission_rate" value="<?= $owner->commission_rate ?>%" class="form-control" id="input11">
+                        <input type="text" name="commission_rate" value="<?= $owner->commission_rate ?>" class="form-control" id="input11">
                     </div>
                     <div class="col-md-6">
                         <label for="input7" class="form-label">Commission Type</label>
