@@ -102,6 +102,8 @@
       <ul>
         <li><a href="#"><i class="material-icons-outlined">arrow_right</i>All Bookings</a>
         </li>
+        <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Book vehicle</a>
+        </li>
       </ul>
     </li>
     <!-- Dashboard Bookings Management Menu End -->
@@ -123,76 +125,132 @@
             </li>
             <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Salary Tracking</a>
             </li>
+          </ul>
+        </li>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Staff Task</a>
+          <ul>
+            <li><a href="<?= $base_url ?>/staff_task"><i class="material-icons-outlined">arrow_right</i>Tasks</a>
+            </li>
+            <li><a href="<?= $base_url ?>/staff_task/create"><i class="material-icons-outlined">arrow_right</i>Task Assign</a>
+            </li>
+          </ul>
+        </li>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Staff Designation</a>
+          <ul>
+            <li><a href="<?= $base_url ?>/designation"><i class="material-icons-outlined">arrow_right</i>Staff Designations</a>
+            </li>
+            <li><a href="<?= $base_url ?>/designation/create"><i class="material-icons-outlined">arrow_right</i>Add Designation</a>
+            </li>
+          </ul>
+        </li>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Task status</a>
+          <ul>
+            <li><a href="<?= $base_url ?>/task_status"><i class="material-icons-outlined">arrow_right</i>All Task Status</a>
+            </li>
+            <li><a href="<?= $base_url ?>/task_status/create"><i class="material-icons-outlined">arrow_right</i>Add Task Status</a>
+            </li>
+          </ul>
+        </li>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Salary Status</a>
+          <ul>
+            <li><a href="<?= $base_url ?>/salary_status"><i class="material-icons-outlined">arrow_right</i>Salary Status</a>
+            </li>
+            <li><a href="<?= $base_url ?>/salary_status/create"><i class="material-icons-outlined">arrow_right</i>Add Salary Status</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </li>
-    <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Staff Task</a>
+    <!-- Dashboard Staff Management Menu End -->
+    <!-- Dashboard Owner Management Menu Start -->
+    <li>
+      <a class="has-arrow" href="javascript:;">
+        <div class="parent-icon"><i class="material-icons-outlined">group</i>
+        </div>
+        <div class="menu-title">Owner Management</div>
+      </a>
       <ul>
-        <li><a href="<?= $base_url ?>/staff_task"><i class="material-icons-outlined">arrow_right</i>Tasks</a>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Owner</a>
+          <ul>
+            <li><a href="<?= $base_url ?>/owner"><i class="material-icons-outlined">arrow_right</i>All Owner</a>
+            </li>
+            <li><a href="<?= $base_url ?>/owner/create"><i class="material-icons-outlined">arrow_right</i>Add Owner</a>
+            </li>
+          </ul>
         </li>
-        <li><a href="<?= $base_url ?>/staff_task/create"><i class="material-icons-outlined">arrow_right</i>Task Assign</a>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Commission Types</a>
+          <ul>
+            <li><a href="<?= $base_url ?>/commission_type"><i class="material-icons-outlined">arrow_right</i>All Commissions</a>
+            </li>
+            <li><a href="<?= $base_url ?>/commission_type/create"><i class="material-icons-outlined">arrow_right</i>Add Commission</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </li>
-    <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Staff Designation</a>
+    <!-- Dashboard Owner Management Menu End -->
+    <!-- Dashboard Revenue & Payment Management Menu Start -->
+    <li>
+      <a class="has-arrow" href="javascript:;">
+        <div class="parent-icon"><i class="material-icons-outlined">paid</i>
+        </div>
+        <div class="menu-title">Revenue & Payment</div>
+      </a>
       <ul>
-        <li><a href="<?= $base_url ?>/designation"><i class="material-icons-outlined">arrow_right</i>Staff Designations</a>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Admin Revenue Tracking</a>
+          <ul>
+            <li><a href=""><i class="material-icons-outlined">arrow_right</i>All Revenue</a>
+            </li>
+          </ul>
         </li>
-        <li><a href="<?= $base_url ?>/designation/create"><i class="material-icons-outlined">arrow_right</i>Add Designation</a>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Owner Revenue Tracking</a>
+          <ul>
+            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Revenue Tracking</a>
+            </li>
+            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Expense Tracking</a>
+            </li>
+            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Net Earnings</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </li>
-    <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Task status</a>
+    <!-- Dashboard Revenue & Payment Management Menu End -->
+    <!-- Dashboard Report & Analytics Management Menu Start -->
+    <li>
+      <a class="has-arrow" href="javascript:;">
+        <div class="parent-icon"><i class="material-icons-outlined">trending_up</i>
+        </div>
+        <div class="menu-title">Report & Analytics</div>
+      </a>
       <ul>
-        <li><a href="<?= $base_url ?>/task_status"><i class="material-icons-outlined">arrow_right</i>All Task Status</a>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Owner Reports</a>
+          <ul>
+            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Vehicle Revenue & Expenses</a>
+            </li>
+            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Trip Summaries</a>
+            </li>
+            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Earnings Summary</a>
+            </li>
+          </ul>
         </li>
-        <li><a href="<?= $base_url ?>/task_status/create"><i class="material-icons-outlined">arrow_right</i>Add Task Status</a>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Revenue Report</a>
+          <ul>
+            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Total Revenue</a>
+            </li>
+            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Total Expenses</a>
+            </li>
+            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Net Earnings</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </li>
-    <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Salary Status</a>
-      <ul>
-        <li><a href="<?= $base_url ?>/salary_status"><i class="material-icons-outlined">arrow_right</i>Salary Status</a>
-        </li>
-        <li><a href="<?= $base_url ?>/salary_status/create"><i class="material-icons-outlined">arrow_right</i>Add Salary Status</a>
-        </li>
-      </ul>
+    <!-- Dashboard Revenue & Payment Management Menu End -->
+    <li class="text-center mt-2">
+      <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="<?= $base_url ?>/logout.php"><i
+          class="material-icons-outlined">power_settings_new</i>Logout</a>
     </li>
-  </ul>
-  </li>
-  <!-- Dashboard Staff Management Menu End -->
-  <!-- Dashboard Owner Management Menu Start -->
-  <li>
-    <a class="has-arrow" href="javascript:;">
-      <div class="parent-icon"><i class="material-icons-outlined">group</i>
-      </div>
-      <div class="menu-title">Owner Management</div>
-    </a>
-    <ul>
-      <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Owner</a>
-        <ul>
-          <li><a href="<?= $base_url ?>/owner"><i class="material-icons-outlined">arrow_right</i>All Owner</a>
-          </li>
-          <li><a href="<?= $base_url ?>/owner/create"><i class="material-icons-outlined">arrow_right</i>Add Owner</a>
-          </li>
-      </li>
-    </ul>
-  </li>
-  <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Commission Tpes</a>
-    <ul>
-      <li><a href="<?= $base_url ?>/commission_type"><i class="material-icons-outlined">arrow_right</i>All Commissions</a>
-      </li>
-      <li><a href="<?= $base_url ?>/commission_type/create"><i class="material-icons-outlined">arrow_right</i>Add Commission</a>
-      </li>
-    </ul>
-  </li>
-  </ul>
-  </li>
-  <li class="text-center mt-2">
-    <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="<?= $base_url ?>/logout.php"><i
-        class="material-icons-outlined">power_settings_new</i>Logout</a>
-  </li>
-  <!-- Dashboard Owner Management Menu End -->
   </ul>
   <!--end navigation-->
 </div>
