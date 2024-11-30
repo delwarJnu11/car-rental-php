@@ -68,7 +68,7 @@ class Vehicle
     public static function get_vehicles()
     {
         global $db, $tx;
-        $stmnt = $db->prepare("SELECT v.*, u.first_name, u.last_name, vt.vehicle_type_name, vs.vehicle_status, vet.vehicle_engine_type as engine_type FROM {$tx}vehicles v JOIN {$tx}vehicle_types vt ON v.vehicle_type_id = vt.id JOIN {$tx}vehicle_status vs ON v.vehicle_status_id = vs.id JOIN {$tx}vehicle_engine_types vet ON v.vehicle_engine_type_id = vet.id JOIN {$tx}vehicle_owner vo ON v.vehicle_owner_id = vo.id JOIN {$tx}users u ON vo.user_id = u.id");
+        $stmnt = $db->prepare("SELECT v.*, vo.first_name, vo.last_name, vt.vehicle_type_name, vs.vehicle_status, vet.vehicle_engine_type as engine_type FROM {$tx}vehicles v JOIN {$tx}vehicle_types vt ON v.vehicle_type_id = vt.id JOIN {$tx}vehicle_status vs ON v.vehicle_status_id = vs.id JOIN {$tx}vehicle_engine_types vet ON v.vehicle_engine_type_id = vet.id JOIN {$tx}vehicle_owner vo ON v.vehicle_owner_id = vo.id");
         $stmnt->execute();
         $result = $stmnt->get_result();
         if ($result) {
@@ -105,11 +105,11 @@ class Vehicle
     }
 
     // Delete Vehicle
-    public static function delete_vehicle($id)
+    public static function delete_vehicle($field_name, $value)
     {
         global $db, $tx;
-        $stmnt = $db->prepare("DELETE FROM {$tx}vehicles WHERE id = ?");
-        $stmnt->bind_param("i", $id);
+        $stmnt = $db->prepare("DELETE FROM {$tx}vehicles WHERE $field_name = ?");
+        $stmnt->bind_param("i", $value);
         return $stmnt->execute();
     }
 }

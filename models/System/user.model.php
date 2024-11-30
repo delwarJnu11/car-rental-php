@@ -10,8 +10,9 @@ class User
 	public $password;
 	public $role_id;
 	public $image;
+	public $owner_id;
 
-	function __construct($id, $fname, $lname, $phone, $email, $password, $role_id, $image = null)
+	function __construct($id, $fname, $lname, $phone, $email, $password, $role_id, $image = null, $owner_id = null)
 	{
 		$this->id = $id;
 		$this->first_name = $fname;
@@ -21,6 +22,7 @@ class User
 		$this->password = $password;
 		$this->role_id = $role_id;
 		$this->image = $image;
+		$this->owner_id = $owner_id;
 	}
 
 	// Create User
@@ -29,8 +31,8 @@ class User
 		global $db, $tx;
 
 		// Modify query to include the image field
-		$stmnt = $db->prepare("INSERT INTO {$tx}users(id, first_name, last_name, phone, email, password, role_id, image) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
-		$stmnt->bind_param("isssssis", $this->id, $this->first_name, $this->last_name, $this->phone, $this->email, $this->password, $this->role_id, $this->image);
+		$stmnt = $db->prepare("INSERT INTO {$tx}users(id, first_name, last_name, phone, email, password, role_id, image, owner_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$stmnt->bind_param("isssssisi", $this->id, $this->first_name, $this->last_name, $this->phone, $this->email, $this->password, $this->role_id, $this->image, $this->owner_id);
 
 		$result = $stmnt->execute();
 		if ($result) {
@@ -81,12 +83,22 @@ class User
 		return $stmnt->execute();
 	}
 
-	// Delete User
-	public static function delete_user($id)
+	// Update User
+	public static function update_user_from_owner($first_name, $last_name, $phone, $email, $owner_id)
 	{
 		global $db, $tx;
-		$stmnt = $db->prepare("DELETE FROM {$tx}users WHERE id = ?");
-		$stmnt->bind_param("i", $id);
+		$stmnt = $db->prepare("UPDATE {$tx}users SET first_name = ?, last_name = ?, phone = ?, email = ? WHERE owner_id = ?");
+		$stmnt->bind_param("ssssi", $first_name, $last_name, $phone, $email, $owner_id);
+		return $stmnt->execute();
+	}
+
+
+	// Delete User
+	public static function delete_user($field_name, $value)
+	{
+		global $db, $tx;
+		$stmnt = $db->prepare("DELETE FROM {$tx}users WHERE $field_name = ?");
+		$stmnt->bind_param("i", $value);
 		return $stmnt->execute();
 	}
 }

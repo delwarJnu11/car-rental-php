@@ -31,14 +31,16 @@ class OwnerController
             $image_name = upload($photo, "img/users");
 
             if ($first_name && $last_name && $phone && $email && $password && $role_id && $commission_rate && $commission_type_id) {
-                $newUser = new User(null, $first_name, $last_name, $phone, $email, password_hash($password, PASSWORD_BCRYPT), $role_id, $image_name);
-                $user_id = $newUser->create_user();
-                if ($user_id) {
-                    $owner = new Owner(null, $user_id, $commission_rate, $commission_type_id);
-                    $result = $owner->create_owner();
-                    if ($result) {
+                $ownerObj = new Owner(null, $first_name, $last_name, $phone, $email, password_hash($password, PASSWORD_BCRYPT), $role_id, $image_name, $commission_rate, $commission_type_id);
+
+                $owner_id = $ownerObj->create_owner();
+
+                if($owner_id){
+                    $user = new User(null,$first_name, $last_name, $phone, $email, password_hash($password, PASSWORD_BCRYPT), $role_id, $image_name, $owner_id);
+                    $user_id = $user->create_user();
+                     if($owner_id && $user_id){
                         redirect("index");
-                    }
+                     }
                 }
             }
         }
@@ -55,7 +57,6 @@ class OwnerController
     {
         if (isset($_POST['update'])) {
             $id = $_POST['id'];
-            $user_id = $_POST['user_id'];
             $first_name = htmlspecialchars(strip_tags($_POST['first_name']));
             $last_name = htmlspecialchars(strip_tags($_POST['last_name']));
             $phone = htmlspecialchars(strip_tags($_POST['phone']));
@@ -63,12 +64,16 @@ class OwnerController
             $commission_rate = htmlspecialchars(strip_tags($_POST['commission_rate']));
             $commission_type_id = htmlspecialchars(strip_tags($_POST['commission_id']));
 
-            if ($id && $user_id) {
-                Owner::update_owner_details($first_name, $last_name, $phone, $email, $user_id);
-                $updated_owner_obj = new Owner($id, $user_id, $commission_rate, $commission_type_id);
-                $result = $updated_owner_obj->update_owner();
-                if ($result) {
-                    redirect("index");
+            if ($id) {
+                $update = new Owner($id, $first_name, $last_name, $phone, $email, "",  "", "", $commission_rate, $commission_type_id);
+                $result = $update->update_owner();
+
+                if($result){
+                    $res = User::update_user_from_owner($first_name, $last_name, $phone, $email, $id);
+
+                    if($res){
+                        redirect("index");
+                    }
                 }
             }
         }
@@ -81,9 +86,15 @@ class OwnerController
 
     // confirm delete
     function confirm_delete($id){
-        $result = Owner::delete_owner($id);
-        if($result){
-            redirect("index");
+        $vehicle_deleted_result = Vehicle::delete_vehicle("vehicle_owner_id", $id);
+        if($vehicle_deleted_result){
+            $user_deleted_result = User::delete_user("owner_id", $id);
+            if($user_deleted_result){
+                $result = Owner::delete_owner($id);
+                if($result){
+                    redirect("index");
+                }
+            }
         }
     }
 
