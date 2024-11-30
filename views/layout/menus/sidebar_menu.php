@@ -102,7 +102,7 @@
       <ul>
         <li><a href="#"><i class="material-icons-outlined">arrow_right</i>All Bookings</a>
         </li>
-        <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Book vehicle</a>
+        <li><a href="<?= $base_url ?>/booking/create"><i class="material-icons-outlined">arrow_right</i>Book A Vehicle</a>
         </li>
       </ul>
     </li>
@@ -199,17 +199,17 @@
       <ul>
         <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Admin Revenue Tracking</a>
           <ul>
-            <li><a href=""><i class="material-icons-outlined">arrow_right</i>All Revenue</a>
+            <li><a href="<?= $base_url ?>"><i class="material-icons-outlined">arrow_right</i>All Revenue</a>
             </li>
           </ul>
         </li>
         <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Owner Revenue Tracking</a>
           <ul>
-            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Revenue Tracking</a>
+            <li><a href="<?= $base_url ?>"><i class="material-icons-outlined">arrow_right</i>Revenue Tracking</a>
             </li>
-            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Expense Tracking</a>
+            <li><a href="<?= $base_url ?>"><i class="material-icons-outlined">arrow_right</i>Expense Tracking</a>
             </li>
-            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Net Earnings</a>
+            <li><a href="<?= $base_url ?>"><i class="material-icons-outlined">arrow_right</i>Net Earnings</a>
             </li>
           </ul>
         </li>
@@ -226,21 +226,21 @@
       <ul>
         <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Owner Reports</a>
           <ul>
-            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Vehicle Revenue & Expenses</a>
+            <li><a href="<?= $base_url ?>"><i class="material-icons-outlined">arrow_right</i>Vehicle Revenue & Expenses</a>
             </li>
-            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Trip Summaries</a>
+            <li><a href="<?= $base_url ?>"><i class="material-icons-outlined">arrow_right</i>Trip Summaries</a>
             </li>
-            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Earnings Summary</a>
+            <li><a href="<?= $base_url ?>"><i class="material-icons-outlined">arrow_right</i>Earnings Summary</a>
             </li>
           </ul>
         </li>
         <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Revenue Report</a>
           <ul>
-            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Total Revenue</a>
+            <li><a href="<?= $base_url ?>"><i class="material-icons-outlined">arrow_right</i>Total Revenue</a>
             </li>
-            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Total Expenses</a>
+            <li><a href="<?= $base_url ?>"><i class="material-icons-outlined">arrow_right</i>Total Expenses</a>
             </li>
-            <li><a href=""><i class="material-icons-outlined">arrow_right</i>Net Earnings</a>
+            <li><a href="<?= $base_url ?>"><i class="material-icons-outlined">arrow_right</i>Net Earnings</a>
             </li>
           </ul>
         </li>

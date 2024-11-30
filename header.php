@@ -14,8 +14,7 @@ $uid = $_SESSION["uid"];
 <!DOCTYPE html>
 <html
 	lang="en"
-	data-bs-theme="blue-theme"
-	>
+	data-bs-theme="blue-theme">
 
 <head>
 	<meta charset="utf-8" />
@@ -32,7 +31,7 @@ $uid = $_SESSION["uid"];
 	<link
 		href="<?php echo $base_url ?>/assets/css/pace.min.css"
 		rel="stylesheet" />
-	<script src="assets/js/pace.min.js"></script>
+	<script src="<?php echo $base_url ?>/assets/js/pace.min.js"></script>
 
 	<!--plugins-->
 	<link
@@ -85,6 +84,7 @@ $uid = $_SESSION["uid"];
 	<link
 		href="<?php echo $base_url ?>/css/mystyle.css"
 		rel="stylesheet" />
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 
 <body>

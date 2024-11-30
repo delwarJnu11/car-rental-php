@@ -13,13 +13,15 @@ CREATE TABLE IF NOT EXISTS car_bookings(
     customer_id INT NOT NULL,
     booking_status_id INT NOT NULL,
     booking_date TIMESTAMP NOT NULL,
-    journey_start_date TIMESTAMP NOT NULL,
-    journey_end_date TIMESTAMP NOT NULL,
     pick_up_location VARCHAR(255) NOT NULL,
     drop_off_location VARCHAR(255) NOT NULL,
+    journey_start_date TIMESTAMP NOT NULL,
+    journey_end_date TIMESTAMP NOT NULL,
+    duration VARCHAR(100),
     rent_amount DECIMAL(10,2) NOT NULL,
-    final_amount_after_discount DECIMAL(10,2) NOT NULL,
+    discount_amount DECIMAL(10,2) NOT NULL,
     paid_amount DECIMAL(15,2),
+    due_amount DECIMAL(15,2) DEFAULT(0.00),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
