@@ -42,7 +42,12 @@ class Customer
         global $db, $tx;
         $stmnt = $db->prepare("INSERT INTO {$tx}customers(id, first_name, last_name, phone, email, password, national_id, image, house_no, road_no, postal_code, state, city, country)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmnt->bind_param("isssssssssssss", $this->id, $this->first_name, $this->last_name, $this->phone, $this->email, $this->password, $this->national_id, $this->image, $this->house_no, $this->road_no, $this->postal_code, $this->state, $this->city, $this->country);
-        return $stmnt->execute();
+        $result = $stmnt->execute();
+        if ($result) {
+            return $db->insert_id;
+        } else {
+            return false;
+        }
     }
 
     // Get all Customers

@@ -104,6 +104,8 @@
         </li>
         <li><a href="<?= $base_url ?>/booking/create"><i class="material-icons-outlined">arrow_right</i>Book A Vehicle</a>
         </li>
+        <li><a href="<?= $base_url ?>/booking_status/create"><i class="material-icons-outlined">arrow_right</i>Booking Status</a>
+        </li>
       </ul>
     </li>
     <!-- Dashboard Bookings Management Menu End -->
