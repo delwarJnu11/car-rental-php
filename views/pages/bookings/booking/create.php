@@ -1,12 +1,21 @@
-<script>
-    $(function() {
-        $("#customer_search_btn").on("click", function(e) {
-            e.preventDefault();
-            const search_customer = $("#search_customer").val();
+<?php
 
-        })
-    })
-</script>
+if (isset($_POST['search'])) {
+    $search_text = htmlspecialchars(strip_tags($_POST['search_customer']));
+
+    $email_pattern = "/^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/";
+    $phone_pattern = "/^(\+8801|8801|01)[3-9]{1}[0-9]{8}$/";
+
+    if (preg_match($email_pattern, $search_text)) {
+        $customer = Customer::get_customer("email", $search_text);
+    } else if (preg_match($phone_pattern, $search_text)) {
+        $customer = Customer::get_customer("phone", $search_text);
+    } else {
+        $error_msg = "customer not found!";
+    }
+}
+
+?>
 
 <div class="row">
     <div class="col-12 col-xl-12 mx-auto">
@@ -14,11 +23,14 @@
             <div class="card-body p-4">
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <div class="">
-                        <h5 class="mb-0 fw-bold">Create A New Booking</h5>
+                        <h5 class="mb-4 fw-bold">Create A New Booking</h5>
                     </div>
-                    <form class="d-flex gap-2">
-                        <input type="search" class="form-control" id="search_customer" name="search_customer" placeholder="search customer...">
-                        <input class="btn btn-grd-primary" id="customer_search_btn" type="submit" value="Search">
+                    <form class="d-flex gap-2" method="post">
+                        <div>
+                            <strong class="text-danger text-sm"><?= isset($error_msg) ? "$error_msg" : ""; ?></strong>
+                            <input type="search" style="<?= isset($error_msg) ? "border: 1px solid red; ":""?>" class="form-control" id="search_customer" name="search_customer" placeholder="search customer...">
+                        </div>
+                        <input class="btn btn-grd-primary text-white" id="customer_search_btn" type="submit" name="search" value="Search">
                     </form>
                 </div>
                 <form action="/booking/save" method="POST" enctype="multipart/form-data" class="row g-4">
