@@ -58,51 +58,51 @@ if (isset($_POST['search'])) {
                     <div id="customer" class="row g-4">
                         <div class="col-md-6">
                             <label for="input1" class="form-label">First Name</label>
-                            <input type="text" name="first_name" class="form-control" id="input1" placeholder="First Name">
+                            <input type="text" name="first_name" class="form-control" id="input1" placeholder="First Name" value="<?= isset($customer->first_name) ? "$customer->first_name":"";?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input2" class="form-label">Last Name</label>
-                            <input type="text" name="last_name" class="form-control" id="input2" placeholder="Last Name">
+                            <input type="text" name="last_name" class="form-control" id="input2" placeholder="Last Name" value="<?= isset($customer->last_name) ? "$customer->last_name":"";?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input3" class="form-label">Phone</label>
-                            <input type="text" name="phone" class="form-control" id="input3" placeholder="Phone">
+                            <input type="text" name="phone" class="form-control" id="input3" placeholder="Phone" value="<?= isset($customer->phone) ? "$customer->phone":"";?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input4" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" id="input4">
+                            <input type="email" name="email" class="form-control" id="input4" value="<?= isset($customer->email) ? "$customer->email":"";?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input5" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control" id="input5">
+                            <input type="password" name="password" class="form-control" id="input5" value="<?= isset($customer->password) ? "$customer->password":"";?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input6" class="form-label">National ID</label>
-                            <input type="text" name="nid" class="form-control" id="input6">
+                            <input type="text" name="nid" class="form-control" id="input6" value="<?= isset($customer->national_id) ? "$customer->national_id":"";?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input7" class="form-label">House No</label>
-                            <input type="text" name="house_no" class="form-control" id="input7">
+                            <input type="text" name="house_no" class="form-control" id="input7" value="<?= isset($customer->house_no) ? "$customer->house_no":"";?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input8" class="form-label">Road No</label>
-                            <input type="text" name="road_no" class="form-control" id="input8">
+                            <input type="text" name="road_no" class="form-control" id="input8" value="<?= isset($customer->road_no) ? "$customer->road_no":"";?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input9" class="form-label">Postal Code</label>
-                            <input type="text" name="postal_code" class="form-control" id="input9">
+                            <input type="text" name="postal_code" class="form-control" id="input9" value="<?= isset($customer->postal_code) ? "$customer->postal_code":"";?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input10" class="form-label">State</label>
-                            <input type="text" name="state" class="form-control" id="input10">
+                            <input type="text" name="state" class="form-control" id="input10" value="<?= isset($customer->state) ? "$customer->state":"";?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input11" class="form-label">City</label>
-                            <input type="text" name="city" class="form-control" id="input11">
+                            <input type="text" name="city" class="form-control" id="input11" value="<?= isset($customer->city) ? "$customer->city":"";?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input12" class="form-label">Country</label>
-                            <input type="text" name="country" class="form-control" id="input12">
+                            <input type="text" name="country" class="form-control" id="input12" value="<?= isset($customer->country) ? "$customer->country":"";?>">
                         </div>
                         <div class="col-md-12 position-relative">
                             <label for="input17" class="form-label">Upload Customer Image</label>
@@ -110,7 +110,7 @@ if (isset($_POST['search'])) {
                                 <span class="input-group-text">
                                     <i class="material-icons-outlined">cloud_upload</i>
                                 </span>
-                                <input type="file" name="customer_image" class="form-control" id="input17">
+                                <input type="file" name="customer_image" class="form-control" id="input17" value="<?= isset($customer->image) ? "$customer->image":"";?>">
                             </div>
                         </div>
                         <div class="col-md-12">

@@ -100,11 +100,11 @@
         <div class="menu-title">Bookings</div>
       </a>
       <ul>
-        <li><a href="#"><i class="material-icons-outlined">arrow_right</i>All Bookings</a>
+        <li><a href="<?= $base_url ?>/booking"><i class="material-icons-outlined">arrow_right</i>All Bookings</a>
         </li>
         <li><a href="<?= $base_url ?>/booking/create"><i class="material-icons-outlined">arrow_right</i>Book A Vehicle</a>
         </li>
-        <li><a href="<?= $base_url ?>/booking_status/create"><i class="material-icons-outlined">arrow_right</i>Booking Status</a>
+        <li><a href="<?= $base_url ?>/booking_status"><i class="material-icons-outlined">arrow_right</i>Booking Status</a>
         </li>
       </ul>
     </li>

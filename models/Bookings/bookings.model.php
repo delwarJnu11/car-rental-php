@@ -47,7 +47,7 @@ class Booking
     // Get All Bookings
     public static function get_bookings(){
         global $db, $tx;
-        $stmnt = $db->prepare("SELECT b.*, c.first_name, c.last_name, bs.booking_status as status_name FROM {$tx}bookings b JOIN {$tx}vehicles v ON b.vehicle_id = v.id JOIN {$tx}customers c ON b.customer_id = c.id JOIN {$tx}booking_status bs ON b.booking_status_id = bs.id");
+        $stmnt = $db->prepare("SELECT b.*, v.vehicle_name, c.first_name, c.last_name, c.phone, c.email, c.image, bs.booking_status as status_name FROM {$tx}bookings b JOIN {$tx}vehicles v ON b.vehicle_id = v.id JOIN {$tx}customers c ON b.customer_id = c.id JOIN {$tx}booking_status bs ON b.booking_status_id = bs.id");
         $stmnt->execute();
         $result = $stmnt->get_result();
         if($result){
