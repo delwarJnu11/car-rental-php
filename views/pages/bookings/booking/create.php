@@ -58,51 +58,51 @@ if (isset($_POST['search'])) {
                     <div id="customer" class="row g-4">
                         <div class="col-md-6">
                             <label for="input1" class="form-label">First Name</label>
-                            <input type="text" name="first_name" class="form-control" id="input1" placeholder="First Name" value="<?= isset($customer->first_name) ? "$customer->first_name":"";?>">
+                            <input type="text" name="first_name" class="form-control" id="input1" placeholder="First Name" value="<?= isset($customer->first_name) ? "$customer->first_name" : ""; ?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input2" class="form-label">Last Name</label>
-                            <input type="text" name="last_name" class="form-control" id="input2" placeholder="Last Name" value="<?= isset($customer->last_name) ? "$customer->last_name":"";?>">
+                            <input type="text" name="last_name" class="form-control" id="input2" placeholder="Last Name" value="<?= isset($customer->last_name) ? "$customer->last_name" : ""; ?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input3" class="form-label">Phone</label>
-                            <input type="text" name="phone" class="form-control" id="input3" placeholder="Phone" value="<?= isset($customer->phone) ? "$customer->phone":"";?>">
+                            <input type="text" name="phone" class="form-control" id="input3" placeholder="Phone" value="<?= isset($customer->phone) ? "$customer->phone" : ""; ?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input4" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" id="input4" value="<?= isset($customer->email) ? "$customer->email":"";?>">
+                            <input type="email" name="email" class="form-control" id="input4" value="<?= isset($customer->email) ? "$customer->email" : ""; ?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input5" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control" id="input5" value="<?= isset($customer->password) ? "$customer->password":"";?>">
+                            <input type="password" name="password" class="form-control" id="input5" value="<?= isset($customer->password) ? "$customer->password" : ""; ?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input6" class="form-label">National ID</label>
-                            <input type="text" name="nid" class="form-control" id="input6" value="<?= isset($customer->national_id) ? "$customer->national_id":"";?>">
+                            <input type="text" name="nid" class="form-control" id="input6" value="<?= isset($customer->national_id) ? "$customer->national_id" : ""; ?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input7" class="form-label">House No</label>
-                            <input type="text" name="house_no" class="form-control" id="input7" value="<?= isset($customer->house_no) ? "$customer->house_no":"";?>">
+                            <input type="text" name="house_no" class="form-control" id="input7" value="<?= isset($customer->house_no) ? "$customer->house_no" : ""; ?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input8" class="form-label">Road No</label>
-                            <input type="text" name="road_no" class="form-control" id="input8" value="<?= isset($customer->road_no) ? "$customer->road_no":"";?>">
+                            <input type="text" name="road_no" class="form-control" id="input8" value="<?= isset($customer->road_no) ? "$customer->road_no" : ""; ?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input9" class="form-label">Postal Code</label>
-                            <input type="text" name="postal_code" class="form-control" id="input9" value="<?= isset($customer->postal_code) ? "$customer->postal_code":"";?>">
+                            <input type="text" name="postal_code" class="form-control" id="input9" value="<?= isset($customer->postal_code) ? "$customer->postal_code" : ""; ?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input10" class="form-label">State</label>
-                            <input type="text" name="state" class="form-control" id="input10" value="<?= isset($customer->state) ? "$customer->state":"";?>">
+                            <input type="text" name="state" class="form-control" id="input10" value="<?= isset($customer->state) ? "$customer->state" : ""; ?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input11" class="form-label">City</label>
-                            <input type="text" name="city" class="form-control" id="input11" value="<?= isset($customer->city) ? "$customer->city":"";?>">
+                            <input type="text" name="city" class="form-control" id="input11" value="<?= isset($customer->city) ? "$customer->city" : ""; ?>">
                         </div>
                         <div class="col-md-6">
                             <label for="input12" class="form-label">Country</label>
-                            <input type="text" name="country" class="form-control" id="input12" value="<?= isset($customer->country) ? "$customer->country":"";?>">
+                            <input type="text" name="country" class="form-control" id="input12" value="<?= isset($customer->country) ? "$customer->country" : ""; ?>">
                         </div>
                         <div class="col-md-12 position-relative">
                             <label for="input17" class="form-label">Upload Customer Image</label>
@@ -110,7 +110,7 @@ if (isset($_POST['search'])) {
                                 <span class="input-group-text">
                                     <i class="material-icons-outlined">cloud_upload</i>
                                 </span>
-                                <input type="file" name="customer_image" class="form-control" id="input17" value="<?= isset($customer->image) ? "$customer->image":"";?>">
+                                <input type="file" name="customer_image" class="form-control" id="input17" value="<?= isset($customer->image) ? "$customer->image" : ""; ?>">
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -123,7 +123,7 @@ if (isset($_POST['search'])) {
                         <div class="col-md-6">
                             <label for="vehicle_id" class="form-label">Vehicle Name</label>
                             <select id="vehicle_id" name="vehicle_id" class="form-select">
-                                <option selected="">Select Vehicle</option>
+                                <option>Select Vehicle</option>
                                 <?php foreach ($vehicles as $vehicle): ?>
                                     <option value="<?= $vehicle['id']; ?>"><?= $vehicle['vehicle_name']; ?></option>
                                 <?php endforeach ?>
@@ -137,10 +137,6 @@ if (isset($_POST['search'])) {
                                     <option value="<?= $status['id']; ?>"><?= $status['booking_status']; ?></option>
                                 <?php endforeach ?>
                             </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="booking_date" class="form-label">Booking Date</label>
-                            <input type="date" name="booking_date" class="form-control" id="booking_date" placeholder="">
                         </div>
                         <div class="col-md-6">
                             <label for="pick_location" class="form-label">Pick Up Location</label>
@@ -171,6 +167,10 @@ if (isset($_POST['search'])) {
                             <input type="text" name="discount_amount" class="form-control" id="discount_amount">
                         </div>
                         <div class="col-md-6">
+                            <label for="net_payable_amount" class="form-label">Net Payable Amount</label>
+                            <input type="text" name="net_payable_amount" class="form-control" id="net_payable_amount" placeholder="">
+                        </div>
+                        <div class="col-md-6">
                             <label for="paid_amount" class="form-label">Paid Amount</label>
                             <input type="text" name="paid_amount" class="form-control" id="paid_amount">
                         </div>
@@ -190,3 +190,70 @@ if (isset($_POST['search'])) {
         </div>
     </div>
 </div>
+
+<script src="<?php echo $base_url?>/js/helper.js"></script>
+<script>
+    $(function() {
+        let vehicle;
+        const data = {};
+
+        // Handle Vehicle id  field change
+        $("#vehicle_id").on("change", function() {
+            const vehicle_id = $(this).val();
+            $.ajax({
+                url: `<?php echo $base_url ?>/api/vehicles/vehicle?id=${vehicle_id}`,
+                type: "GET",
+                data: {},
+                success: function(res) {
+                    vehicle = res?.vehicle;
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+
+        // Handle Journey Start Date field change
+        $("#journey_start_date").on("change", function() {
+            data.start_date = $(this).val();
+        });
+
+        // Handle Journey End Date field change
+        $("#journey_end_date").on("change", function() {
+            data.end_date = $(this).val();
+            
+            // Calculate Rent Amount Dynamically
+            if(data.start_date !== data.end_date){
+                $("#duration").val(getNumberOfDays(data.start_date, data.end_date) + " "+"Days");
+               $("#rent_amount").val(getNumberOfDays(data.start_date, data.end_date) * vehicle.price_per_day);
+            }
+        });
+
+        // Handle Duration field change
+        $("#duration").on("change", function() {
+            data.duration = $(this).val();
+
+            // Calculate Rent Amount Dynamically
+            if(data.start_date === data.end_date){
+                $("#rent_amount").val(data.duration * vehicle.price_per_hour);
+            }else{
+               $("#rent_amount").val(getNumberOfDays(data.start_date, data.end_date) * vehicle.price_per_day);
+            }
+        });
+
+        // Handle Discount amount
+        $("#discount_amount").on("change", function(){
+            const discount_amount = $(this).val();
+            const net_payable = $("#rent_amount").val() - discount_amount;
+            $("#net_payable_amount").val(net_payable);
+        });
+
+        // Handle Paid amount
+        $("#paid_amount").on("change", function(){
+            const paid_amount = $(this).val();
+            const net_payable = $("net_payable_amount").val();
+            const due_amount = net_payable - paid_amount;
+            $("#due_amount").val(due_amount);
+        });
+    });
+</script>

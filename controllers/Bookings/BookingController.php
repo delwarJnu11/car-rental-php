@@ -38,7 +38,6 @@ class BookingController
             // Booking related field
             $vehicle_id = htmlspecialchars(strip_tags($_POST['vehicle_id']));
             $booking_status_id = htmlspecialchars(strip_tags($_POST['booking_status_id']));
-            $booking_date = htmlspecialchars(strip_tags($_POST['booking_date']));
             $pick_up_location = htmlspecialchars(strip_tags($_POST['pick_up_location']));
             $drop_off_location = htmlspecialchars(strip_tags($_POST['drop_off_location']));
             $journey_start_date = htmlspecialchars(strip_tags($_POST['journey_start_date']));
@@ -46,6 +45,7 @@ class BookingController
             $duration = htmlspecialchars(strip_tags($_POST['duration']));
             $rent_amount = htmlspecialchars(strip_tags($_POST['rent_amount']));
             $discount_amount = htmlspecialchars(strip_tags($_POST['discount_amount']));
+            $net_payable_amount = htmlspecialchars(strip_tags($_POST['net_payable_amount']));
             $paid_amount = htmlspecialchars(strip_tags($_POST['paid_amount']));
             $due_amount = htmlspecialchars(strip_tags($_POST['due_amount']));
 
@@ -58,7 +58,7 @@ class BookingController
                 $customer_id = $new_customer->create_customer();
 
                 if ($customer_id) {
-                    $new_booking = new Booking(null, $vehicle_id, $customer_id, $booking_status_id, $booking_date, $pick_up_location, $drop_off_location, $journey_start_date, $journey_end_date, $duration, $rent_amount, $discount_amount, $paid_amount, $due_amount);
+                    $new_booking = new Booking(null, $vehicle_id, $customer_id, $booking_status_id, $pick_up_location, $drop_off_location, $journey_start_date, $journey_end_date, $duration, $rent_amount, $discount_amount, $net_payable_amount, $paid_amount, $due_amount);
 
                     $result = $new_booking->create_booking();
 
@@ -67,7 +67,7 @@ class BookingController
                     }
                 }
             } else {
-                $booking = new Booking(null, $vehicle_id, $customer->id,  $booking_status_id, $booking_date, $pick_up_location, $drop_off_location, $journey_start_date, $journey_end_date, $duration, $rent_amount, $discount_amount, $paid_amount, $due_amount);
+                $booking = new Booking(null, $vehicle_id, $customer->id,  $booking_status_id, $pick_up_location, $drop_off_location, $journey_start_date, $journey_end_date, $duration, $rent_amount, $discount_amount, $net_payable_amount, $paid_amount, $due_amount);
 
                 $result = $booking->create_booking();
 

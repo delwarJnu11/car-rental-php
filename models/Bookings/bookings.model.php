@@ -6,7 +6,6 @@ class Booking
     public $vehicle_id;
     public $customer_id;
     public $booking_status_id;
-    public $booking_date;
     public $pick_up_location;
     public $drop_off_location;
     public $journey_start_date;
@@ -14,17 +13,17 @@ class Booking
     public $duration;
     public $rent_amount;
     public $discount_amount;
+    public $net_payable_amount;
     public $paid_amount;
     public $due_amount;
 
     // constructor function 
-    public function __construct($id, $vehicle_id, $customer_id, $booking_status_id, $booking_date, $pick_up_location, $drop_off_location, $journey_start_date, $journey_end_date, $duration, $rent_amount, $discount_amount, $paid_amount, $due_amount)
+    public function __construct($id, $vehicle_id, $customer_id, $booking_status_id, $pick_up_location, $drop_off_location, $journey_start_date, $journey_end_date, $duration, $rent_amount, $discount_amount, $net_payable_amount, $paid_amount, $due_amount)
     {
         $this->id = $id;
         $this->vehicle_id = $vehicle_id;
         $this->customer_id = $customer_id;
         $this->booking_status_id = $booking_status_id;
-        $this->booking_date = $booking_date;
         $this->pick_up_location = $pick_up_location;
         $this->drop_off_location = $drop_off_location;
         $this->journey_start_date = $journey_start_date;
@@ -32,6 +31,7 @@ class Booking
         $this->duration = $duration;
         $this->rent_amount = $rent_amount;
         $this->discount_amount = $discount_amount;
+        $this->net_payable_amount = $net_payable_amount;
         $this->paid_amount = $paid_amount;
         $this->due_amount = $due_amount;
     }
@@ -39,8 +39,8 @@ class Booking
     // Create a New Booking
     public function create_booking(){
         global $db, $tx;
-        $stmnt = $db->prepare("INSERT INTO {$tx}bookings(id, vehicle_id, customer_id, booking_status_id, booking_date, pick_up_location, drop_off_location, journey_start_date, journey_end_date, duration, rent_amount, discount_amount, paid_amount, due_amount)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmnt->bind_param("iiiissssssdddd", $this->id, $this->vehicle_id, $this->customer_id, $this->booking_status_id, $this->booking_date, $this->pick_up_location, $this->drop_off_location, $this->journey_start_date, $this->journey_end_date, $this->duration, $this->rent_amount, $this->discount_amount, $this->paid_amount, $this->due_amount);
+        $stmnt = $db->prepare("INSERT INTO {$tx}bookings(id, vehicle_id, customer_id, booking_status_id, pick_up_location, drop_off_location, journey_start_date, journey_end_date, duration, rent_amount, discount_amount, net_payable_amount, paid_amount, due_amount)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmnt->bind_param("iiiissssssddddd", $this->id, $this->vehicle_id, $this->customer_id, $this->booking_status_id, $this->pick_up_location, $this->drop_off_location, $this->journey_start_date, $this->journey_end_date, $this->duration, $this->rent_amount, $this->discount_amount, $this->net_payable_amount, $this->paid_amount, $this->due_amount);
         return $stmnt->execute();
     }
 
