@@ -70,8 +70,9 @@ class VehicleController
     }
 
     // update vehicle data
-    function update(){
-        if(isset($_POST['update'])){
+    function update()
+    {
+        if (isset($_POST['update'])) {
             $id = $_POST['id'];
             $vehicle_name = htmlspecialchars(strip_tags($_POST['vehicle_name']));
             $model_name = htmlspecialchars(strip_tags($_POST['model_name']));
@@ -100,7 +101,6 @@ class VehicleController
                     redirect("index");
                 }
             }
-        
         }
     }
 }

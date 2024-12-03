@@ -54,7 +54,7 @@ class BookingController
 
             // create customer if not exists
             if (!$customer->id) {
-                $new_customer = new Customer(null, $first_name, $last_name, $phone, $email, $password, $nid, upload($photo, "img/customers"), $house_no, $road_no, $postal_code, $state, $city, $country);
+                $new_customer = new Customer(null, $first_name, $last_name, $phone, $email, password_hash($password, PASSWORD_BCRYPT), $nid, upload($photo, "img/customers"), $house_no, $road_no, $postal_code, $state, $city, $country);
                 $customer_id = $new_customer->create_customer();
 
                 if ($customer_id) {

@@ -1,8 +1,6 @@
 <?php
 
 $bookings = Booking::get_bookings();
-// echo "<pre>";
-// print_r($bookings);
 
 ?>
 
@@ -36,7 +34,7 @@ $bookings = Booking::get_bookings();
                                 <td><?= $booking['pick_up_location'] ?></td>
                                 <td><?= $booking['drop_off_location'] ?></td>
                                 <td>
-                                    <div class="d-flex justify-content-center align-items-center gap-2" style="height: 100%;">
+                                    <div class="d-flex justify-content-center align-items-center gap-2" id="btn" style="height: 100%;">
                                         <a
                                             class="btn btn-sm btn-warning text-white d-flex justify-content-center align-items-center gap-2"
                                             href="/booking/edit/<?= $booking['id'] ?>"
@@ -62,36 +60,153 @@ $bookings = Booking::get_bookings();
 </div>
 
 <!-- modal start -->
-<div class="modal fade" id="detailsModal">
-    <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header border-bottom-0 py-2">
-                <h5 class="modal-title">Booking Details</h5>
-                <a href="javascript:;" class="primaery-menu-close" data-bs-dismiss="modal">
-                    <i class="material-icons-outlined">close</i>
-                </a>
+            <!-- Modal Header -->
+            <div class="modal-header border-bottom-0 py-3">
+                <h5 class="modal-title fw-bold" id="detailsModalLabel">Booking Details</h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="card">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <!-- Modal Body -->
+            <div class="modal-body" id="modal_body">
+                <!-- Vehicle Image -->
+                <div class="text-center mb-4">
+                    <img class="rounded img-fluid" style="max-width: 60%; height: auto;" src="<?php $base_url ?>/img/vehicle/${booking.image}" alt="Vehicle Image">
+                </div>
+                <!-- Booking and Customer Details -->
+                <div class="card shadow-sm p-4 bg-dark text-white">
+                    <div class="row">
+                        <!-- Booking Details -->
+                        <div class="col-md-6 mb-3">
+                            <h6 class="fw-bold mb-3">Booking Details</h6>
+                            <div class="mb-2">
+                                <strong>Pick Up Location:</strong> Mohammadpur
+                            </div>
+                            <div class="mb-2">
+                                <strong>Drop Off Location:</strong> Gazipur
+                            </div>
+                            <div class="mb-2">
+                                <strong>Journey Start Date:</strong> December 07, 2024
+                            </div>
+                            <div class="mb-2">
+                                <strong>Journey End Date:</strong> December 08, 2024
+                            </div>
+                            <div class="mb-2">
+                                <strong>Rent Price:</strong> 500.00
+                            </div>
+                            <div class="mb-2">
+                                <strong>Advance Payment:</strong> 100.00
+                            </div>
+                            <div class="mb-2">
+                                <strong>Discount Amount:</strong> 10.00
+                            </div>
+                            <div class="mb-2">
+                                <strong>Due Amount:</strong> 390.00
+                            </div>
+                        </div>
+                        <!-- Customer Info -->
+                        <div class="col-md-6">
+                            <h6 class="fw-bold mb-3">Customer Info</h6>
+                            <div class="mb-2">
+                                <strong>Customer Name:</strong> Mr Liton Kumar Das
+                            </div>
+                            <div class="mb-2">
+                                <strong>Customer Email:</strong> liton_das@gmail.com
+                            </div>
+                            <div class="mb-2">
+                                <strong>Customer Phone:</strong> 015-222-999
+                            </div>
+                            <div class="mb-2">
+                                <strong>Customer Address:</strong> Mohammadpur, Dhaka-1205
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer border-top-0">
-                <button type="button" class="btn btn-grd-danger" data-bs-dismiss="modal">Delete</button>
-                <button type="button" class="btn btn-grd-info">Save changes</button>
+            <!-- Modal Footer -->
+            <div class="modal-footer border-top-0 d-flex justify-content-between">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Delete</button>
+                <button type="button" class="btn btn-primary">Save Changes</button>
             </div>
         </div>
     </div>
 </div>
 
+
+
+
+
 <script>
     $(function() {
-        $("#booking_details_btn").on("click", function() {
+        $("table").on("click", "#booking_details_btn", function() {
             const id = $(this).data("id");
-            console.log(id);
+            $.ajax({
+                url: "<?php echo $base_url ?>/api/bookings/booking",
+                type: "GET",
+                data: {
+                    id
+                },
+                success: function(res) {
+                    const booking = res.booking;
+                    console.log(booking)
+                    const booking_details_card = `
+                        <div class="card mb-4 shadow-sm">
+                            <img class="card-img-top rounded" src="<?php $base_url ?>/img/vehicle/${booking.image}" alt="Vehicle Image">
+                        </div>
+                        <!-- Booking Details -->
+                        <div class="card shadow-sm d-flex gap-4">
+                            <div class="card-body">
+                                <h6 class="fw-bold mb-3">Booking Details</h6>
+                                <div class="mb-2">
+                                    <strong>Pick Up Location:</strong> Mohammadpur
+                                </div>
+                                <div class="mb-2">
+                                    <strong>Drop Off Location:</strong> Gazipur
+                                </div>
+                                <div class="mb-2">
+                                    <strong>Journey Start Date:</strong> December 07, 2024
+                                </div>
+                                <div class="mb-2">
+                                    <strong>Journey End Date:</strong> December 08, 2024
+                                </div>
+                                <div class="mb-2">
+                                    <strong>Rent Price:</strong> 500.00
+                                </div>
+                                <div class="mb-2">
+                                    <strong>Advance Payment:</strong> 100.00
+                                </div>
+                                <div class="mb-2">
+                                    <strong>Discount Amount:</strong> 10.00
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Due Amount:</strong> 390.00
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="fw-bold mb-3">Customer Info</h6>
+                                <div class="mb-2">
+                                    <strong>Customer Name:</strong> Mr Liton Kumar Das
+                                </div>
+                                <div class="mb-2">
+                                    <strong>Customer Email:</strong> liton_das@gmail.com
+                                </div>
+                                <div class="mb-2">
+                                    <strong>Customer Phone:</strong> 015-222-999
+                                </div>
+                                <div>
+                                    <strong>Customer Address:</strong> Mohammadpur, Dhaka-1205
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    // append card in the modal body
+                    $("#modal_body").html(booking_details_card);
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
         })
     })
 </script>

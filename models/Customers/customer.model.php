@@ -70,7 +70,7 @@ class Customer
     {
         global $db, $tx;
         $stmnt = $db->prepare("SELECT * FROM {$tx}customers WHERE $field_name = ?");
-        $stmnt->bind_param("i", $value);
+        $stmnt->bind_param("s", $value);
         $stmnt->execute();
         $result = $stmnt->get_result();
         if ($result) {

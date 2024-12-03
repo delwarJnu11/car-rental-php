@@ -20,23 +20,11 @@ if (isset($_POST['search'])) {
 
 ?>
 
-<script>
+<!-- <script>
     $(function() {
-        $("#customer").show();
-        $("#booking").hide();
-
-        // open booking form after clicking next button
-        $("#next").on("click", function() {
-            $("#customer").hide();
-            $("#booking").show();
-        })
-        // Go Back button
-        $("#go_back").on("click", function() {
-            $("#customer").show();
-            $("#booking").hide();
-        })
+        
     })
-</script>
+</script> -->
 
 <div class="row">
     <div class="col-12 col-xl-12 mx-auto">
@@ -191,9 +179,26 @@ if (isset($_POST['search'])) {
     </div>
 </div>
 
-<script src="<?php echo $base_url?>/js/helper.js"></script>
+<script src="<?php echo $base_url ?>/js/helper.js"></script>
 <script>
     $(function() {
+
+        // Controll multi step form functionality in Next button
+        $("#customer").show();
+        $("#booking").hide();
+
+        // open booking form after clicking next button
+        $("#next").on("click", function() {
+            $("#customer").hide();
+            $("#booking").show();
+        })
+        // Go Back button
+        $("#go_back").on("click", function() {
+            $("#customer").show();
+            $("#booking").hide();
+        });
+
+        // Dynamic form value change functionality
         let vehicle;
         const data = {};
 
@@ -221,11 +226,11 @@ if (isset($_POST['search'])) {
         // Handle Journey End Date field change
         $("#journey_end_date").on("change", function() {
             data.end_date = $(this).val();
-            
+
             // Calculate Rent Amount Dynamically
-            if(data.start_date !== data.end_date){
-                $("#duration").val(getNumberOfDays(data.start_date, data.end_date) + " "+"Days");
-               $("#rent_amount").val(getNumberOfDays(data.start_date, data.end_date) * vehicle.price_per_day);
+            if (data.start_date !== data.end_date) {
+                $("#duration").val(getNumberOfDays(data.start_date, data.end_date) + " " + "Days");
+                $("#rent_amount").val(getNumberOfDays(data.start_date, data.end_date) * vehicle.price_per_day);
             }
         });
 
@@ -234,24 +239,24 @@ if (isset($_POST['search'])) {
             data.duration = $(this).val();
 
             // Calculate Rent Amount Dynamically
-            if(data.start_date === data.end_date){
+            if (data.start_date === data.end_date) {
                 $("#rent_amount").val(data.duration * vehicle.price_per_hour);
-            }else{
-               $("#rent_amount").val(getNumberOfDays(data.start_date, data.end_date) * vehicle.price_per_day);
+            } else {
+                $("#rent_amount").val(getNumberOfDays(data.start_date, data.end_date) * vehicle.price_per_day);
             }
         });
 
         // Handle Discount amount
-        $("#discount_amount").on("change", function(){
+        $("#discount_amount").on("change", function() {
             const discount_amount = $(this).val();
             const net_payable = $("#rent_amount").val() - discount_amount;
             $("#net_payable_amount").val(net_payable);
         });
 
         // Handle Paid amount
-        $("#paid_amount").on("change", function(){
+        $("#paid_amount").on("change", function() {
             const paid_amount = $(this).val();
-            const net_payable = $("net_payable_amount").val();
+            const net_payable = $("#net_payable_amount").val();
             const due_amount = net_payable - paid_amount;
             $("#due_amount").val(due_amount);
         });
