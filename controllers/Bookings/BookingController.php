@@ -36,9 +36,7 @@ class BookingController
             $photo = $_FILES['customer_image'];
 
             // Booking related field
-            $vehicle_id = $_POST['vehicle_id'];
-            print_r($vehicle_id);
-            die();
+            $vehicle_id = htmlspecialchars(strip_tags($_POST['vehicle_id']));
             $booking_status_id = htmlspecialchars(strip_tags($_POST['booking_status_id']));
             $pick_up_location = htmlspecialchars(strip_tags($_POST['pick_up_location']));
             $drop_off_location = htmlspecialchars(strip_tags($_POST['drop_off_location']));

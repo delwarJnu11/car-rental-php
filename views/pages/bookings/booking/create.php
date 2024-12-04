@@ -110,7 +110,7 @@ if (isset($_POST['search'])) {
                     <div id="booking" class="row g-4">
                         <div class="col-md-6">
                             <label for="vehicle_id" class="form-label">Vehicle Name</label>
-                            <select multiple id="vehicle_id" name="vehicle_id[]" class="form-select">
+                            <select id="vehicle_id" name="vehicle_id" class="form-select">
                                 <option>Select Vehicle</option>
                                 <?php foreach ($vehicles as $vehicle): ?>
                                     <option value="<?= $vehicle['id']; ?>"><?= $vehicle['vehicle_name']; ?></option>

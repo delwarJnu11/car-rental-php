@@ -1,22 +1,24 @@
 <?php
 
-class VehiclesApi{
+class VehiclesApi
+{
     // Get All Vehicles Api
-    function index(){
+    function index()
+    {
         // Send JSON response
         header('Content-Type: application/json');
 
         $vehicles = Vehicle::get_vehicles();
-        
+
         // check Vehicle found or not
-        if($vehicles){
+        if ($vehicles) {
             echo json_encode([
                 "success" => true,
                 "message" => "Vehicles Successfully found.",
                 "Status" => 200,
                 "vehicles" => $vehicles
             ]);
-        }else{
+        } else {
             echo json_encode([
                 "success" => false,
                 "message" => "Vehicles not found.",
@@ -27,23 +29,24 @@ class VehiclesApi{
     }
 
     // Get Single Vehicle Api
-    function vehicle(){
+    function vehicle()
+    {
         // Send JSON response
         header('Content-Type: application/json');
 
         $id = isset($_GET['id']) ? $_GET['id'] : null;
 
-        if($id){
+        if ($id) {
             $vehicle = Vehicle::get_vehicle($id);
 
-            if($vehicle){
+            if ($vehicle) {
                 echo json_encode([
                     "success" => true,
                     "message" => "Vehicle successfully found.",
                     "Status" => 200,
                     "vehicle" => $vehicle
                 ]);
-            }else{
+            } else {
                 echo json_encode([
                     "success" => false,
                     "message" => "Vehicle not found.",
@@ -51,7 +54,7 @@ class VehiclesApi{
                     "vehicles" => []
                 ]);
             }
-        }else{
+        } else {
             echo json_encode([
                 "success" => false,
                 "message" => "ID not found.",

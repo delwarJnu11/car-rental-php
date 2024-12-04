@@ -42,15 +42,13 @@ class Booking
         global $db, $tx;
         $stmnt = $db->prepare("INSERT INTO {$tx}bookings(id, vehicle_id, customer_id, booking_status_id, pick_up_location, drop_off_location, journey_start_date, journey_end_date, duration, rent_amount, discount_amount, net_payable_amount, paid_amount, due_amount)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmnt->bind_param("iiiisssssddddd", $this->id, $this->vehicle_id, $this->customer_id, $this->booking_status_id, $this->pick_up_location, $this->drop_off_location, $this->journey_start_date, $this->journey_end_date, $this->duration, $this->rent_amount, $this->discount_amount, $this->net_payable_amount, $this->paid_amount, $this->due_amount);
-
         $result = $stmnt->execute();
 
         if ($result) {
-			$last_id = $db->insert_id;
-		} else {
-			return false;
-		}
-        
+            return $db->insert_id;
+        } else {
+            return false;
+        }
     }
 
     // Get All Bookings
