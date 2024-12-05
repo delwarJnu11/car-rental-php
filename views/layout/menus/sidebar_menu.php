@@ -167,7 +167,7 @@
     <!-- Dashboard Owner Management Menu Start -->
     <li>
       <a class="has-arrow" href="javascript:;">
-        <div class="parent-icon"><i class="material-icons-outlined">group</i>
+        <div class="parent-icon"><i class="material-icons-outlined">engineering</i>
         </div>
         <div class="menu-title">Owner Management</div>
       </a>
@@ -191,6 +191,33 @@
       </ul>
     </li>
     <!-- Dashboard Owner Management Menu End -->
+    <!-- Dashboard Customer Management Menu Start -->
+    <li>
+      <a class="has-arrow" href="javascript:;">
+        <div class="parent-icon"><i class="material-icons-outlined">groups</i>
+        </div>
+        <div class="menu-title">Customer Management</div>
+      </a>
+      <ul>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Owner</a>
+          <ul>
+            <li><a href="<?= $base_url ?>/owner"><i class="material-icons-outlined">arrow_right</i>All Owner</a>
+            </li>
+            <li><a href="<?= $base_url ?>/owner/create"><i class="material-icons-outlined">arrow_right</i>Add Owner</a>
+            </li>
+          </ul>
+        </li>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Commission Types</a>
+          <ul>
+            <li><a href="<?= $base_url ?>/commission_type"><i class="material-icons-outlined">arrow_right</i>All Commissions</a>
+            </li>
+            <li><a href="<?= $base_url ?>/commission_type/create"><i class="material-icons-outlined">arrow_right</i>Add Commission</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <!-- Dashboard Customer Management Menu End -->
     <!-- Dashboard Revenue & Payment Management Menu Start -->
     <li>
       <a class="has-arrow" href="javascript:;">
