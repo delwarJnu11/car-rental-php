@@ -30,7 +30,8 @@ function getNumberOfDays(startDate, endDate) {
 	return diffInDays;
 }
 
-function formated_date(inputDate) {
+// Get Formatted Date
+function formated_date(inputDate = new Date()) {
 	const date = new Date(inputDate);
 
 	// Format the date
@@ -41,4 +42,16 @@ function formated_date(inputDate) {
 	}).format(date);
 
 	return formattedDate;
+}
+
+function getCurrentDate() {
+	const currentDate = new Date();
+
+	const day = currentDate.getDate();
+	const month = currentDate.getMonth() + 1;
+	const year = currentDate.getFullYear();
+
+	// Format the date as required (MMDDYYYY)
+	const res = day.toString().padStart(2, "0") + month.toString().padStart(2, "0") + year.toString();
+	return res;
 }

@@ -9,6 +9,7 @@ if (isset($_POST['search'])) {
     $email_pattern = "/^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/";
     $phone_pattern = "/^(\+8801|8801|01)[3-9]{1}[0-9]{8}$/";
 
+    // Search Customer by Email and Phone
     if (preg_match($email_pattern, $search_text)) {
         $customer = Customer::get_customer("email", $search_text);
     } else if (preg_match($phone_pattern, $search_text)) {
@@ -109,22 +110,12 @@ if (isset($_POST['search'])) {
                     </div>
                     <div id="booking" class="row g-4">
                         <div class="col-md-6">
-                            <label for="vehicle_id" class="form-label">Vehicle Name</label>
-                            <select id="vehicle_id" name="vehicle_id" class="form-select">
-                                <option>Select Vehicle</option>
-                                <?php foreach ($vehicles as $vehicle): ?>
-                                    <option value="<?= $vehicle['id']; ?>"><?= $vehicle['vehicle_name']; ?></option>
-                                <?php endforeach ?>
-                            </select>
+                            <label for="journey_start_date" class="form-label">Journey Start Date</label>
+                            <input type="date" name="journey_start_date" class="form-control" id="journey_start_date" placeholder="">
                         </div>
                         <div class="col-md-6">
-                            <label for="booking_status_id" class="form-label">Booking Status</label>
-                            <select id="booking_status_id" name="booking_status_id" class="form-select">
-                                <option selected="">Select Booking Status</option>
-                                <?php foreach ($all_status as $status): ?>
-                                    <option value="<?= $status['id']; ?>"><?= $status['booking_status']; ?></option>
-                                <?php endforeach ?>
-                            </select>
+                            <label for="journey_end_date" class="form-label">Journey End Date</label>
+                            <input type="date" name="journey_end_date" class="form-control" id="journey_end_date" placeholder="">
                         </div>
                         <div class="col-md-6">
                             <label for="pick_location" class="form-label">Pick Up Location</label>
@@ -135,12 +126,19 @@ if (isset($_POST['search'])) {
                             <input type="text" name="drop_off_location" class="form-control" id="drop_location">
                         </div>
                         <div class="col-md-6">
-                            <label for="journey_start_date" class="form-label">Journey Start Date</label>
-                            <input type="date" name="journey_start_date" class="form-control" id="journey_start_date" placeholder="">
+                            <label for="vehicle_id" class="form-label">Vehicle Name</label>
+                            <select id="vehicle_id" name="vehicle_id" class="form-select">
+                                <option>Select Vehicle</option>
+                            </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="journey_end_date" class="form-label">Journey End Date</label>
-                            <input type="date" name="journey_end_date" class="form-control" id="journey_end_date" placeholder="">
+                            <label for="booking_status_id" class="form-label">Booking Status</label>
+                            <select id="booking_status_id" name="booking_status_id" class="form-select">
+                                <option selected="">Select Booking Status</option>
+                                <?php foreach ($all_status as $status): ?>
+                                    <option value="<?= $status['id']; ?>"><?= $status['booking_status']; ?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
                         <div class="col-md-6">
                             <label for="duration" class="form-label">Duration</label>
@@ -202,22 +200,6 @@ if (isset($_POST['search'])) {
         let vehicle;
         const data = {};
 
-        // Handle Vehicle id  field change
-        $("#vehicle_id").on("change", function() {
-            const vehicle_id = $(this).val();
-            $.ajax({
-                url: `<?php echo $base_url ?>/api/vehicles/vehicle?id=${vehicle_id}`,
-                type: "GET",
-                data: {},
-                success: function(res) {
-                    vehicle = res?.vehicle;
-                },
-                error: function(error) {
-                    console.error(error);
-                }
-            });
-        });
-
         // Handle Journey Start Date field change
         $("#journey_start_date").on("change", function() {
             data.start_date = $(this).val();
@@ -230,8 +212,57 @@ if (isset($_POST['search'])) {
             // Calculate Rent Amount Dynamically
             if (data.start_date !== data.end_date) {
                 $("#duration").val(getNumberOfDays(data.start_date, data.end_date) + " " + "Days");
-                $("#rent_amount").val(getNumberOfDays(data.start_date, data.end_date) * vehicle.price_per_day);
+                $("#rent_amount").val(getNumberOfDays(data.start_date, data.end_date) * vehicle?.price_per_day);
             }
+
+            // Get Available Vehicles
+            $.ajax({
+                url: "<?php echo $base_url ?>/api/vehicles/available_vehicles",
+                type: "GET",
+                data: {
+                    start_date: data.start_date,
+                    end_date: data.end_date,
+                },
+                success: function(res) {
+                    console.log(res?.available_vehicles);
+                    let html = "<option>Select Vehicle</option>";
+                    res?.available_vehicles.forEach(vehicle => (
+                        html += `<option value="${vehicle?.id}">${vehicle?.vehicle_name}</option>`
+                    ));
+                    $("#vehicle_id").html(html);
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+
+        // Handle Vehicle id  field change
+        $("#vehicle_id").on("change", function() {
+            const vehicle_id = $(this).val();
+            $.ajax({
+                url: `<?php echo $base_url ?>/api/vehicles/vehicle?id=${vehicle_id}`,
+                type: "GET",
+                data: {},
+                success: function(res) {
+                    vehicle = res?.vehicle;
+
+                    // Calculate Rent Amount Dynamically
+                    if (data.start_date === data.end_date) {
+                        // Check Duration is exists or not
+                        if (!data.duration) {
+                            $("#rent_amount").val("");
+                        } else {
+                            $("#rent_amount").val(data.duration * vehicle.price_per_hour);
+                        }
+                    } else {
+                        $("#rent_amount").val(getNumberOfDays(data.start_date, data.end_date) * vehicle.price_per_day);
+                    }
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
         });
 
         // Handle Duration field change

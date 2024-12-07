@@ -63,6 +63,8 @@ class BookingController
                     $result = $new_booking->create_booking();
 
                     if ($result) {
+                        // update vehicle status Available to In Trip
+                        Vehicle::update_vehicle_status(2, $journey_start_date, $journey_end_date, $vehicle_id);
                         redirect("index");
                     }
                 }
@@ -72,6 +74,8 @@ class BookingController
                 $result = $booking->create_booking();
 
                 if ($result) {
+                    // update vehicle status Available to In Trip
+                    Vehicle::update_vehicle_status(2, $journey_start_date, $journey_end_date, $vehicle_id);
                     redirect("index");
                 }
             }
