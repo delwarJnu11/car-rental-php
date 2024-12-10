@@ -1,10 +1,15 @@
 <?php
-$all_staff = Staff::get_all_staff();
+ $all_staff = Staff::get_all_staff();
 ?>
 
 <div class="row">
     <div class="col-xl-12">
-        <h6 class="mb-0 text-uppercase">All Staff</h6>
+        <div class="d-flex justify-content-between align-items-center">
+            <h6 class="mb-0 text-uppercase">All Staff</h6>
+            <a class="btn btn-grd-primary px-4 text-white d-flex align-items-center gap-2" href="<?=$base_url?>/staff/create">
+                <i class="material-icons-outlined">add_circle</i>
+                Register A Staff</a>
+        </div>
         <hr>
         <div class="card">
             <div class="card-body">
@@ -25,24 +30,24 @@ $all_staff = Staff::get_all_staff();
                         <?php foreach ($all_staff as $staff): ?>
                             <tr>
                                 <th scope="row">
-                                    <img width="60" height="60" src="<?= $base_url; ?>/img/staff/<?= $staff['image']; ?>" alt="">
+                                    <img width="60" height="60" src="<?=$base_url;?>/img/staff/<?=$staff['image'];?>" alt="">
                                 </th>
-                                <td><?= $staff['first_name'] . " " . $staff['last_name'] ?></td>
-                                <td><?= $staff['phone'] ?></td>
-                                <td><?= $staff['email'] ?></td>
-                                <td><?= $staff['house_no'] . ", " . $staff['road_no'] . ", " . $staff['city'] ?></td>
-                                <td><?= $staff['designation_name'] ?></td>
-                                <td><?= $staff['salary'] ?></td>
+                                <td><?=$staff['first_name'] . " " . $staff['last_name']?></td>
+                                <td><?=$staff['phone']?></td>
+                                <td><?=$staff['email']?></td>
+                                <td><?=$staff['house_no'] . ", " . $staff['road_no'] . ", " . $staff['city']?></td>
+                                <td><?=$staff['designation_name']?></td>
+                                <td><?=$staff['salary']?></td>
                                 <td>
-                                    <a class="btn btn-sm text-warning" href="/staff/edit/<?= $staff['id'] ?>" title="Edit">
+                                    <a class="btn btn-sm text-warning" href="/staff/edit/<?=$staff['id']?>" title="Edit">
                                         <i class="material-icons-outlined">edit</i>
                                     </a>
-                                    <a class="btn btn-sm text-danger" href="/staff/delete/<?= $staff['id'] ?>" title="Delete">
+                                    <a class="btn btn-sm text-danger" href="/staff/delete/<?=$staff['id']?>" title="Delete">
                                         <i class="material-icons-outlined">delete</i>
                                     </a>
                                 </td>
                             </tr>
-                        <?php endforeach ?>
+                        <?php endforeach?>
                     </tbody>
                 </table>
             </div>

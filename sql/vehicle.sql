@@ -18,6 +18,8 @@ CREATE TABLE IF NOT EXISTS car_vehicles(
     vehicle_owner_id INT NOT NULL,
     vehicle_type_id INT NOT NULL,
     vehicle_status_id INT NOT NULL,
+    journey_start_date TIMESTAMP,
+    journey_end_date TIMESTAMP,
     vehicle_engine_type_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

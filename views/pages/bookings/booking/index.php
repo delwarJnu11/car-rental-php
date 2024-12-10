@@ -1,12 +1,15 @@
 <?php
 
-$bookings = Booking::get_bookings();
+ $bookings = Booking::get_bookings();
 
 ?>
 
 <div class="row">
     <div class="col-xl-12">
-        <h6 class="mb-0 text-uppercase">All Bookings</h6>
+        <div class="d-flex justify-content-between align-items-center">
+            <h6 class="mb-0 text-uppercase">All Bookings</h6>
+            <a href="<?=$base_url?>/booking/create" class="btn btn-grd-primary text-white px-4 py-2">Make a Booking</a>
+        </div>
         <hr>
         <div class="card shadow">
             <div class="card-body">
@@ -26,18 +29,20 @@ $bookings = Booking::get_bookings();
                         <?php foreach ($bookings as $booking): ?>
                             <tr class="text-center">
                                 <td>
-                                    <img width="60" height="60" class="bg-grd-warning rounded-circle" src="<?= $base_url ?>/img/customers/<?= $booking['image'] ?>" alt="">
+                                    <img width="60" height="60" class="bg-grd-warning rounded-circle" src="<?=$base_url?>/img/customers/<?=$booking['image']?>" alt="">
                                 </td>
-                                <td><?= $booking['first_name'] . " " . $booking['last_name'] ?></td>
-                                <td><?= $booking['vehicle_name'] ?></td>
-                                <td><?= $booking['pick_up_location'] ?></td>
-                                <td><?= $booking['drop_off_location'] ?></td>
-                                <td><?= $booking["status_name"] ?></td>
+                                <td><?=$booking['first_name'] . " " . $booking['last_name']?></td>
+                                <td><?=$booking['vehicle_name']?></td>
+                                <td><?=$booking['pick_up_location']?></td>
+                                <td><?=$booking['drop_off_location']?></td>
+                                <td>
+                                    <span class="badge bg-grd-voilet"><?=$booking["status_name"]?></span>
+                                </td>
                                 <td>
                                     <div class="d-flex justify-content-center align-items-center gap-2" id="btn" style="height: 100%;">
                                         <a
                                             class="btn btn-warning raised d-flex gap-2"
-                                            href="/booking/edit/<?= $booking['id'] ?>"
+                                            href="/booking/edit/<?=$booking['id']?>"
                                             title="Edit Booking">
                                             <i class="material-icons-outlined">edit</i>
                                         </a>
@@ -45,7 +50,7 @@ $bookings = Booking::get_bookings();
                                             class="btn btn-info raised d-flex gap-2"
                                             id="booking_details_btn"
                                             data-bs-toggle="modal"
-                                            data-id="<?= $booking['id']; ?>" data-bs-target="#detailsModal"
+                                            data-id="<?=$booking['id'];?>" data-bs-target="#detailsModal"
                                             title="View Details">
                                             <i class="material-icons-outlined">visibility</i>
                                         </button>
@@ -53,7 +58,7 @@ $bookings = Booking::get_bookings();
                                     </div>
                                 </td>
                             </tr>
-                        <?php endforeach ?>
+                        <?php endforeach?>
                     </tbody>
                 </table>
             </div>
@@ -137,9 +142,7 @@ $bookings = Booking::get_bookings();
         .bg-warning {
             background-color: #ffc107 !important;
             /* Ensure visibility of yellow backgrounds */
-            -webkit-print-color-adjust: exact;
-            /* Ensure color is printed accurately */
-            color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         /* Hide print button and footer during print */
@@ -247,7 +250,6 @@ $bookings = Booking::get_bookings();
                 },
                 success: function(res) {
                     const booking = res.booking;
-                    console.log(booking);
                     const booking_details_card = `
                         <div class="container mx-auto border border-3 border-warning p-4 rounded">
                             <!-- Header -->
