@@ -1,44 +1,41 @@
 <?php session_start();
-require_once("configs/db_config.php");
-include_once("models/System/user.model.php");
+require_once "configs/db_config.php";
+include_once "models/System/user.model.php";
 $base_url = "cpanel";
 //require_once("library/classes/system_log.class.php");
 
 if (isset($_POST["btnSignIn"])) {
 
-  $email = trim($_POST["txtEmail"]);
-  $password = trim($_POST["txtPassword"]);
-  // echo $email, " ", $password;
-  // die();
-  //$result=$db->query("select u.id,u.username,r.name from {$tx}users u,{$tx}roles r where r.id=u.role_id and u.username='$username' and u.password='$password'");
-  // $result = $db->query("select u.id,u.full_name,u.password,u.email,u.photo,u.mobile,u.role_id,r.role_name role from {$tx}users u,{$tx}roles r where r.id=u.role_id and u.name='$username' and u.inactive=0");
+    $email = trim($_POST["txtEmail"]);
+    $password = trim($_POST["txtPassword"]);
+    // echo $email, " ", $password;
+    // die();
+    //$result=$db->query("select u.id,u.username,r.name from {$tx}users u,{$tx}roles r where r.id=u.role_id and u.username='$username' and u.password='$password'");
+    // $result = $db->query("select u.id,u.full_name,u.password,u.email,u.photo,u.mobile,u.role_id,r.role_name role from {$tx}users u,{$tx}roles r where r.id=u.role_id and u.name='$username' and u.inactive=0");
 
+    $user = User::get_user($email);
 
-  $user = User::get_user($email);
+    if ($user && password_verify($password, $user->password)) {
 
-  if ($user && password_verify($password, $user->password)) {
+        $_SESSION["uid"] = $user->id;
+        $_SESSION["fname"] = $user->first_name;
+        $_SESSION["lname"] = $user->last_name;
+        $_SESSION["uphoto"] = $user->image;
+        $_SESSION["email"] = $user->email;
+        $_SESSION["mobile"] = $user->phone;
+        $_SESSION["role_id"] = $user->role_id;
+        $_SESSION["urole"] = $user->role;
 
-    $_SESSION["uid"] = $user->id;
-    $_SESSION["fname"] = $user->first_name;
-    $_SESSION["lname"] = $user->last_name;
-    $_SESSION["uphoto"] = $user->image;
-    $_SESSION["email"] = $user->email;
-    $_SESSION["mobile"] = $user->phone;
-    $_SESSION["role_id"] = $user->role_id;
-    $_SESSION["urole"] = $user->role;
+        // print_r($_SESSION);
+        // die();
+        header("location:home");
+    } else {
+        echo "Incorrect username or password";
+    }
 
-    header("location:home");
-  } else {
-    echo "Incorrect username or password";
-  }
-
-
-
-  //  $now=date("Y-m-d H:i:s");
-  //  $log=new System_log("","LOGIN","Successfully logged in user : $uid-$_username",$now);
-  //  $log->save();
-
-
+    //  $now=date("Y-m-d H:i:s");
+    //  $log=new System_log("","LOGIN","Successfully logged in user : $uid-$_username",$now);
+    //  $log->save();
 
 }
 

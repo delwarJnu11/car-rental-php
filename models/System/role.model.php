@@ -1,22 +1,18 @@
 <?php
 
-class Role
-{
+class Role {
     public $id;
     public $name;
     public $created_at;
     public $updated_at;
 
-    function __construct($id, $role_name)
-    {
+    function __construct($id, $role_name) {
         $this->id = $id;
         $this->name = $role_name;
     }
 
-
     // create user role
-    function create_role()
-    {
+    function create_role() {
         global $db, $tx;
         $stmnt = $db->prepare("INSERT INTO {$tx}roles(role_name)VALUES(?)");
         $stmnt->bind_param("s", $this->name);
@@ -24,8 +20,7 @@ class Role
     }
 
     // get users all roles
-    static function get_roles()
-    {
+    static function get_roles() {
         global $db, $tx;
         $stmnt = $db->prepare("SELECT * FROM {$tx}roles");
         $stmnt->execute();
@@ -39,10 +34,25 @@ class Role
     }
 
     // get single Result
-    static function get_role($id)
-    {
+    static function get_role($id) {
         global $db, $tx;
-        $stmnt = $db->prepare("SELECT * FROM {$tx}roles WHERE id = $id");
+        $stmnt = $db->prepare("SELECT * FROM {$tx}roles WHERE id = ?");
+        $stmnt->bind_param("i", $id);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        if ($result) {
+            $role = $result->fetch_object();
+            return $role;
+        } else {
+            return [];
+        }
+    }
+
+    // Find Role
+    static function find($fieldName, $value) {
+        global $db, $tx;
+        $stmnt = $db->prepare("SELECT * FROM {$tx}roles WHERE $fieldName = ?");
+        $stmnt->bind_param("s", $value);
         $stmnt->execute();
         $result = $stmnt->get_result();
         if ($result) {
@@ -54,8 +64,7 @@ class Role
     }
 
     // Update user role
-    function update_role()
-    {
+    function update_role() {
         global $db, $tx;
         $stmnt = $db->prepare("UPDATE {$tx}roles SET role_name = ? WHERE id = ?");
         $stmnt->bind_param("si", $this->name, $this->id);
@@ -63,8 +72,7 @@ class Role
     }
 
     // Delete Role
-    static function delete_role($id)
-    {
+    static function delete_role($id) {
         global $db, $tx;
         $stmnt = $db->prepare("DELETE FROM {$tx}roles WHERE id = ?");
         $stmnt->bind_param("i", $id);

@@ -1,8 +1,8 @@
 <?php
 
-class HomeController{
+class HomeController {
 
-    function index(){
+    function index() {
         view("dashboard");
     }
 }

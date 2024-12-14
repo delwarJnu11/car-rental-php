@@ -205,7 +205,7 @@
     <?php endif;?>
     <!-- Dashboard Owner Management Menu End -->
     <!-- Dashboard Customer Management Menu Start -->
-     <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager'): ?>
+    <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager'): ?>
     <li>
       <a class="has-arrow" href="javascript:;">
         <div class="parent-icon"><i class="material-icons-outlined">groups</i>
