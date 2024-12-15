@@ -1,29 +1,25 @@
 <?php
 
-class VehicleStatus
-{
+class VehicleStatus {
     public $id;
     public $vehicle_status;
 
     // contructor function
-    public function __construct($id, $vehicle_status)
-    {
+    public function __construct($id, $vehicle_status) {
         $this->id = $id;
         $this->vehicle_status = $vehicle_status;
     }
 
     // create vehicle Status
-    public function create_vehicle_status()
-    {
+    public function create_vehicle_status() {
         global $db, $tx;
         $stmnt = $db->prepare("INSERT INTO {$tx}vehicle_status(id, vehicle_status)VALUES(?, ?)");
         $stmnt->bind_param("is", $this->id, $this->vehicle_status);
-        return  $stmnt->execute();
+        return $stmnt->execute();
     }
 
     // Get Vehicle Staus
-    public static function get_all_vehicle_status()
-    {
+    public static function get_all_vehicle_status() {
         global $db, $tx;
         $stmnt = $db->prepare("SELECT * FROM {$tx}vehicle_status");
         $stmnt->execute();
@@ -37,11 +33,11 @@ class VehicleStatus
     }
 
     // Get Single Vehicle Status
-    public static function get_vehicle_status($id)
-    {
+    public static function get_vehicle_status($field_name, $value) {
         global $db, $tx;
-        $stmnt = $db->prepare("SELECT * FROM {$tx}vehicle_status WHERE id = ?");
-        $stmnt->bind_param("i", $id);
+        $type = is_numeric($value) ? "i" : "s";
+        $stmnt = $db->prepare("SELECT * FROM {$tx}vehicle_status WHERE $field_name = ?");
+        $stmnt->bind_param($type, $value);
         $stmnt->execute();
         $result = $stmnt->get_result();
         if ($result) {
@@ -53,8 +49,7 @@ class VehicleStatus
     }
 
     // Update Vehicle Status
-    public function update_vehicle_status()
-    {
+    public function update_vehicle_status() {
         global $db, $tx;
         $stmnt = $db->prepare("UPDATE {$tx}vehicle_status SET vehicle_status = ? WHERE id = ?");
         $stmnt->bind_param("si", $this->vehicle_status, $this->id);
@@ -62,11 +57,10 @@ class VehicleStatus
     }
 
     // Delete Vehicle Status
-    public static function delete_vehicle_status($id)
-    {
+    public static function delete_vehicle_status($id) {
         global $db, $tx;
         $stmnt = $db->prepare("DELETE FROM {$tx}vehicle_status WHERE id = ?");
-        $stmnt->bind_param("i",  $id);
+        $stmnt->bind_param("i", $id);
         return $stmnt->execute();
     }
 }

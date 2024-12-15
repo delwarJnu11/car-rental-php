@@ -63,11 +63,11 @@
             </li>
             <li><a href="<?=$base_url?>/vehicle/create"><i class="material-icons-outlined">arrow_right</i>Add Vehicle</a>
             </li>
-            <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Available Vehicle</a>
+            <li><a href="<?=$base_url?>/vehicle/available"><i class="material-icons-outlined">arrow_right</i>Available Vehicle</a>
             </li>
-            <li><a href="#"><i class="material-icons-outlined">arrow_right</i>In Trip</a>
+            <li><a href="<?=$base_url?>/vehicle/intrip"><i class="material-icons-outlined">arrow_right</i>In Trip</a>
             </li>
-            <li><a href="#"><i class="material-icons-outlined">arrow_right</i>Under Maintenance</a>
+            <li><a href="<?=$base_url?>/vehicle/under_maintenance"><i class="material-icons-outlined">arrow_right</i>Under Maintenance</a>
             </li>
           </ul>
         </li>

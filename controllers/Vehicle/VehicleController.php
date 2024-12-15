@@ -1,20 +1,16 @@
 <?php
 
-class VehicleController
-{
+class VehicleController {
 
-    function index()
-    {
+    function index() {
         view("Vehicle");
     }
 
-    function create()
-    {
+    function create() {
         view("Vehicle");
     }
 
-    function save()
-    {
+    function save() {
         if (isset($_POST['add_vehicle'])) {
             $vehicle_name = htmlspecialchars(strip_tags($_POST['vehicle_name']));
             $model_name = htmlspecialchars(strip_tags($_POST['model_name']));
@@ -53,7 +49,7 @@ class VehicleController
             // check all required fields
             if ($vehicle_name && $model_name && $year && $license_no && $door && $seats && $luggage && $capacity && $price_per_hour && $price_per_day && $price_per_week && $discount_price && $owner_id && $vehicle_type_id && $vehicle_status_id && $vehicle_engine_id && $expiry_date && $insurance_provider && $image && $license && $insurance) {
                 // Create vehicle Object
-                $new_vehicle = new Vehicle(null, $vehicle_name, $model_name, $year, $license_no, $door, $seats, $capacity, $luggage, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, $image, $license, $insurance, $expiry_date, $insurance_provider,  $isAc, $owner_id, $vehicle_type_id, $vehicle_status_id, $vehicle_engine_id);
+                $new_vehicle = new Vehicle(null, $vehicle_name, $model_name, $year, $license_no, $door, $seats, $capacity, $luggage, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, $image, $license, $insurance, $expiry_date, $insurance_provider, $isAc, $owner_id, $vehicle_type_id, $vehicle_status_id, $vehicle_engine_id);
                 $result = $new_vehicle->create_vehicle();
                 // success result
                 if ($result) {
@@ -64,14 +60,12 @@ class VehicleController
     }
 
     // Edit vehicle Data
-    function edit($id)
-    {
+    function edit($id) {
         view("Vehicle", Vehicle::get_vehicle($id));
     }
 
     // update vehicle data
-    function update()
-    {
+    function update() {
         if (isset($_POST['update'])) {
             $id = $_POST['id'];
             $vehicle_name = htmlspecialchars(strip_tags($_POST['vehicle_name']));
@@ -90,11 +84,10 @@ class VehicleController
             $insurance_provider = htmlspecialchars(strip_tags($_POST['insurance_provider']));
             $description = htmlspecialchars(strip_tags($_POST['description']));
 
-
             // check all required fields
             if ($vehicle_name && $model_name && $year && $seats && $luggage && $capacity && $price_per_hour && $price_per_day && $price_per_week && $discount_price && $owner_id && $vehicle_status_id && $expiry_date && $insurance_provider) {
                 // Create vehicle Object
-                $new_vehicle = new Vehicle($id, $vehicle_name, $model_name, $year, "", "", $seats, $capacity, $luggage, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, "", "", "", $expiry_date, $insurance_provider,  "", $owner_id, "", $vehicle_status_id, "");
+                $new_vehicle = new Vehicle($id, $vehicle_name, $model_name, $year, "", "", $seats, $capacity, $luggage, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, "", "", "", $expiry_date, $insurance_provider, "", $owner_id, "", $vehicle_status_id, "");
                 $result = $new_vehicle->update_vehicle();
                 // success result
                 if ($result) {
@@ -102,5 +95,20 @@ class VehicleController
                 }
             }
         }
+    }
+
+    // Available Vehicles
+    function available() {
+        view("Vehicle");
+    }
+
+    // InTrip Vehicles
+    function inTrip() {
+        view("Vehicle");
+    }
+
+    // Under Maintenance Vehicles
+    function under_maintenance() {
+        view("Vehicle");
     }
 }
