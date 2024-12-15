@@ -1,20 +1,17 @@
 <?php
 
-class SalaryStatus
-{
+class SalaryStatus {
     public $id;
     public $salary_status_name;
 
     // constructor function
-    public function __construct($id, $salary_status_name)
-    {
+    public function __construct($id, $salary_status_name) {
         $this->id = $id;
         $this->salary_status_name = $salary_status_name;
     }
 
     // Create Salary Status
-    public function create_salary_status()
-    {
+    public function create_salary_status() {
         global $db, $tx;
         $stmnt = $db->prepare("INSERT INTO {$tx}salary_status(id, salary_status_name)VALUES(?, ?)");
         $stmnt->bind_param("is", $this->id, $this->salary_status_name);
@@ -22,8 +19,7 @@ class SalaryStatus
     }
 
     // Get All Salary Status
-    public static function get_all_salary_status()
-    {
+    public static function get_all_salary_status() {
         global $db, $tx;
         $stmnt = $db->prepare("SELECT * FROM {$tx}salary_status");
         $stmnt->execute();
@@ -37,8 +33,7 @@ class SalaryStatus
     }
 
     // Get Signle Salary Status
-    public static function get_salary_status($id)
-    {
+    public static function get_salary_status($id) {
         global $db, $tx;
         $stmnt = $db->prepare("SELECT * FROM {$tx}salary_status WHERE id = ?");
         $stmnt->bind_param("i", $id);
@@ -53,8 +48,7 @@ class SalaryStatus
     }
 
     // Update Salary Status
-    public function update_salary_status()
-    {
+    public function update_salary_status() {
         global $db, $tx;
         $stmnt = $db->prepare("UPDATE {$tx}salary_status SET salary_status_name = ? WHERE id = ?");
         $stmnt->bind_param("si", $this->salary_status_name, $this->id);
@@ -62,8 +56,7 @@ class SalaryStatus
     }
 
     // Delete Salary Status
-    public static function delete_salary_status($id)
-    {
+    public static function delete_salary_status($id) {
         global $db, $tx;
         $stmnt = $db->prepare("DELETE FROM {$tx}salary_status WHERE id = ?");
         $stmnt->bind_param("i", $id);

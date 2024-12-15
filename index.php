@@ -24,10 +24,10 @@ if (isset($_POST["btnSignIn"])) {
         $_SESSION["email"] = $user->email;
         $_SESSION["mobile"] = $user->phone;
         $_SESSION["role_id"] = $user->role_id;
+        $_SESSION["driver_id"] = $user->driver_id;
+        $_SESSION["owner_id"] = $user->owner_id;
         $_SESSION["urole"] = $user->role;
 
-        // print_r($_SESSION);
-        // die();
         header("location:home");
     } else {
         echo "Incorrect username or password";

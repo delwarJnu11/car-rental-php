@@ -11,6 +11,10 @@
       <ul>
         <li><a href="/home"><i class="material-icons-outlined">arrow_right</i>Home</a>
         </li>
+        <?php if ($_SESSION['urole'] === 'Driver'): ?>
+        <li><a href="<?=$base_url;?>/staff/trips"><i class="material-icons-outlined">arrow_right</i>My Trips</a>
+        </li>
+        <?php endif;?>
       </ul>
     </li>
     <!-- Dashboard User Menu Start -->

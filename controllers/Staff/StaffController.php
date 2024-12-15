@@ -123,4 +123,9 @@ class StaffController {
     function cancel() {
         redirect("index");
     }
+
+    // filter Trips by driver id
+    function trips() {
+        view("Staff");
+    }
 }

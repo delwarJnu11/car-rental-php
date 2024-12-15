@@ -48,8 +48,8 @@ if (count($pending_bookings) === 0) {
                                     </select>
                                 </td>
                                 <td>
-                                    <div class="d-flex justify-content-center align-items-center gap-2" id="btn">
-                                        <button type="button" data-id="<?=$booking['id']?>" class="btn btn-success raised d-flex gap-2 text-dark" title="assign Driver" id="driver_assign_btn"><i class="material-icons-outlined">add_task</i> Assign Driver</button>
+                                    <div class="d-flex justify-content-center align-items-center" id="btn">
+                                        <button type="button" data-id="<?=$booking['id']?>" class="btn btn-success raised d-flex text-dark text-nowrap" title="assign Driver" id="driver_assign_btn"><i class="material-icons-outlined me-1">add_task</i> Assign Driver</button>
                                     </div>
                                 </td>
                             </tr>
