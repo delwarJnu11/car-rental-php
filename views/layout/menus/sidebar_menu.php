@@ -214,25 +214,11 @@
       <a class="has-arrow" href="javascript:;">
         <div class="parent-icon"><i class="material-icons-outlined">groups</i>
         </div>
-        <div class="menu-title">Customer Management</div>
+        <div class="menu-title">Customers</div>
       </a>
       <ul>
-        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Owner</a>
-          <ul>
-            <li><a href="<?=$base_url?>/owner"><i class="material-icons-outlined">arrow_right</i>All Owner</a>
+            <li><a href="<?=$base_url?>/customers"><i class="material-icons-outlined">arrow_right</i>All Customers</a>
             </li>
-            <li><a href="<?=$base_url?>/owner/create"><i class="material-icons-outlined">arrow_right</i>Add Owner</a>
-            </li>
-          </ul>
-        </li>
-        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Commission Types</a>
-          <ul>
-            <li><a href="<?=$base_url?>/commission_type"><i class="material-icons-outlined">arrow_right</i>All Commissions</a>
-            </li>
-            <li><a href="<?=$base_url?>/commission_type/create"><i class="material-icons-outlined">arrow_right</i>Add Commission</a>
-            </li>
-          </ul>
-        </li>
       </ul>
     </li>
      <?php endif;?>
@@ -246,19 +232,27 @@
         <div class="menu-title">Revenue & Payment</div>
       </a>
       <ul>
-        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Admin Revenue Tracking</a>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Admin Revenue</a>
           <ul>
             <li><a href="<?=$base_url?>"><i class="material-icons-outlined">arrow_right</i>All Revenue</a>
             </li>
           </ul>
         </li>
-        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Owner Revenue Tracking</a>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Owner Revenue</a>
           <ul>
             <li><a href="<?=$base_url?>"><i class="material-icons-outlined">arrow_right</i>Revenue Tracking</a>
             </li>
             <li><a href="<?=$base_url?>"><i class="material-icons-outlined">arrow_right</i>Expense Tracking</a>
             </li>
             <li><a href="<?=$base_url?>"><i class="material-icons-outlined">arrow_right</i>Net Earnings</a>
+            </li>
+          </ul>
+        </li>
+        <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Payments</a>
+          <ul>
+            <li><a href="<?=$base_url?>/payments"><i class="material-icons-outlined">arrow_right</i>All Payments</a>
+            </li>
+            <li><a href="<?=$base_url?>/payment_status"><i class="material-icons-outlined">arrow_right</i>Payment Status</a>
             </li>
           </ul>
         </li>

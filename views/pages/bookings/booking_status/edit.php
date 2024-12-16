@@ -1,6 +1,6 @@
 <?php
 
-$status = BookingStatus::get_booking_status($id);
+    $status = BookingStatus::get_booking_status("id", $id);
 
 ?>
 
@@ -14,10 +14,10 @@ $status = BookingStatus::get_booking_status($id);
                     </div>
                 </div>
                 <form action="/booking_status/update" method="POST" class="row g-4">
-                    <input type="hidden" name="id" value="<?= $status->id ?>">
+                    <input type="hidden" name="id" value="<?=$status->id?>">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Booking Status</label>
-                        <input type="text" name="booking_status" class="form-control" id="input1" value="<?= $status->booking_status ?>">
+                        <input type="text" name="booking_status" class="form-control" id="input1" value="<?=$status->booking_status?>">
                     </div>
                     <div class="col-md-12">
                         <div class="d-md-flex d-grid align-items-center gap-3">

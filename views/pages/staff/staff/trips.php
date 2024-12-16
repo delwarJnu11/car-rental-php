@@ -1,9 +1,10 @@
 <?php
 
-$trips = Booking::get_trips_by_driver($_SESSION['driver_id']);
+    $trips = Booking::get_trips_by_driver($_SESSION['driver_id']);
 
-// echo "<pre/>";
-// print_r($trips);
+    echo "<pre/>";
+    print_r($_SESSION);
+    print_r($trips);
 ?>
 
 <div class="row">

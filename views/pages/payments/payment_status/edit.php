@@ -8,14 +8,14 @@
                     </div>
                 </div>
                 <form action="/payment_status/update" method="POST" class="row g-4">
-                    <input type="hidden" name="id" value="<?=$salary_status->id?>">
+                    <input type="hidden" name="id" value="<?=$payment_status->id?>">
                     <div class="col-md-12">
-                        <label for="input1" class="form-label">Salary Status</label>
-                        <input type="text" value="<?=$salary_status->salary_status_name?>" name="salary_status_name" class="form-control" id="input1" placeholder="Salary Status">
+                        <label for="input1" class="form-label">Payment Status</label>
+                        <input type="text" value="<?=$payment_status->payment_status?>" name="payment_status_name" class="form-control" id="input1" placeholder="payment Status">
                     </div>
                     <div class="col-md-12">
                         <div class="d-md-flex d-grid align-items-center gap-3">
-                            <button type="submit" name="update" class="btn btn-grd-primary px-4">Update Salary Status</button>
+                            <button type="submit" name="update" class="btn btn-grd-primary px-4">Update Payment Status</button>
                         </div>
                     </div>
                 </form>

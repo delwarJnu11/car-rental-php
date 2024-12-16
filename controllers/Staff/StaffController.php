@@ -39,7 +39,7 @@ class StaffController {
                 // Create new Object
                 $staffObj = new Staff(null, $first_name, $last_name, $phone, $email, password_hash($password, PASSWORD_BCRYPT), $nid, $image_name, $house_no, $road_no, $postal_code, $state, $city, $country, $designation_id, $hire_date, $salary);
 
-                $result = $staffObj->create_staff();
+                $staff_id = $staffObj->create_staff();
 
                 $designation = Designation::get_designation($designation_id);
 
@@ -50,10 +50,10 @@ class StaffController {
                 // die();
 
                 if ($designation->id == $designation_id) {
-                    $driver_as_user = new User(null, $first_name, $last_name, $phone, $email, password_hash($password, PASSWORD_BCRYPT), $role->id, $image_name, 0);
+                    $driver_as_user = new User(null, $first_name, $last_name, $phone, $email, password_hash($password, PASSWORD_BCRYPT), $role->id, $image_name, 0, $staff_id);
                     $res = $driver_as_user->create_user();
 
-                    if ($result && $res) {
+                    if ($staff_id && $res) {
                         redirect("index");
                     }
                 }
@@ -67,11 +67,11 @@ class StaffController {
         view("staff", Staff::get_staff($id));
     }
 
-/**
- * TODO:
- * Updatae the user when update staff if staff designation is Driver
- * Dynamic image path in the dashboard user path okay but staff and owner image path is not okay.
- */
+    /**
+     * TODO:
+     * Updatae the user when update staff if staff designation is Driver
+     * Dynamic image path in the dashboard user path okay but staff and owner image path is not okay.
+     */
 
     // Update Staff
     function update() {
