@@ -183,9 +183,52 @@ class Vehicle {
     // update vehicle Status
     public static function update_vehicle_status($status_id, $journey_start_date, $journey_end_date, $vehicle_id) {
         global $db, $tx;
-        $stmnt = $db->prepare("UPDATE {$tx}vehicles SET vehicle_status_id = ?, journey_start_date = ?, journey_end_date = ? WHERE id = ?");
-        $stmnt->bind_param("issi", $status_id, $journey_start_date, $journey_end_date, $vehicle_id);
-        $stmnt->execute();
+
+        // Prepare the SQL query
+        $query = "UPDATE {$tx}vehicles SET vehicle_status_id = ?,
+              journey_start_date = ?,
+              journey_end_date = ?
+              WHERE id = ?";
+
+        // Prepare the statement
+        $stmnt = $db->prepare($query);
+
+        // Convert empty string to NULL
+        $journey_start_date = empty($journey_start_date) ? null : $journey_start_date;
+        $journey_end_date = empty($journey_end_date) ? null : $journey_end_date;
+
+        // Bind parameters dynamically
+        if (is_null($journey_start_date) && is_null($journey_end_date)) {
+            // Both dates are NULL
+            $query = "UPDATE {$tx}vehicles SET vehicle_status_id = ?,
+                  journey_start_date = NULL,
+                  journey_end_date = NULL
+                  WHERE id = ?";
+            $stmnt = $db->prepare($query);
+            $stmnt->bind_param("ii", $status_id, $vehicle_id);
+        } else if (is_null($journey_start_date)) {
+            // Only start date is NULL
+            $query = "UPDATE {$tx}vehicles SET vehicle_status_id = ?,
+                  journey_start_date = NULL,
+                  journey_end_date = ?
+                  WHERE id = ?";
+            $stmnt = $db->prepare($query);
+            $stmnt->bind_param("isi", $status_id, $journey_end_date, $vehicle_id);
+        } else if (is_null($journey_end_date)) {
+            // Only end date is NULL
+            $query = "UPDATE {$tx}vehicles SET vehicle_status_id = ?,
+                  journey_start_date = ?,
+                  journey_end_date = NULL
+                  WHERE id = ?";
+            $stmnt = $db->prepare($query);
+            $stmnt->bind_param("isi", $status_id, $journey_start_date, $vehicle_id);
+        } else {
+            // No dates are NULL
+            $stmnt->bind_param("issi", $status_id, $journey_start_date, $journey_end_date, $vehicle_id);
+        }
+
+        // Execute the query
+        return $stmnt->execute();
     }
 
     // Delete Vehicle
