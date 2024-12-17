@@ -15,6 +15,11 @@ if (isset($_POST["btnSignIn"])) {
 
     $user = User::get_user($email);
 
+    // echo "<pre>";
+    // print_r($_SESSION);
+    // print_r($user);
+    // die;
+
     if ($user && password_verify($password, $user->password)) {
 
         $_SESSION["uid"] = $user->id;

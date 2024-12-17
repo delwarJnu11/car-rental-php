@@ -32,6 +32,21 @@ class Payment {
         return $stmnt->execute();
     }
 
+    // Filter Payment By Booking ID
+    public static function get_payment($booking_id) {
+        global $tx, $db;
+        $stmnt = $db->prepare("SELECT * FROM {$tx}payments WHERE booking_id = ?");
+        $stmnt->bind_param("i", $booking_id);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        if ($result) {
+            $payment = $result->fetch_object();
+            return $payment;
+        } else {
+            return [];
+        }
+    }
+
     // Get All Payments
     public static function get_payments() {
         global $tx, $db;
@@ -45,5 +60,8 @@ class Payment {
             return [];
         }
     }
+
+    // Update Payment
+    public static function update_payment() {}
 
 }
