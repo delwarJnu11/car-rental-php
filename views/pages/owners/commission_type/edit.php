@@ -7,11 +7,11 @@
                         <h5 class="mb-4 fw-bold">Update Commission Type</h5>
                     </div>
                 </div>
-                <form action="/commission_type/update" method="POST" class="row g-4">
-                    <input type="hidden" name="id" value="<?= $commission_type->id ?>">
+                <form action="<?php echo $base_url ?>/commission_type/update" method="POST" class="row g-4">
+                    <input type="hidden" name="id" value="<?=$commission_type->id?>">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Commission Type</label>
-                        <input type="text" name="commission_type" value="<?= $commission_type->commission_type ?>" class="form-control" id="input1">
+                        <input type="text" name="commission_type" value="<?=$commission_type->commission_type?>" class="form-control" id="input1">
                     </div>
                     <div class="col-md-12">
                         <div class="d-md-flex d-grid align-items-center gap-3">

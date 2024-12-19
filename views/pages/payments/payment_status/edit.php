@@ -7,7 +7,7 @@
                         <h5 class="mb-4 fw-bold">Update Payment Status</h5>
                     </div>
                 </div>
-                <form action="/payment_status/update" method="POST" class="row g-4">
+                <form action="<?php echo $base_url ?>/payment_status/update" method="POST" class="row g-4">
                     <input type="hidden" name="id" value="<?=$payment_status->id?>">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Payment Status</label>

@@ -7,11 +7,11 @@
                         <h5 class="mb-4 fw-bold">Add User Role</h5>
                     </div>
                 </div>
-                <form action="/role/update" method="POST" class="row g-4">
-                    <input type="hidden" name="id" value="<?= $role->id ?>">
+                <form action="<?php echo $base_url ?>/role/update" method="POST" class="row g-4">
+                    <input type="hidden" name="id" value="<?=$role->id?>">
                     <div class="col-md-12">
                         <label for="input3" class="form-label">Role Name</label>
-                        <input type="text" value="<?= $role->role_name ?>" name="role_name" class="form-control" id="input3" placeholder="Role Name">
+                        <input type="text" value="<?=$role->role_name?>" name="role_name" class="form-control" id="input3" placeholder="Role Name">
                     </div>
                     <div class="col-md-12">
                         <div class="d-md-flex d-grid align-items-center gap-3">

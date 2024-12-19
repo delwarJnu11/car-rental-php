@@ -7,7 +7,7 @@
                         <h5 class="mb-4 fw-bold">Add Salary Status</h5>
                     </div>
                 </div>
-                <form action="/salary_status/save" method="POST" class="row g-4">
+                <form action="<?php echo $base_url ?>/salary_status/save" method="POST" class="row g-4">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Salary Status</label>
                         <input type="text" name="salary_status_name" class="form-control" id="input1" placeholder="Salary Status">

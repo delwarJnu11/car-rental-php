@@ -1,13 +1,20 @@
 <?php session_start();
-require_once("configs/config.php");
-require_once("helpers/helper.php");
-require_once("libraries/library.php");
-require_once("models/model.php");
-require_once("controllers/controller.php");
 
-if (!isset($_SESSION["uid"])) header("location:$base_url");
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once "configs/config.php";
+require_once "helpers/helper.php";
+require_once "libraries/library.php";
+require_once "models/model.php";
+require_once "controllers/controller.php";
+
+if (!isset($_SESSION["uid"])) {
+    header("location:$base_url");
+}
+
 $uid = $_SESSION["uid"];
-
 
 ?>
 <!-- data-bs-theme="blue-theme" -->
@@ -84,16 +91,16 @@ $uid = $_SESSION["uid"];
 	<link
 		href="<?php echo $base_url ?>/css/mystyle.css"
 		rel="stylesheet" />
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> 
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 	<script type="text/JavaScript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.6.0/jQuery.print.js"></script>
 </head>
 
 <body>
-	<?php include_once "views/layout/navbar.php" ?>
+	<?php include_once "views/layout/navbar.php"?>
 
 
-	<?php include_once "views/layout/main_sidebar.php" ?>
+	<?php include_once "views/layout/main_sidebar.php"?>
 
 
 	<!--start main wrapper-->

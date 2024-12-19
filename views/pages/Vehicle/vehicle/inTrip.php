@@ -1,8 +1,8 @@
 <?php
 
-$bookingStatus = BookingStatus::get_booking_status("booking_status", "Confirm");
+$vehicleStatus = VehicleStatus::get_vehicle_status("vehicle_status", "In Trip");
 
-$inTrip_vehicles = Vehicle::in_trip_vehicles($bookingStatus->id, date('Y-d-m'));
+$inTrip_vehicles = Vehicle::in_trip_vehicles($vehicleStatus->id);
 
 // echo "<pre>";
 // print_r($inTrip_vehicles);
@@ -14,7 +14,7 @@ $inTrip_vehicles = Vehicle::in_trip_vehicles($bookingStatus->id, date('Y-d-m'));
 <div class="row">
     <?php if (count($inTrip_vehicles)): ?>
         <div class="col-xl-12">
-        <h6 class="mb-0 text-uppercase">All vehicles</h6>
+        <h6 class="mb-0 text-uppercase">All Vehicles IN Trip</h6>
         <hr>
         <div class="card shadow">
             <div class="card-body">
@@ -29,14 +29,14 @@ $inTrip_vehicles = Vehicle::in_trip_vehicles($bookingStatus->id, date('Y-d-m'));
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($$inTrip_vehicles as $vehicle): ?>
+                        <?php foreach ($inTrip_vehicles as $vehicle): ?>
                             <tr class="text-center">
                                 <td>
                                     <img width="70" height="60" class="bg-grd-warning" src="<?=$base_url?>/img/vehicle/<?=$vehicle['image']?>" alt="">
                                 </td>
                                 <td><?=$vehicle['vehicle_name']?></td>
                                 <td><?=$vehicle['model']?></td>
-                                <td>Avaiable</td>
+                                <td><span class="badge bg-warning"><?=$vehicle['vehicle_status']?></span></td>
                                 <td>
                                     <div class="d-flex justify-content-center align-items-center gap-2" style="height: 100%;">
                                         <a

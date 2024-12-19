@@ -3,11 +3,11 @@
 class VehicleController {
 
     function index() {
-        view("Vehicle");
+        view("vehicle");
     }
 
     function create() {
-        view("Vehicle");
+        view("vehicle");
     }
 
     function save() {
@@ -46,11 +46,17 @@ class VehicleController {
             $license = upload($vehicle_license, "img/vehicle/license", $license_no);
             $insurance = upload($vehicle_insurance, "img/vehicle/insurance", $license_no);
 
+            // echo $image, $license, $insurance;
+
             // check all required fields
-            if ($vehicle_name && $model_name && $year && $license_no && $door && $seats && $luggage && $capacity && $price_per_hour && $price_per_day && $price_per_week && $discount_price && $owner_id && $vehicle_type_id && $vehicle_status_id && $vehicle_engine_id && $expiry_date && $insurance_provider && $image && $license && $insurance) {
+            if ($vehicle_name && $model_name && $year && $license_no) {
                 // Create vehicle Object
-                $new_vehicle = new Vehicle(null, $vehicle_name, $model_name, $year, $license_no, $door, $seats, $capacity, $luggage, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, $image, $license, $insurance, $expiry_date, $insurance_provider, $isAc, $owner_id, $vehicle_type_id, $vehicle_status_id, $vehicle_engine_id);
+                $new_vehicle = new Vehicle(null, $vehicle_name, $model_name, $year, $license_no, $door, $seats, $capacity, $luggage, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, $image, $license, $insurance, $expiry_date, $insurance_provider, $isAc, $owner_id, $vehicle_type_id, $vehicle_status_id, $vehicle_engine_id, null, null);
+                // echo "<pre>";
+                // print_r($new_vehicle);
+                // die();
                 $result = $new_vehicle->create_vehicle();
+                print_r($result);
                 // success result
                 if ($result) {
                     redirect("index");
@@ -61,7 +67,7 @@ class VehicleController {
 
     // Edit vehicle Data
     function edit($id) {
-        view("Vehicle", Vehicle::get_vehicle($id));
+        view("vehicle", Vehicle::get_vehicle($id));
     }
 
     // update vehicle data
@@ -84,10 +90,12 @@ class VehicleController {
             $insurance_provider = htmlspecialchars(strip_tags($_POST['insurance_provider']));
             $description = htmlspecialchars(strip_tags($_POST['description']));
 
+            // echo $id, $vehicle_name, $model_name, $year, $seats, $luggage, $capacity, $price_per_hour, $price_per_day, $price_per_week, $discount_price, "OnwerID: " . $owner_id, $vehicle_status_id, $expiry_date, $insurance_provider, $description;
+
             // check all required fields
-            if ($vehicle_name && $model_name && $year && $seats && $luggage && $capacity && $price_per_hour && $price_per_day && $price_per_week && $discount_price && $owner_id && $vehicle_status_id && $expiry_date && $insurance_provider) {
+            if ($id) {
                 // Create vehicle Object
-                $new_vehicle = new Vehicle($id, $vehicle_name, $model_name, $year, "", "", $seats, $capacity, $luggage, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, "", "", "", $expiry_date, $insurance_provider, "", $owner_id, "", $vehicle_status_id, "");
+                $new_vehicle = new Vehicle($id, $vehicle_name, $model_name, $year, "", "", $seats, $capacity, $luggage, $description, $price_per_hour, $price_per_day, $price_per_week, $discount_price, "", "", "", $expiry_date, $insurance_provider, "", $owner_id, "", $vehicle_status_id, "", null, null);
                 $result = $new_vehicle->update_vehicle();
                 // success result
                 if ($result) {
@@ -99,16 +107,16 @@ class VehicleController {
 
     // Available Vehicles
     function available() {
-        view("Vehicle");
+        view("vehicle");
     }
 
     // InTrip Vehicles
     function inTrip() {
-        view("Vehicle");
+        view("vehicle");
     }
 
     // Under Maintenance Vehicles
     function under_maintenance() {
-        view("Vehicle");
+        view("vehicle");
     }
 }

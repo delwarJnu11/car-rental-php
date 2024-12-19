@@ -7,11 +7,11 @@
                         <h5 class="mb-4 fw-bold">Update Salary Status</h5>
                     </div>
                 </div>
-                <form action="/salary_status/update" method="POST" class="row g-4">
-                    <input type="hidden" name="id" value="<?= $salary_status->id ?>">
+                <form action="<?php echo $base_url ?>/salary_status/update" method="POST" class="row g-4">
+                    <input type="hidden" name="id" value="<?=$salary_status->id?>">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Salary Status</label>
-                        <input type="text" value="<?= $salary_status->salary_status_name ?>" name="salary_status_name" class="form-control" id="input1" placeholder="Salary Status">
+                        <input type="text" value="<?=$salary_status->salary_status_name?>" name="salary_status_name" class="form-control" id="input1" placeholder="Salary Status">
                     </div>
                     <div class="col-md-12">
                         <div class="d-md-flex d-grid align-items-center gap-3">

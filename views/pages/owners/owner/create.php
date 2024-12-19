@@ -15,7 +15,7 @@ $commission_types = CommissionType::get_commission_types();
                         <h5 class="mb-4 fw-bold">Add Owner</h5>
                     </div>
                 </div>
-                <form action="/owner/save" method="POST" enctype="multipart/form-data" class="row g-4">
+                <form action="<?php echo $base_url ?>/owner/save" method="POST" enctype="multipart/form-data" class="row g-4">
                     <div class="col-md-6">
                         <label for="input1" class="form-label">First Name</label>
                         <input type="text" name="first_name" class="form-control" id="input1" placeholder="First Name">
@@ -41,8 +41,8 @@ $commission_types = CommissionType::get_commission_types();
                         <select id="input7" name="role_id" class="form-select">
                             <option selected="">Select Role</option>
                             <?php foreach ($roles as $role): ?>
-                                <option value="<?= $role['id'] ?>"><?= $role['role_name'] ?></option>
-                            <?php endforeach ?>
+                                <option value="<?=$role['id']?>"><?=$role['role_name']?></option>
+                            <?php endforeach?>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -54,8 +54,8 @@ $commission_types = CommissionType::get_commission_types();
                         <select id="com_type" name="commission_type_id" class="form-select">
                             <option selected="">Select Commission Type</option>
                             <?php foreach ($commission_types as $type): ?>
-                                <option value="<?= $type['id'] ?>"><?= $type['commission_type'] ?></option>
-                            <?php endforeach ?>
+                                <option value="<?=$type['id']?>"><?=$type['commission_type']?></option>
+                            <?php endforeach?>
                         </select>
                     </div>
                     <div class="col-md-12">

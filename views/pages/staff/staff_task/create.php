@@ -16,14 +16,14 @@ $vehicles = Vehicle::get_vehicles();
                         <h5 class="mb-4 fw-bold">Assign Task To Staff</h5>
                     </div>
                 </div>
-                <form action="/staff_task/save" method="POST" class="row g-4">
+                <form <?php echo $base_url ?>/staff_task/save" method="POST" class="row g-4">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Assign To</label>
                         <select name="assign_to" id="input1" class="form-select">
                             <option value="">Select Staff</option>
                             <?php foreach ($all_staff as $staff): ?>
-                                <option value="<?= $staff['id']; ?>"><?= $staff['first_name'] . " " . $staff['last_name']; ?></option>
-                            <?php endforeach ?>
+                                <option value="<?=$staff['id'];?>"><?=$staff['first_name'] . " " . $staff['last_name'];?></option>
+                            <?php endforeach?>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -31,8 +31,8 @@ $vehicles = Vehicle::get_vehicles();
                         <select name="vehicle_no" id="vehicle_no" class="form-select">
                             <option value="">Select Vehicle</option>
                             <?php foreach ($vehicles as $vehicle): ?>
-                                <option value="<?= $vehicle['license_no']; ?>"><?= $vehicle['vehicle_name'] . "-" . $vehicle['license_no']; ?></option>
-                            <?php endforeach ?>
+                                <option value="<?=$vehicle['license_no'];?>"><?=$vehicle['vehicle_name'] . "-" . $vehicle['license_no'];?></option>
+                            <?php endforeach?>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -40,8 +40,8 @@ $vehicles = Vehicle::get_vehicles();
                         <select name="task_status" id="input2" class="form-select">
                             <option value="">Select Task Status</option>
                             <?php foreach ($all_task_status as $status): ?>
-                                <option value="<?= $status['id']; ?>"><?= $status['task_status_name']; ?></option>
-                            <?php endforeach ?>
+                                <option value="<?=$status['id'];?>"><?=$status['task_status_name'];?></option>
+                            <?php endforeach?>
                         </select>
                     </div>
                     <div class="col-md-6">

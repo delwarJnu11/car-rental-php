@@ -7,7 +7,7 @@
                         <h5 class="mb-4 fw-bold">Add Vehicle Engine Type</h5>
                     </div>
                 </div>
-                <form action="/vehicle_engine_type/save" method="POST" class="row g-4">
+                <form action="<?php echo $base_url ?>/vehicle_engine_type/save" method="POST" class="row g-4">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Vehicle Engine Type</label>
                         <input type="text" name="vehicle_engine" class="form-control" id="input1" placeholder="Vehicle Engine">

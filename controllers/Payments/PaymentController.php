@@ -2,6 +2,6 @@
 
 class PaymentsController {
     function index() {
-        view("Payments");
+        view("payments");
     }
 }

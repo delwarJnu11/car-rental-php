@@ -1,21 +1,17 @@
 <?php
-class UserController
-{
+class UserController {
 
     // Show all User
-    function index()
-    {
+    function index() {
         view("system");
     }
 
     // Create new User
-    function create()
-    {
+    function create() {
         view("system");
     }
 
-    function save()
-    {
+    function save() {
         if (isset($_POST['add_user'])) {
             $first_name = htmlspecialchars(strip_tags($_POST['first_name']));
             $last_name = htmlspecialchars(strip_tags($_POST['last_name']));
@@ -38,13 +34,11 @@ class UserController
     }
 
     // Update New user
-    function edit($id)
-    {
+    function edit($id) {
         view("system", User::get_user($id));
     }
 
-    function update()
-    {
+    function update() {
         if (isset($_POST['update_user'])) {
             $id = htmlspecialchars(strip_tags($_POST['id']));
             $password = htmlspecialchars(strip_tags($_POST['password']));
@@ -65,15 +59,13 @@ class UserController
     }
 
     // Delete
-    function delete($id)
-    {
+    function delete($id) {
         view("system", $id);
     }
 
     // confirm Delete
-    function confirm_delete($id)
-    {
-        $result = User::delete_user($id);
+    function confirm_delete($id) {
+        $result = User::delete_user("id", $id);
         if ($result) {
             redirect("index");
         }

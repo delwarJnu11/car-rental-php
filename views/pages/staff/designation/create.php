@@ -7,7 +7,7 @@
                         <h5 class="mb-4 fw-bold">Add New Designation</h5>
                     </div>
                 </div>
-                <form action="/designation/save" method="POST" class="row g-4">
+                <form action="<?php echo $base_url ?>/designation/save" method="POST" class="row g-4">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Designation</label>
                         <input type="text" name="designation" class="form-control" id="input1" placeholder="Designation Name">

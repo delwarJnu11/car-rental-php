@@ -7,7 +7,7 @@
                         <h5 class="mb-4 fw-bold">Add Task Status</h5>
                     </div>
                 </div>
-                <form action="/task_status/save" method="POST" class="row g-4">
+                <form action="<?php echo $base_url ?>/task_status/save" method="POST" class="row g-4">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Task Status</label>
                         <input type="text" name="task_status_name" class="form-control" id="input1" placeholder="Task Status">

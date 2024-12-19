@@ -13,7 +13,7 @@ $designations = Designation::get_all_designation();
                         <h5 class="mb-0 fw-bold">Add New Staff</h5>
                     </div>
                 </div>
-                <form action="/staff/save" method="POST" enctype="multipart/form-data" class="row g-4">
+                <form action="<?php echo $base_url ?>/staff/save" method="POST" enctype="multipart/form-data" class="row g-4">
                     <div class="col-md-6">
                         <label for="input1" class="form-label">First Name</label>
                         <input type="text" name="first_name" class="form-control" id="input1" placeholder="First Name">
@@ -67,8 +67,8 @@ $designations = Designation::get_all_designation();
                         <select name="designation_id" id="input13" class="form-select">
                             <option value="">Select Designation</option>
                             <?php foreach ($designations as $designation): ?>
-                                <option value="<?= $designation['id']; ?>"><?= $designation['designation_name']; ?></option>
-                            <?php endforeach ?>
+                                <option value="<?=$designation['id'];?>"><?=$designation['designation_name'];?></option>
+                            <?php endforeach?>
                         </select>
                     </div>
                     <div class="col-md-6">

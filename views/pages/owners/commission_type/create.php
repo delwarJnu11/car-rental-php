@@ -7,7 +7,7 @@
                         <h5 class="mb-4 fw-bold">Add Commission Type</h5>
                     </div>
                 </div>
-                <form action="/commission_type/save" method="POST" class="row g-4">
+                <form action="<?php echo $base_url ?>/commission_type/save" method="POST" class="row g-4">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Commission Type</label>
                         <input type="text" name="commission_type" class="form-control" id="input1" placeholder="Commission Type">

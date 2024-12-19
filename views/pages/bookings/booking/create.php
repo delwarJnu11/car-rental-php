@@ -43,7 +43,7 @@ if (isset($_POST['search'])) {
                         <input class="btn btn-grd-primary text-white" id="customer_search_btn" type="submit" name="search" value="Search">
                     </form>
                 </div>
-                <form action="/booking/save" method="POST" enctype="multipart/form-data">
+                <form action="<?php echo $base_url ?>/booking/save" method="POST" enctype="multipart/form-data">
                     <div id="customer" class="row g-4">
                         <div class="col-md-6">
                             <label for="input1" class="form-label">First Name</label>

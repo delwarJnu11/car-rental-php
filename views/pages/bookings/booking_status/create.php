@@ -7,7 +7,7 @@
                         <h5 class="mb-4 fw-bold">Add Booking Status</h5>
                     </div>
                 </div>
-                <form action="/booking_status/save" method="POST" class="row g-4">
+                <form action="<?php echo $base_url ?>/booking_status/save" method="POST" class="row g-4">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Booking Status</label>
                         <input type="text" name="booking_status" class="form-control" id="input1" placeholder="Booking Status">

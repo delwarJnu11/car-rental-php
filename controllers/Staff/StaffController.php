@@ -126,6 +126,6 @@ class StaffController {
 
     // filter Trips by driver id
     function trips() {
-        view("Staff");
+        view("staff");
     }
 }

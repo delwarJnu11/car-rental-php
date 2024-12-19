@@ -7,11 +7,11 @@
                         <h5 class="mb-4 fw-bold">Update Vehicle Type</h5>
                     </div>
                 </div>
-                <form action="/vehicle_Type/update" method="POST" class="row g-4">
-                    <input type="hidden" name="id" value="<?= $vehicle_type->id ?>">
+                <form action="<?php echo $base_url ?>/vehicle_Type/update" method="POST" class="row g-4">
+                    <input type="hidden" name="id" value="<?=$vehicle_type->id?>">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Vehicle Type</label>
-                        <input type="text" name="vehicle_type" value="<?= $vehicle_type->vehicle_type_name ?>" class="form-control" id="input1" placeholder="Vehicle Type">
+                        <input type="text" name="vehicle_type" value="<?=$vehicle_type->vehicle_type_name?>" class="form-control" id="input1" placeholder="Vehicle Type">
                     </div>
                     <div class="col-md-12">
                         <div class="d-md-flex d-grid align-items-center gap-3">

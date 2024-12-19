@@ -7,11 +7,11 @@
                         <h5 class="mb-4 fw-bold">Update Designation</h5>
                     </div>
                 </div>
-                <form action="/designation/update" method="POST" class="row g-4">
-                    <input type="hidden" name="id" value="<?= $designation->id ?>">
+                <form action="<?php echo $base_url ?>/designation/update" method="POST" class="row g-4">
+                    <input type="hidden" name="id" value="<?=$designation->id?>">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Designation</label>
-                        <input type="text" value="<?= $designation->designation_name ?>" name="designation" class="form-control" id="input1" placeholder="Designation Name">
+                        <input type="text" value="<?=$designation->designation_name?>" name="designation" class="form-control" id="input1" placeholder="Designation Name">
                     </div>
                     <div class="col-md-12">
                         <div class="d-md-flex d-grid align-items-center gap-3">

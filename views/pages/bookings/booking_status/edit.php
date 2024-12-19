@@ -1,6 +1,6 @@
 <?php
 
-    $status = BookingStatus::get_booking_status("id", $id);
+$status = BookingStatus::get_booking_status("id", $id);
 
 ?>
 
@@ -13,7 +13,7 @@
                         <h5 class="mb-4 fw-bold">Update Booking Status</h5>
                     </div>
                 </div>
-                <form action="/booking_status/update" method="POST" class="row g-4">
+                <form action="<?php echo $base_url ?>/booking_status/update" method="POST" class="row g-4">
                     <input type="hidden" name="id" value="<?=$status->id?>">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Booking Status</label>

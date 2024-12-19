@@ -14,7 +14,7 @@ $roles = Role::get_roles();
                         <h5 class="mb-0 fw-bold">Add User</h5>
                     </div>
                 </div>
-                <form action="/user/save" method="POST" enctype="multipart/form-data" class="row g-4">
+                <form action="<?php echo $base_url ?>/user/save" method="POST" enctype="multipart/form-data" class="row g-4">
                     <div class="col-md-6">
                         <label for="input1" class="form-label">First Name</label>
                         <input type="text" name="first_name" class="form-control" id="input1" placeholder="First Name">
@@ -40,8 +40,8 @@ $roles = Role::get_roles();
                         <select id="input7" name="role_id" class="form-select">
                             <option selected="">Select Role</option>
                             <?php foreach ($roles as $role): ?>
-                                <option value="<?= $role['id'] ?>"><?= $role['role_name'] ?></option>
-                            <?php endforeach ?>
+                                <option value="<?=$role['id']?>"><?=$role['role_name']?></option>
+                            <?php endforeach?>
                         </select>
                     </div>
                     <div class="col-md-12">

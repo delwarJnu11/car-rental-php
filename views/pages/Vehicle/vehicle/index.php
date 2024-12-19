@@ -6,7 +6,12 @@ $vehicles = Vehicle::get_vehicles();
 
 <div class="row">
     <div class="col-xl-12">
-        <h6 class="mb-0 text-uppercase">All vehicles</h6>
+       <div class="d-flex justify-content-between align-items-center">
+            <h6 class="mb-0 text-uppercase">All Vehicles</h6>
+            <a class="btn btn-grd-primary px-4 text-white d-flex align-items-center gap-2" href="<?=$base_url?>/vehicle/create">
+                <i class="material-icons-outlined">add_circle</i>
+                Add Vehicle</a>
+        </div>
         <hr>
         <div class="card shadow">
             <div class="card-body">
@@ -26,31 +31,31 @@ $vehicles = Vehicle::get_vehicles();
                         <?php foreach ($vehicles as $vehicle): ?>
                             <tr class="text-center">
                                 <td>
-                                    <img width="70" height="60" class="bg-grd-warning" src="<?= $base_url ?>/img/vehicle/<?= $vehicle['image'] ?>" alt="">
+                                    <img width="70" height="60" class="bg-grd-warning" src="<?=$base_url?>/img/vehicle/<?=$vehicle['image']?>" alt="">
                                 </td>
-                                <td><?= $vehicle['vehicle_name'] ?></td>
-                                <td><?= $vehicle['model'] ?></td>
-                                <td><?= $vehicle['first_name']. " ". $vehicle['last_name'] ?></td>
-                                <td><?= $vehicle['vehicle_type_name'] ?></td>
-                                <td><?= $vehicle['vehicle_status'] ?></td>
+                                <td><?=$vehicle['vehicle_name']?></td>
+                                <td><?=$vehicle['model']?></td>
+                                <td><?=$vehicle['first_name'] . " " . $vehicle['last_name']?></td>
+                                <td><?=$vehicle['vehicle_type_name']?></td>
+                                <td><?=$vehicle['vehicle_status']?></td>
                                 <td>
                                     <div class="d-flex justify-content-center align-items-center gap-2" style="height: 100%;">
                                         <a
                                             class="btn btn-sm btn-warning text-white d-flex justify-content-center align-items-center gap-2"
-                                            href="/vehicle/edit/<?= $vehicle['id'] ?>"
+                                            href="/vehicle/edit/<?=$vehicle['id']?>"
                                             title="Edit">
                                             <i class="material-icons-outlined">edit</i> Edit
                                         </a>
                                         <a
                                             class="btn btn-sm btn-danger text-white d-flex justify-content-center align-items-center gap-2"
-                                            href="/vehicle/details/<?= $vehicle['id'] ?>"
+                                            href="/vehicle/details/<?=$vehicle['id']?>"
                                             title="Details">
                                             <i class="material-icons-outlined">visibility</i> Details
                                         </a>
                                     </div>
                                 </td>
                             </tr>
-                        <?php endforeach ?>
+                        <?php endforeach?>
                     </tbody>
                 </table>
             </div>

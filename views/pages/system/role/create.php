@@ -7,7 +7,7 @@
                         <h5 class="mb-4 fw-bold">Add User Role</h5>
                     </div>
                 </div>
-                <form action="/role/save" method="POST" class="row g-4">
+                <form action="<?php echo $base_url ?>/role/save" method="POST" class="row g-4">
                     <div class="col-md-12">
                         <label for="input3" class="form-label">Role Name</label>
                         <input type="text" name="role_name" class="form-control" id="input3" placeholder="Role Name">

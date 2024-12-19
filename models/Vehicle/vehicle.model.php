@@ -60,8 +60,8 @@ class Vehicle {
     // create Vehicle
     public function create_vehicle() {
         global $db, $tx;
-        $stmnt = $db->prepare("INSERT INTO {$tx}vehicles(id, vehicle_name, model, year, license_no, door, seats, capacity, luggage_capacity, description, price_per_hour, price_per_day, price_per_week, discount_price, image, vehicle_licence_documents, vehicle_insurance_documents, expiry_date, insurance_provider, is_ac, vehicle_owner_id, vehicle_type_id, vehicle_status_id, vehicle_engine_type_id)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmnt->bind_param("isssssssssddddsssssiiiii", $this->id, $this->vehicle_name, $this->model, $this->year, $this->license_no, $this->door, $this->seats, $this->capacity, $this->luggage_capacity, $this->description, $this->price_per_hour, $this->price_per_day, $this->price_per_week, $this->discount_price, $this->image, $this->vehicle_licence_documents, $this->vehicle_insurance_documents, $this->expiry_date, $this->insurance_provider, $this->is_ac, $this->vehicle_owner_id, $this->vehicle_type_id, $this->vehicle_status_id, $this->vehicle_engine_type_id);
+        $stmnt = $db->prepare("INSERT INTO {$tx}vehicles(id, vehicle_name, model, year, license_no, door, seats, capacity, luggage_capacity, description, price_per_hour, price_per_day, price_per_week, discount_price, image, vehicle_licence_documents, vehicle_insurance_documents, expiry_date, insurance_provider, is_ac, vehicle_owner_id, vehicle_type_id, vehicle_status_id, vehicle_engine_type_id, journey_start_date, journey_end_date)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmnt->bind_param("isssssssssddddsssssiiiiiss", $this->id, $this->vehicle_name, $this->model, $this->year, $this->license_no, $this->door, $this->seats, $this->capacity, $this->luggage_capacity, $this->description, $this->price_per_hour, $this->price_per_day, $this->price_per_week, $this->discount_price, $this->image, $this->vehicle_licence_documents, $this->vehicle_insurance_documents, $this->expiry_date, $this->insurance_provider, $this->is_ac, $this->vehicle_owner_id, $this->vehicle_type_id, $this->vehicle_status_id, $this->vehicle_engine_type_id, $this->journey_start_date, $this->journey_end_date);
         return $stmnt->execute();
     }
 
@@ -80,11 +80,11 @@ class Vehicle {
     }
 
     // Get In Trip Vehicles
-    public static function in_trip_vehicles($booking_status_id, $journey_date) {
+    public static function in_trip_vehicles($vehicle_status_id) {
         global $tx, $db;
-        $query = "SELECT v.* FROM {$tx}vehicles v INNER JOIN {$tx}bookings b ON v.id = b.vehicle_id WHERE b.booking_status_id = ? AND b.journey_start_date = ?";
+        $query = "SELECT v.*, vs.vehicle_status FROM {$tx}vehicles v JOIN {$tx}vehicle_status vs ON v.vehicle_status_id = vs.id WHERE v.vehicle_status_id = ? ";
         $stmnt = $db->prepare($query);
-        $stmnt->bind_param("is", $booking_status_id, $journey_date);
+        $stmnt->bind_param("i", $vehicle_status_id);
         $stmnt->execute();
 
         $result = $stmnt->get_result();

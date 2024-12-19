@@ -2,7 +2,7 @@
 
 class Payment_statusController {
     function index() {
-        view("Payments");
+        view("payments");
     }
 
     // create payment status

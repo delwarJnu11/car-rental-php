@@ -1,2 +1,2 @@
 CREATE VIEW users_view AS
-SELECT u.id, u.first_name, u.last_name, u.phone, u.email, u.password, u.image, u.driver_id, u.owner_id, r.role_id, r.role_name as role FROM {$tx}users u , {$tx}roles r WHERE r.id = u.role_id;
+SELECT u.id, u.first_name, u.last_name, u.phone, u.email, u.password, u.image, u.driver_id, u.owner_id, r.id as role_id, r.role_name as role FROM {$tx}users u , {$tx}roles r WHERE r.id = u.role_id;

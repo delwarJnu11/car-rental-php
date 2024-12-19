@@ -1,9 +1,9 @@
 <?php
 
-    $vehicle_types = VehicleType::get_vehicle_types();
-    $vehicle_statuses = VehicleStatus::get_all_vehicle_status();
-    $vehicle_engine_types = VehicleEngineType::get_all_vehicle_engine_type();
-    $owners = Owner::get_owners();
+$vehicle_types = VehicleType::get_vehicle_types();
+$vehicle_statuses = VehicleStatus::get_all_vehicle_status();
+$vehicle_engine_types = VehicleEngineType::get_all_vehicle_engine_type();
+$owners = Owner::get_owners();
 ?>
 <!-- Vehicle Register Form -->
 <div class="row">
@@ -15,7 +15,7 @@
                         <h5 class="mb-4 fw-bold">Register New Vehicle</h5>
                     </div>
                 </div>
-                <form action="/vehicle/save" method="POST" enctype="multipart/form-data" class="row g-4">
+                <form action="<?php echo $base_url ?>/vehicle/save" method="POST" enctype="multipart/form-data" class="row g-4">
                     <div class="col-md-4">
                         <label for="input1" class="form-label">Vehicle Name</label>
                         <input type="text" name="vehicle_name" class="form-control" id="input1" placeholder="Vehicle Name">
@@ -68,36 +68,36 @@
                         <label for="input11" class="form-label">Owner</label>
                         <select id="input11" name="owner_id" class="form-select">
                             <option selected="">Select Owner</option>
-                            <?php foreach($owners as $owner): ?>
-                            <option value="<?= $owner['id'];?>"><?= $owner['first_name']. " ". $owner['last_name'];?></option>
-                            <?php endforeach ?>
+                            <?php foreach ($owners as $owner): ?>
+                            <option value="<?=$owner['id'];?>"><?=$owner['first_name'] . " " . $owner['last_name'];?></option>
+                            <?php endforeach?>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="input12" class="form-label">Vehicle Type</label>
                         <select id="input12" name="vehicle_type_id" class="form-select">
                             <option selected="">Select Vehicle Type</option>
-                            <?php foreach($vehicle_types as $type): ?>
-                            <option value="<?= $type['id'];?>"><?= $type['vehicle_type_name'];?></option>
-                            <?php endforeach ?>
+                            <?php foreach ($vehicle_types as $type): ?>
+                            <option value="<?=$type['id'];?>"><?=$type['vehicle_type_name'];?></option>
+                            <?php endforeach?>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="input13" class="form-label">Vehicle Status</label>
                         <select id="input13" name="vehicle_status_id" class="form-select">
                             <option selected="">Select Vehicle Status</option>
-                            <?php foreach($vehicle_statuses as $status): ?>
-                            <option value="<?= $status['id'];?>"><?= $status['vehicle_status'];?></option>
-                            <?php endforeach ?>
+                            <?php foreach ($vehicle_statuses as $status): ?>
+                            <option value="<?=$status['id'];?>"><?=$status['vehicle_status'];?></option>
+                            <?php endforeach?>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="input14" class="form-label">Vehicle Engine Type</label>
                         <select id="input14" name="vehicle_engine_id" class="form-select">
                             <option selected="">Select Vehicle Engine Type</option>
-                            <?php foreach($vehicle_engine_types as $engine_type): ?>
-                            <option value="<?= $engine_type['id'];?>"><?= $engine_type['vehicle_engine_type'];?></option>
-                            <?php endforeach ?>
+                            <?php foreach ($vehicle_engine_types as $engine_type): ?>
+                            <option value="<?=$engine_type['id'];?>"><?=$engine_type['vehicle_engine_type'];?></option>
+                            <?php endforeach?>
                         </select>
                     </div>
                     <div class="col-md-4">
