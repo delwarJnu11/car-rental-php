@@ -130,25 +130,19 @@ class Vehicle {
         }
     }
 
-    // Filter Vehicle by status
+    // Filter vehicles Not in The Booking table and received start journey start date and end journey date
     public static function filter_vehicle($start_date, $end_date) {
         global $db, $tx;
-        $query = "
-            SELECT *
-            FROM {$tx}vehicles
-            WHERE
-                (journey_start_date IS NULL AND journey_end_date IS NULL) OR
-                NOT (
-                    (journey_start_date <= ? AND journey_end_date >= ?) OR
-                    (journey_start_date <= ? AND journey_end_date >= ?) OR
-                    (journey_start_date >= ? AND journey_end_date <= ?)
-                )";
+        $query = "SELECT * FROM {$tx}vehicles WHERE id NOT IN (
+                SELECT vehicle_id FROM {$tx}bookings WHERE
+                (journey_start_date <= ? AND journey_end_date >= ?) OR
+                (journey_start_date <= ? AND journey_end_date >= ?) OR
+                (journey_start_date >= ? AND journey_end_date <= ?)
+               )";
         $stmnt = $db->prepare($query);
-        $stmnt->bind_param("ssssss", $start_date, $start_date, $end_date, $end_date, $start_date, $end_date);
-
+        $stmnt->bind_param("ssssss", $start_date, $end_date, $end_date, $start_date, $start_date, $end_date);
         $stmnt->execute();
         $result = $stmnt->get_result();
-
         if ($result) {
             $available_vehicles = $result->fetch_all(MYSQLI_ASSOC);
             return $available_vehicles;

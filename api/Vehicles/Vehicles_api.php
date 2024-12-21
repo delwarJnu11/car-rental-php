@@ -11,16 +11,16 @@ class VehiclesApi {
         // check Vehicle found or not
         if ($vehicles) {
             echo json_encode([
-                "success" => true,
-                "message" => "Vehicles Successfully found.",
-                "Status" => 200,
+                "success"  => true,
+                "message"  => "Vehicles Successfully found.",
+                "Status"   => 200,
                 "vehicles" => $vehicles,
             ]);
         } else {
             echo json_encode([
-                "success" => false,
-                "message" => "Vehicles not found.",
-                "Status" => 404,
+                "success"  => false,
+                "message"  => "Vehicles not found.",
+                "Status"   => 404,
                 "vehicles" => [],
             ]);
         }
@@ -40,14 +40,14 @@ class VehiclesApi {
                 echo json_encode([
                     "success" => true,
                     "message" => "Vehicle successfully found.",
-                    "Status" => 200,
+                    "Status"  => 200,
                     "vehicle" => $vehicle,
                 ]);
             } else {
                 echo json_encode([
-                    "success" => false,
-                    "message" => "Vehicle not found.",
-                    "Status" => 404,
+                    "success"  => false,
+                    "message"  => "Vehicle not found.",
+                    "Status"   => 404,
                     "vehicles" => [],
                 ]);
             }
@@ -55,7 +55,7 @@ class VehiclesApi {
             echo json_encode([
                 "success" => false,
                 "message" => "ID not found.",
-                "Status" => 404,
+                "Status"  => 404,
                 "vehicle" => [],
             ]);
         }
@@ -74,16 +74,16 @@ class VehiclesApi {
         // check Vehicle found or not
         if ($available_vehicles) {
             echo json_encode([
-                "success" => true,
-                "message" => "Available Vehicles Successfully found.",
-                "Status" => 200,
+                "success"            => true,
+                "message"            => "Available Vehicles Successfully found.",
+                "Status"             => 200,
                 "available_vehicles" => $available_vehicles,
             ]);
         } else {
             echo json_encode([
-                "success" => false,
-                "message" => "Available Vehicles not found.",
-                "Status" => 404,
+                "success"            => false,
+                "message"            => "Available Vehicles not found.",
+                "Status"             => 404,
                 "available_vehicles" => [],
             ]);
         }
