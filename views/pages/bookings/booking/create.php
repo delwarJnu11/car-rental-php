@@ -224,7 +224,6 @@ if (isset($_POST['search'])) {
                     end_date: data.end_date,
                 },
                 success: function(res) {
-                    console.log(res?.available_vehicles);
                     let html = "<option>Select Vehicle</option>";
                     res?.available_vehicles.forEach(vehicle => (
                         html += `<option value="${vehicle?.id}">${vehicle?.vehicle_name}</option>`

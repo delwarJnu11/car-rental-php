@@ -133,12 +133,16 @@ class Vehicle {
     // Filter vehicles Not in The Booking table and received start journey start date and end journey date
     public static function filter_vehicle($start_date, $end_date) {
         global $db, $tx;
-        $query = "SELECT * FROM {$tx}vehicles WHERE id NOT IN (
-                SELECT vehicle_id FROM {$tx}bookings WHERE
-                (journey_start_date <= ? AND journey_end_date >= ?) OR
-                (journey_start_date <= ? AND journey_end_date >= ?) OR
-                (journey_start_date >= ? AND journey_end_date <= ?)
-               )";
+        // Here 3 means Booking Status confirm
+        $query = "SELECT v.* FROM {$tx}vehicles v
+                    LEFT JOIN {$tx}bookings b
+                    ON v.id = b.vehicle_id
+                        AND b.booking_status_id = 3
+                        AND (
+                            (b.journey_start_date <= ? AND b.journey_end_date >= ?) OR
+                            (b.journey_start_date <= ? AND b.journey_end_date >= ?) OR
+                            (b.journey_start_date >= ? AND b.journey_end_date <= ?))
+                    WHERE b.vehicle_id IS NULL";
         $stmnt = $db->prepare($query);
         $stmnt->bind_param("ssssss", $start_date, $end_date, $end_date, $start_date, $start_date, $end_date);
         $stmnt->execute();
