@@ -88,7 +88,7 @@ class BookingController {
                 $booking_id = $booking->create_booking();
 
                 // Make sure payment table data
-                $payment = new Payment(null, $booking_id, $customer->id, $rent_amount, $paid_amount, $due_amount, "Cash", $payment_status_id, null);
+                $payment = new Payment(null, $booking_id, $customer->id, $net_payable_amount, $paid_amount, $due_amount, "Cash", $payment_status_id, null);
                 $result = $payment->create_payment();
 
                 if ($booking_id && $result) {

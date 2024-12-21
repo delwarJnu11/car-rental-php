@@ -137,7 +137,6 @@ class Vehicle {
         $query = "SELECT v.* FROM {$tx}vehicles v
                     LEFT JOIN {$tx}bookings b
                     ON v.id = b.vehicle_id
-                        AND b.booking_status_id = 3
                         AND (
                             (b.journey_start_date <= ? AND b.journey_end_date >= ?) OR
                             (b.journey_start_date <= ? AND b.journey_end_date >= ?) OR

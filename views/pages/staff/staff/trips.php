@@ -1,15 +1,18 @@
 <?php
 
-$trips = Booking::get_trips_by_driver($_SESSION['driver_id']);
+    $trips = Booking::get_trips_by_driver($_SESSION['driver_id']);
 
-// echo "<pre/>";
-// print_r($trips);
+    // echo "<pre/>";
+    // print_r($trips);
 ?>
 
 <div class="row">
     <?php if (count($trips)): ?>
         <div class="col-xl-12">
-            <h6 class="mb-0 text-uppercase">All Trips For Mr. <?=$_SESSION['fname'] . " " . $_SESSION['lname'];?></h6>
+            <div class="d-flex justify-content-between align-items-center">
+                <h6 class="mb-0 text-uppercase">All Trips For Mr. <?=$_SESSION['fname'] . " " . $_SESSION['lname'];?></h6>
+                <h2 id="success" class="text-success p-2 rounded-1"></h2>
+            </div>
             <hr>
             <div class="card shadow">
                 <div class="card-body">
@@ -26,38 +29,38 @@ $trips = Booking::get_trips_by_driver($_SESSION['driver_id']);
                             </tr>
                         </thead>
                         <tbody>
-    <?php foreach ($trips as $trip): ?>
-        <tr class="text-center py-2">
-            <td><?=$trip['vehicle_name']?></td>
-            <td><?=$trip['first_name'] . " " . $trip['last_name']?></td>
-            <td><?=date("F j, Y", strtotime($trip['journey_start_date']))?></td>
-            <td><?=$trip['pick_up_location']?></td>
-            <td><?=$trip['drop_off_location']?></td>
-            <td class="<?=$trip['due_amount'] === 0 ? "badge bg-badge-success" : "";?>"><?=$trip['due_amount'] === 0 ? "Paid" : $trip['due_amount']?></td>
-            <td class="d-flex gap-1">
-                <?php if ($trip['due_amount'] != 0): ?>
-                    <button class="btn bg-grd-primary px-1 fw-semibold payment-btn" style="font-size: 13px;"
-                        data-payment-info='<?=json_encode([
-    "booking_id" => $trip['id'],
-    "customer_id" => $trip['customer_id'],
+                        <?php foreach ($trips as $trip): ?>
+                            <tr class="text-center py-2">
+                                <td><?=$trip['vehicle_name']?></td>
+                                <td><?=$trip['first_name'] . " " . $trip['last_name']?></td>
+                                <td><?=date("F j, Y", strtotime($trip['journey_start_date']))?></td>
+                                <td><?=$trip['pick_up_location']?></td>
+                                <td><?=$trip['drop_off_location']?></td>
+                                <td class="<?=$trip['due_amount'] === 0 ? "badge bg-badge-success" : "";?>"><?=$trip['due_amount'] === 0 ? "Paid" : $trip['due_amount']?></td>
+                                <td class="d-flex gap-1">
+                                    <?php if ($trip['due_amount'] != 0): ?>
+                                        <button class="btn bg-grd-primary px-1 fw-semibold payment-btn" style="font-size: 13px;"
+                                            data-payment-info='<?=json_encode([
+    "booking_id"        => $trip['id'],
+    "customer_id"       => $trip['customer_id'],
     "total_rent_amount" => $trip['net_payable_amount'],
-    "paid_amount" => $trip['paid_amount'],
-    "due_amount" => $trip['due_amount'],
-    "driver_id" => $trip['driver_id'],
+    "paid_amount"       => $trip['paid_amount'],
+    "due_amount"        => $trip['due_amount'],
+    "driver_id"         => $trip['driver_id'],
 ], JSON_HEX_APOS | JSON_HEX_QUOT)?>'>Receive Payment</button>
-                <?php endif?>
-                <button class="btn btn-success px-2 fw-semibold start-btn" style="font-size: 13px;"
-                    data-trip-id="<?=$trip['id'];?>"
-                    data-vehicle-id="<?=$trip['vehicle_id'];?>"
-                    data-journey-date="<?=$trip['journey_start_date'];?>"
-                    data-journey-end-date="<?=$trip['journey_end_date'];?>">Start</button>
-                <button class="btn btn-danger px-2 fw-semibold end-btn" style="font-size: 13px;"
-                    data-trip-id="<?=$trip['id'];?>"
-                    data-vehicle-id="<?=$trip['vehicle_id'];?>">End</button>
-            </td>
-        </tr>
-    <?php endforeach?>
-</tbody>
+                                    <?php endif?>
+                                    <button class="btn btn-success px-2 fw-semibold start-btn" style="font-size: 13px;"
+                                        data-trip-id="<?=$trip['id'];?>"
+                                        data-vehicle-id="<?=$trip['vehicle_id'];?>"
+                                        data-journey-date="<?=$trip['journey_start_date'];?>"
+                                        data-journey-end-date="<?=$trip['journey_end_date'];?>">Start</button>
+                                    <button class="btn btn-danger px-2 fw-semibold end-btn" style="font-size: 13px;"
+                                        data-trip-id="<?=$trip['id'];?>"
+                                        data-vehicle-id="<?=$trip['vehicle_id'];?>">End</button>
+                                </td>
+                            </tr>
+                        <?php endforeach?>
+                        </tbody>
 
                     </table>
                 </div>
@@ -81,8 +84,9 @@ $trips = Booking::get_trips_by_driver($_SESSION['driver_id']);
             $("#payment_btn").text(paymentBtnState.text);
         }
 
-        // Payment
-        $("tbody").on("click", ".payment_btn", function() {
+        // Payment Button Click Handler
+        $("tbody").on("click", ".payment-btn", function() {
+
             const $btn = $(this); // Store reference to the clicked button
             const data = $btn.data("payment-info");
 
@@ -101,6 +105,35 @@ $trips = Booking::get_trips_by_driver($_SESSION['driver_id']);
                     const result = JSON.parse(res);
 
                     if (result.result) {
+                        const updatedPaymentAmount = {
+                            booking_id: data.booking_id,
+                            paid_amount: data.total_rent_amount,
+                            due_amount: 0,
+                        }
+                        // Update Booking Due Amount
+                        $.ajax({
+                           url: "<?php echo $base_url ?>/api/bookings/update_booking_payment",
+                           type: "POST",
+                           data: {
+                                id: updatedPaymentAmount?.booking_id,
+                                paid_amount: updatedPaymentAmount?.paid_amount,
+                                due_amount: 0
+                           },
+                           success: function(res) {
+                                const result = JSON.parse(res);
+                                if (result.result) {
+                                    $("#success").text("Payment Received Successfully.");
+                                    window.location.reload(true);
+                                    setTimeout(() => {
+                                        $("#success").text("");
+                                    }, 3000);
+                                }
+                           },
+                           error: function(error) {
+                             console.error(error);
+                           }
+                        });
+
                         // Update the clicked button's state
                         $btn.text("Paid").prop("disabled", true);
 
