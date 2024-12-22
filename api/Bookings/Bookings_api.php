@@ -97,4 +97,21 @@ class BookingsApi {
         }
     }
 
+    // Update Booking Status API
+    function update_booking_status() {
+        $booking_status_id = $_POST['booking_status_id'];
+        $booking_id = $_POST['booking_id'];
+
+        if ($booking_status_id && $booking_id) {
+            echo json_encode([
+                "result" => Booking::update_booking_status($booking_status_id, $booking_id),
+            ]);
+        } else {
+            echo json_encode([
+                "message" => "Can not Update Booking Status. Please provide valid information.",
+                "status"  => 403,
+            ]);
+        }
+    }
+
 }

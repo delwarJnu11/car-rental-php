@@ -1,6 +1,6 @@
 <?php
 
- $bookings = Booking::get_bookings();
+    $bookings = Booking::get_bookings();
 
 ?>
 
@@ -36,7 +36,7 @@
                                 <td><?=$booking['pick_up_location']?></td>
                                 <td><?=$booking['drop_off_location']?></td>
                                 <td>
-                                    <span class="badge bg-grd-voilet"><?=$booking["status_name"]?></span>
+                                    <span class="badge text-dark <?=$booking["status_name"] == "Confirm" || $booking["status_name"] == "Completed" ? "bg-success" : "bg-warning";?>"><?=$booking["status_name"]?></span>
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-center align-items-center gap-2" id="btn" style="height: 100%;">
@@ -54,7 +54,7 @@
                                             title="View Details">
                                             <i class="material-icons-outlined">visibility</i>
                                         </button>
-                                        <button type="button" class="btn btn-success raised d-flex gap-2 text-dark" title="Print Invoice"><i class="material-icons-outlined">print</i></button>
+                                        <!-- <button type="button" class="btn btn-success raised d-flex gap-2 text-dark" title="Print Invoice"><i class="material-icons-outlined">print</i></button> -->
                                     </div>
                                 </td>
                             </tr>

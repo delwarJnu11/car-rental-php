@@ -116,6 +116,14 @@ class Booking {
         return $stmnt->execute();
     }
 
+    // Update Booking Status
+    public static function update_booking_status($booking_status_id, $booking_id) {
+        global $db, $tx;
+        $stmnt = $db->prepare("UPDATE {$tx}bookings SET booking_status_id = ? WHERE id = ?");
+        $stmnt->bind_param("ii", $booking_status_id, $booking_id);
+        return $stmnt->execute();
+    }
+
     // Update Booking Paid Amount and Due Amount
     public static function update_payment($paid_amount, $due_amount, $booking_id) {
         global $db, $tx;

@@ -1,9 +1,11 @@
 <?php
 
     $trips = Booking::get_trips_by_driver($_SESSION['driver_id']);
+    $complete_booking_status = BookingStatus::get_booking_status("booking_status", "Completed");
 
     // echo "<pre/>";
-    // print_r($trips);
+    // print_r($complete_booking_status);
+    // die;
 ?>
 
 <div class="row">
@@ -123,9 +125,9 @@
                                 const result = JSON.parse(res);
                                 if (result.result) {
                                     $("#success").text("Payment Received Successfully.");
-                                    window.location.reload(true);
                                     setTimeout(() => {
                                         $("#success").text("");
+                                        window.location.reload(true);
                                     }, 3000);
                                 }
                            },
@@ -222,6 +224,28 @@
             $("tbody").on("click", ".end-btn", function () {
                 const tripId = $(this).data("trip-id");
                 const vehicleId = $(this).data("vehicle-id");
+
+                $.ajax({
+                   url: "<?php $base_url?>/api/bookings/update_booking_status",
+                   type: "POST",
+                   data: {
+                        booking_status_id: <?=$complete_booking_status->id?>,
+                        booking_id: tripId
+                   },
+                   success: function(res) {
+                        const result = JSON.parse(res).result;
+                        if(result){
+                            $("#success").text("Congratulations! Your Trip has been completed.");
+                            // window.location.reload(true);
+                            setTimeout(() => {
+                                $("#success").text("");
+                            }, 3000);
+                        }
+                   },
+                   error: function(error) {
+                     console.error(error);
+                   }
+                });
 
                 $.ajax({
                     url: "<?php $base_url?>/api/vehiclestatus/find_status",

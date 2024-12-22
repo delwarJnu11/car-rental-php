@@ -133,7 +133,6 @@ class Vehicle {
     // Filter vehicles Not in The Booking table and received start journey start date and end journey date
     public static function filter_vehicle($start_date, $end_date) {
         global $db, $tx;
-        // Here 3 means Booking Status confirm
         $query = "SELECT v.* FROM {$tx}vehicles v
                     LEFT JOIN {$tx}bookings b
                     ON v.id = b.vehicle_id

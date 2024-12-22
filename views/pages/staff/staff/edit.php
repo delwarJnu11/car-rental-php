@@ -1,6 +1,6 @@
 <?php
 
-$designations = Designation::get_all_designation();
+    $designations = Designation::get_all_designation();
 
 ?>
 
@@ -60,7 +60,7 @@ $designations = Designation::get_all_designation();
                         <select name="designation_id" id="input13" class="form-select">
                             <option value="">Select Designation</option>
                             <?php foreach ($designations as $designation): ?>
-                                <option <?=$staff->id === $designation['id'] ? "selected" : ""?> value="<?=$designation['id'];?>"><?=$designation['designation_name'];?></option>
+                                <option <?=$staff->designation_id === $designation['id'] ? "selected" : ""?> value="<?=$designation['id'];?>"><?=$designation['designation_name'];?></option>
                             <?php endforeach?>
                         </select>
                     </div>

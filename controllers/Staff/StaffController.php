@@ -46,14 +46,18 @@ class StaffController {
                 $role = Role::find("role_name", $designation->designation_name);
 
                 // echo "<pre>";
-                // print_r($role);
+                // print_r($designation);
                 // die();
 
-                if ($designation->id == $designation_id) {
+                if ($designation->designation_name == "Driver" || $designation->designation_name == "Manager" || $designation->designation_name == "Admin") {
                     $driver_as_user = new User(null, $first_name, $last_name, $phone, $email, password_hash($password, PASSWORD_BCRYPT), $role->id, $image_name, 0, $staff_id);
                     $res = $driver_as_user->create_user();
 
                     if ($staff_id && $res) {
+                        redirect("index");
+                    }
+                } else {
+                    if ($staff_id) {
                         redirect("index");
                     }
                 }

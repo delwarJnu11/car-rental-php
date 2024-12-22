@@ -67,6 +67,21 @@ class Staff {
         }
     }
 
+    // Get All Staff filter by designation (API)
+    public static function get_all_staff_by_designation($designation_id) {
+        global $db, $tx;
+        $stmnt = $db->prepare("SELECT s.*, d.designation_name FROM {$tx}staff s JOIN {$tx}staff_designations d ON s.designation_id = d.id WHERE s.designation_id = ?");
+        $stmnt->bind_param("i", $designation_id);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        if ($result) {
+            $all_staff = $result->fetch_all(MYSQLI_ASSOC);
+            return $all_staff;
+        } else {
+            return [];
+        }
+    }
+
     // Get All Divers filter from staff
     public static function get_all_driver() {
         global $db, $tx;
@@ -76,6 +91,20 @@ class Staff {
         if ($result) {
             $all_driver = $result->fetch_all(MYSQLI_ASSOC);
             return $all_driver;
+        } else {
+            return [];
+        }
+    }
+
+    // Get All Staffs whom's Designation Name is Mechanics and Cleaners
+    public static function get_all_mechanics_and_cleaners() {
+        global $db, $tx;
+        $stmnt = $db->prepare("SELECT s.*, d.designation_name FROM {$tx}staff s JOIN {$tx}staff_designations d ON s.designation_id = d.id WHERE s.designation_id = 3 OR s.designation_id = 4");
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        if ($result) {
+            $all_mechanics_and_cleaners = $result->fetch_all(MYSQLI_ASSOC);
+            return $all_mechanics_and_cleaners;
         } else {
             return [];
         }

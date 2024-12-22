@@ -1,8 +1,8 @@
 <?php
 
-$all_staff = Staff::get_all_staff();
-$all_task_status = TaskStatus::get_all_task_status();
-$vehicles = Vehicle::get_vehicles();
+    $mechanics_and_cleaners = Staff::get_all_mechanics_and_cleaners();
+    $all_task_status = TaskStatus::get_all_task_status();
+    $vehicles = Vehicle::get_vehicles();
 
 ?>
 
@@ -16,12 +16,12 @@ $vehicles = Vehicle::get_vehicles();
                         <h5 class="mb-4 fw-bold">Assign Task To Staff</h5>
                     </div>
                 </div>
-                <form <?php echo $base_url ?>/staff_task/save" method="POST" class="row g-4">
+                <form                      <?php echo $base_url ?>/staff_task/save" method="POST" class="row g-4">
                     <div class="col-md-12">
                         <label for="input1" class="form-label">Assign To</label>
                         <select name="assign_to" id="input1" class="form-select">
                             <option value="">Select Staff</option>
-                            <?php foreach ($all_staff as $staff): ?>
+                            <?php foreach ($mechanics_and_cleaners as $staff): ?>
                                 <option value="<?=$staff['id'];?>"><?=$staff['first_name'] . " " . $staff['last_name'];?></option>
                             <?php endforeach?>
                         </select>
