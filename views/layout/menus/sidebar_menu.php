@@ -103,8 +103,25 @@
     </li>
      <?php endif;?>
     <!-- Dashboard Vehicle Management Menu End -->
+    <!-- Dashboard Vehicle Maintenance Menu Start -->
+     <li>
+      <a class="has-arrow" href="javascript:;">
+        <div class="parent-icon"><i class="material-icons-outlined">settings</i>
+        </div>
+        <div class="menu-title">Maintenance</div>
+      </a>
+      <ul>
+        <li><a href="<?=$base_url?>/maintenance"><i class="material-icons-outlined">arrow_right</i>Request Maintenance</a>
+        </li>
+        <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager'): ?>
+        <li><a href="<?=$base_url?>/maintenance_status"><i class="material-icons-outlined">arrow_right</i>All Maintenance Status</a>
+        </li>
+        <?php endif;?>
+      </ul>
+    </li>
+    <!-- Dashboard Vehicle Maintenance Menu End -->
     <!-- Dashboard Bookings Management Menu Start -->
-     <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager'): ?>
+    <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager'): ?>
     <li>
       <a class="has-arrow" href="javascript:;">
         <div class="parent-icon"><i class="material-icons-outlined">dataset</i>
