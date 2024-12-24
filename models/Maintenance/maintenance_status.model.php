@@ -47,6 +47,21 @@ class MaintenanceStatus {
         }
     }
 
+    // Get a single maintenance status id By name
+    public static function get_single_status_id($name) {
+        global $tx, $db;
+        $stmnt = $db->prepare("SELECT id FROM {$tx}maintenance_status WHERE name = ?");
+        $stmnt->bind_param("s", $name);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        if ($result) {
+            $status = $result->fetch_assoc();
+            return $status['id'];
+        } else {
+            return [];
+        }
+    }
+
     // Update a maintenance status
     public function update_status() {
         global $tx, $db;

@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS car_vehicle_status(
 -- Vehicle Maintenance
 CREATE TABLE IF NOT EXISTS car_maintenance(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    maintenance_type_id INT,
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    vehicle_id INT NOT NULL,
+    maintenance_status_id INT,
     cost DECIMAL(10,2) DEFAULT(0.00),
     description TEXT(1000),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
