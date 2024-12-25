@@ -18,7 +18,7 @@ class MaintenanceController {
         $cost = htmlspecialchars(strip_tags($_POST['cost']));
         $description = htmlspecialchars(strip_tags($_POST['description']));
 
-        $maintenance = new Maintenance(null, $vehicle_id, $maintenance_status_id, $cost, $description);
+        $maintenance = new Maintenance(null, $vehicle_id, $_SESSION['driver_id'], $maintenance_status_id, $cost, $description);
 
         if ($maintenance->create()) {
             redirect("index");

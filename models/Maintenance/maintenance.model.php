@@ -3,13 +3,15 @@
 class Maintenance {
     public $id;
     public $vehicle_id;
+    public $driver_id;
     public $maintenance_status_id;
     public $cost;
     public $description;
 
-    public function __construct($id, $vehicle_id, $maintenance_status_id, $cost, $description) {
+    public function __construct($id, $vehicle_id, $driver_id, $maintenance_status_id, $cost, $description) {
         $this->id = $id;
         $this->vehicle_id = $vehicle_id;
+        $this->driver_id = $driver_id;
         $this->maintenance_status_id = $maintenance_status_id;
         $this->cost = $cost;
         $this->description = $description;
@@ -18,8 +20,8 @@ class Maintenance {
     // create a new maintenance record
     public function create() {
         global $tx, $db;
-        $stmnt = $db->prepare("INSERT INTO {$tx}maintenance (id, vehicle_id, maintenance_status_id, cost, description) VALUES (?, ?, ?, ?, ?)");
-        $stmnt->bind_param("iiids", $this->id, $this->vehicle_id, $this->maintenance_status_id, $this->cost, $this->description);
+        $stmnt = $db->prepare("INSERT INTO {$tx}maintenance (id, vehicle_id, driver_id, maintenance_status_id, cost, description) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmnt->bind_param("iiiids", $this->id, $this->vehicle_id, $this->driver_id, $this->maintenance_status_id, $this->cost, $this->description);
         return $stmnt->execute();
     }
 
@@ -27,6 +29,38 @@ class Maintenance {
     public static function get_maintenance_records() {
         global $tx, $db;
         $stmnt = $db->prepare("SELECT m.*, v.vehicle_name, ms.name as status FROM {$tx}maintenance m JOIN {$tx}vehicles v ON m.vehicle_id = v.id JOIN {$tx}maintenance_status ms ON m.maintenance_status_id = ms.id");
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+
+        if ($result) {
+            $maintenance_records = $result->fetch_all(MYSQLI_ASSOC);
+            return $maintenance_records;
+        } else {
+            return [];
+        }
+    }
+
+    // Get maintenance records by Vehicles's Owner ID
+    public static function get_maintenance_records_by_owner_id($owner_id) {
+        global $tx, $db;
+        $stmnt = $db->prepare("SELECT m.*, v.vehicle_name, ms.name as status FROM {$tx}maintenance m JOIN {$tx}vehicles v ON m.vehicle_id = v.id JOIN {$tx}maintenance_status ms ON m.maintenance_status_id = ms.id WHERE v.vehicle_owner_id = ?");
+        $stmnt->bind_param("i", $owner_id);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+
+        if ($result) {
+            $maintenance_records = $result->fetch_all(MYSQLI_ASSOC);
+            return $maintenance_records;
+        } else {
+            return [];
+        }
+    }
+
+    // Get maintenance records by Driver ID
+    public static function get_maintenance_records_by_driver_id($driver_id) {
+        global $tx, $db;
+        $stmnt = $db->prepare("SELECT m.*, v.vehicle_name, ms.name as status FROM {$tx}maintenance m JOIN {$tx}vehicles v ON m.vehicle_id = v.id JOIN {$tx}maintenance_status ms ON m.maintenance_status_id = ms.id WHERE m.driver_id = ?");
+        $stmnt->bind_param("i", $driver_id);
         $stmnt->execute();
         $result = $stmnt->get_result();
 

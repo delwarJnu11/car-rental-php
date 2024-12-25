@@ -1,6 +1,13 @@
 <?php
-
-$maintenance_request = Maintenance::get_maintenance_records();
+    $owner_id = $_SESSION['owner_id'];
+    $driver_id = $_SESSION['driver_id'];
+    if ($owner_id) {
+        $maintenance_request = Maintenance::get_maintenance_records_by_owner_id($owner_id);
+    } else if ($driver_id) {
+        $maintenance_request = Maintenance::get_maintenance_records_by_driver_id($driver_id);
+    } else {
+        $maintenance_request = Maintenance::get_maintenance_records();
+    }
 
 ?>
 
@@ -36,9 +43,14 @@ $maintenance_request = Maintenance::get_maintenance_records();
                                     <span class="badge bg-warning text-dark"><?=$request['status']?></span>
                                 </td>
                                 <td>
+                                    <?php if ($_SESSION['urole'] == 'Admin' || $_SESSION['urole'] == 'Driver' && $request['status'] == 'Pending'): ?>
                                     <a class="btn btn-sm text-warning" href="/maintenance/edit/<?=$request['id']?>" title="Edit">
                                         <i class="material-icons-outlined">edit</i>
                                     </a>
+                                    <?php elseif ($_SESSION['urole'] == 'Owner'): ?>
+                                    <button class="btn btn-sm bg-success">Confirm</button>
+                                    <button class="btn btn-sm bg-danger">Reject</button>
+                                    <?php endif;?>
                                 </td>
                             </tr>
                         <?php endforeach?>

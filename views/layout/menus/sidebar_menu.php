@@ -113,12 +113,18 @@
       <ul>
         <li><a href="<?=$base_url?>/maintenance/create"><i class="material-icons-outlined">arrow_right</i>Request Maintenance</a>
         </li>
+        <li><a href="<?=$base_url?>/fuel"><i class="material-icons-outlined">arrow_right</i>Fuel Tracking</a>
+        </li>
+        <li><a href="<?=$base_url?>/fuel/create"><i class="material-icons-outlined">arrow_right</i>ReFuel Vehicle</a>
+        </li>
         <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager' || $_SESSION['urole'] === 'Owner'): ?>
         <li><a href="<?=$base_url?>/maintenance"><i class="material-icons-outlined">arrow_right</i>Maintenance Requests</a>
         </li>
         <?php endif;?>
-        <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager'): ?>
+<?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager'): ?>
         <li><a href="<?=$base_url?>/maintenance_status"><i class="material-icons-outlined">arrow_right</i>All Maintenance Status</a>
+        </li>
+        <li><a href="<?=$base_url?>/fuel_type"><i class="material-icons-outlined">arrow_right</i>All Fuel Types</a>
         </li>
         <?php endif;?>
       </ul>
