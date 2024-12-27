@@ -16,13 +16,13 @@
 								<h4 class="fw-semibold mb-0 fs-4 mb-0"><?=$_SESSION['fname'] . " " . $_SESSION['lname'];?></h4>
 							</div>
 						</div>
-						<div class="d-flex align-items-center gap-5">
+						<div class="d-flex align-items-center gap-4">
 							<div class="">
 								<h4 class="mb-1 fw-semibold d-flex align-content-center">
-									<?=$_SESSION['urole'] === 'Driver' || $_SESSION['urole'] === 'Owner' ? "5" : "$65.4K";?><i class="ti ti-arrow-up-right fs-5 lh-base text-success"></i>
+									<?=$_SESSION['urole'] === 'Driver' ? "5" : ($_SESSION['urole'] === 'Owner' ? number_format(Booking::get_total_revenue($_SESSION['owner_id']), 2, ".", ",") : number_format(Booking::get_all_bookings_revenue(), 2, ".", ","));?><i class="ti ti-arrow-up-right fs-5 lh-base text-success"></i>
 								</h4>
-								<p class="mb-3"><?=$_SESSION['urole'] === 'Driver' || $_SESSION['urole'] === 'Owner' ? "Today's Trip" : "Today's Sales";?></p>
-								<div
+								<p class="mb-3"><?=$_SESSION['urole'] === 'Driver' || $_SESSION['urole'] === 'Owner' ? "Today's Trip" : "Revenue in " . date('F');?></p>
+								<!-- <div
 									class="progress mb-0"
 									style="height: 5px">
 									<div
@@ -32,15 +32,15 @@
 										aria-valuenow="5"
 										aria-valuemin="0"
 										aria-valuemax="20"></div>
-								</div>
+								</div> -->
 							</div>
 							<div class="vr"></div>
 							<div class="">
 								<h4 class="mb-1 fw-semibold d-flex align-content-center">
-									<?=$_SESSION['urole'] === 'Driver' || $_SESSION['urole'] === 'Owner' ? "25" : "78.4%";?><i class="ti ti-arrow-up-right fs-5 lh-base text-success"></i>
+									<?=$_SESSION['urole'] === 'Driver' || $_SESSION['urole'] === 'Owner' ? "25" : number_format(Expense::total_expense_amount(), 2, ".", ",");?><i class="ti ti-arrow-up-right fs-5 lh-base text-success"></i>
 								</h4>
-								<p class="mb-3"><?=$_SESSION['urole'] === 'Driver' || $_SESSION['urole'] === 'Owner' ? "Total Trip in December" : "Growth Rate";?></p>
-								<div
+								<p class="mb-3"><?=$_SESSION['urole'] === 'Driver' || $_SESSION['urole'] === 'Owner' ? "Total Trip in December" : "Expense in " . date('F');?></p>
+								<!-- <div
 									class="progress mb-0"
 									style="height: 5px">
 									<div
@@ -50,8 +50,17 @@
 										aria-valuenow="25"
 										aria-valuemin="0"
 										aria-valuemax="100"></div>
-								</div>
+								</div> -->
 							</div>
+							<?php if ($_SESSION['urole'] === 'Admin'): ?>
+							<div class="vr"></div>
+							<div class="">
+								<h4 class="mb-1 fw-semibold d-flex align-content-center">
+									<?=number_format(Booking::get_all_bookings_revenue() - Expense::total_expense_amount(), 2, ".", ",");?><i class="ti ti-arrow-up-right fs-5 lh-base text-success"></i>
+								</h4>
+								<p class="mb-3"><?="Earning in " . date('F');?></p>
+							</div>
+							<?php endif;?>
 						</div>
 					</div>
 					<div class="col-12 col-sm-5">
@@ -68,58 +77,30 @@
 		</div>
 	</div>
 	<?php if ($_SESSION['urole'] === 'Admin'): ?>
-	<div class="col-xl-6 col-xxl-2 d-flex align-items-stretch">
-		<div class="card w-100 rounded-4">
-			<div class="card-body">
-				<div class="d-flex align-items-start justify-content-between mb-1">
-					<div class="">
-						<h5 class="mb-0">42.5K</h5>
-						<p class="mb-0">Active Users</p>
+		<div class="col-xl-3 col-xxl-2 d-flex align-items-stretch">
+			<div class="card w-100 rounded-4">
+				<div class="card-body">
+					<div class="d-flex align-items-center justify-content-center h-100 mb-1">
+						<div class="">
+							<h5 class="mb-2 fs-2 fw-bold text-center"><?=count(Vehicle::get_vehicles())?></h5>
+							<h6 class="mb-0">Total Vehicles</h6>
+						</div>
 					</div>
-					<div class="dropdown">
-						<a
-							href="javascript:;"
-							class="dropdown-toggle-nocaret options dropdown-toggle"
-							data-bs-toggle="dropdown">
-							<span class="material-icons-outlined fs-5">more_vert</span>
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a
-									class="dropdown-item"
-									href="javascript:;">Action</a>
-							</li>
-							<li>
-								<a
-									class="dropdown-item"
-									href="javascript:;">Another action</a>
-							</li>
-							<li>
-								<a
-									class="dropdown-item"
-									href="javascript:;">Something else here</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="chart-container2">
+					<!-- <div class="chart-container2">
 					<div id="chart1"></div>
-				</div>
-				<div class="text-center">
-					<p class="mb-0 font-12">24K users increased from last month</p>
+				</div> -->
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col-xl-6 col-xxl-2 d-flex align-items-stretch">
-		<div class="card w-100 rounded-4">
-			<div class="card-body">
-				<div class="d-flex align-items-start justify-content-between mb-3">
-					<div class="">
-						<h5 class="mb-0">97.4K</h5>
-						<p class="mb-0">Total Users</p>
-					</div>
-					<div class="dropdown">
+		<div class="col-xl-3 col-xxl-2 d-flex align-items-stretch">
+			<div class="card w-100 rounded-4">
+				<div class="card-body">
+					<div class="d-flex align-items-center justify-content-center h-100 mb-1">
+						<div class="">
+							<h5 class="mb-2 fs-2 fw-bold text-center"><?=count(Staff::get_all_staff())?></h5>
+							<h6 class="mb-0">Total Staff</h6>
+						</div>
+						<!-- <div class="dropdown">
 						<a
 							href="javascript:;"
 							class="dropdown-toggle-nocaret options dropdown-toggle"
@@ -143,17 +124,47 @@
 									href="javascript:;">Something else here</a>
 							</li>
 						</ul>
+					</div> -->
 					</div>
-				</div>
-				<div class="chart-container2">
+					<!-- <div class="chart-container2">
 					<div id="chart2"></div>
 				</div>
 				<div class="text-center">
 					<p class="mb-0 font-12"><span class="text-success me-1">12.5%</span> from last month</p>
+				</div> -->
 				</div>
 			</div>
 		</div>
-	</div>
+		<div class="col-xl-3 col-xxl-2 d-flex align-items-stretch">
+			<div class="card w-100 rounded-4" style="height: 200px;">
+				<div class="card-body">
+					<div class="d-flex align-items-center justify-content-center h-100 mb-1">
+						<div class="">
+							<h5 class="mb-2 fs-2 fw-bold text-center"><?=count(Owner::get_owners())?></h5>
+							<h6 class="mb-0">Total Owners</h6>
+						</div>
+					</div>
+					<!-- <div class="chart-container2">
+					<div id="chart1"></div>
+				</div> -->
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-xxl-2 d-flex align-items-stretch">
+			<div class="card w-100 rounded-4" style="height: 200px;">
+				<div class="card-body">
+					<div class="d-flex align-items-center justify-content-center h-100 mb-1">
+						<div class="">
+							<h5 class="mb-2 fs-2 fw-bold text-center"><?=count(Customer::get_customers())?></h5>
+							<h6 class="mb-0">Total Customers</h6>
+						</div>
+					</div>
+					<!-- <div class="chart-container2">
+					<div id="chart1"></div>
+				</div> -->
+				</div>
+			</div>
+		</div>
 	<?php endif;?>
 	<div class="col-xl-6 col-xxl-4 d-flex align-items-stretch">
 		<div class="card w-100 rounded-4">

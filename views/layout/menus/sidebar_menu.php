@@ -251,7 +251,7 @@
      <?php endif;?>
     <!-- Dashboard Customer Management Menu End -->
     <!-- Dashboard Revenue & Payment Management Menu Start -->
-     <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager'): ?>
+     <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager' || $_SESSION['urole'] === 'Owner'): ?>
     <li>
       <a class="has-arrow" href="javascript:;">
         <div class="parent-icon"><i class="material-icons-outlined">paid</i>
@@ -267,7 +267,7 @@
         </li>
         <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Owner Revenue</a>
           <ul>
-            <li><a href="<?=$base_url?>"><i class="material-icons-outlined">arrow_right</i>Revenue Tracking</a>
+            <li><a href="<?=$base_url?>/revenue"><i class="material-icons-outlined">arrow_right</i>Revenue Tracking</a>
             </li>
             <li><a href="<?=$base_url?>"><i class="material-icons-outlined">arrow_right</i>Expense Tracking</a>
             </li>

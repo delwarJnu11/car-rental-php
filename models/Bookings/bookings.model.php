@@ -147,4 +147,33 @@ class Booking {
         $stmnt->bind_param("i", $id);
         return $stmnt->execute();
     }
+
+    // Select All Bookings if due amount is ZERO
+    public static function get_all_bookings_revenue() {
+        global $tx, $db;
+        $stmnt = $db->prepare("SELECT SUM(net_payable_amount) as total_revenue FROM {$tx}bookings WHERE due_amount = 0 AND created_at BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE()");
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        if ($result) {
+            $revenue = $result->fetch_object();
+            return $revenue->total_revenue ?? 0;
+        } else {
+            return null;
+        }
+    }
+
+    // Get total amount sum of all bookings filter by vehicle's owner_id
+    public static function get_total_revenue($owner_id) {
+        global $tx, $db;
+        $stmnt = $db->prepare("SELECT SUM(b.net_payable_amount) as total_revenue FROM {$tx}bookings b JOIN {$tx}vehicles v ON b.vehicle_id = v.id WHERE v.vehicle_owner_id = ?");
+        $stmnt->bind_param("i", $owner_id);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        if ($result) {
+            $total_revenue = $result->fetch_object();
+            return $total_revenue->total_revenue ?? 0;
+        } else {
+            return null;
+        }
+    }
 }

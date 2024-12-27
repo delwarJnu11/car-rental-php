@@ -58,6 +58,21 @@ class Expense {
         }
     }
 
+    // Get Total amount sum of all expenses
+    public static function total_expense_amount() {
+        global $tx, $db;
+        $stmnt = $db->prepare("SELECT SUM(amount) as total_amount FROM {$tx}expenses WHERE created_at BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE()");
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+
+        if ($result) {
+            $total_expense = $result->fetch_object();
+            return $total_expense->total_amount ?? 0;
+        } else {
+            return null;
+        }
+    }
+
     // Get total amount sum of all expenses filter by vehicle's owner_id
     public static function get_total_expense_amount($owner_id) {
         global $tx, $db;
@@ -68,7 +83,7 @@ class Expense {
 
         if ($result) {
             $total_expense = $result->fetch_object();
-            return $total_expense;
+            return $total_expense->total_amount ?? 0;
         } else {
             return null;
         }

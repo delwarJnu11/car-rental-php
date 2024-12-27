@@ -96,6 +96,14 @@ class Maintenance {
         return $stmnt->execute();
     }
 
+    // update maintenance status
+    public static function update_maintenance_status($id, $status_id) {
+        global $tx, $db;
+        $stmnt = $db->prepare("UPDATE {$tx}maintenance SET maintenance_status_id = ? WHERE id = ?");
+        $stmnt->bind_param("ii", $status_id, $id);
+        return $stmnt->execute();
+    }
+
     // Delete a maintenance record
     public static function delete_maintenance($id) {
         global $tx, $db;

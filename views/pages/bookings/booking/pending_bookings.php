@@ -1,15 +1,15 @@
 <?php
 
-$pending_bookings = Booking::get_pending_bookings();
+    $pending_bookings = Booking::get_pending_bookings();
 
-$drivers = Staff::get_all_driver();
+    $drivers = Staff::get_all_driver();
 
-if (count($pending_bookings) === 0) {
-    echo "
+    if (count($pending_bookings) === 0) {
+        echo "
         <h2>No Pending Bookings Available right now.</h2>
     ";
-    return;
-}
+        return;
+    }
 
 ?>
 
