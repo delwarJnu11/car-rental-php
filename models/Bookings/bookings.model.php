@@ -176,4 +176,19 @@ class Booking {
             return null;
         }
     }
+
+    // Get total amount sum of all bookings filter by vehicle's owner_id and day
+    public static function get_total_revenue_by_day($owner_id, $days) {
+        global $tx, $db;
+        $stmnt = $db->prepare("SELECT SUM(b.net_payable_amount) as total_revenue FROM {$tx}bookings b JOIN {$tx}vehicles v ON b.vehicle_id = v.id WHERE v.vehicle_owner_id = ? AND b.journey_start_date BETWEEN DATE_SUB(CURDATE(), INTERVAL ? DAY) AND CURDATE()");
+        $stmnt->bind_param("ii", $owner_id, $days);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        if ($result) {
+            $total_revenue = $result->fetch_object();
+            return $total_revenue->total_revenue ?? 0;
+        } else {
+            return null;
+        }
+    }
 }

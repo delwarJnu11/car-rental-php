@@ -76,7 +76,7 @@ class Expense {
     // Get total amount sum of all expenses filter by vehicle's owner_id
     public static function get_total_expense_amount($owner_id) {
         global $tx, $db;
-        $stmnt = $db->prepare("SELECT SUM(e.amount) as total_amount FROM {$tx}expenses e JOIN {$tx}vehicles v ON e.vehicle_id = v.id WHERE v.owner_id = ?");
+        $stmnt = $db->prepare("SELECT SUM(e.amount) as total_amount FROM {$tx}expenses e JOIN {$tx}vehicles v ON e.vehicle_id = v.id WHERE v.vehicle_owner_id = ?");
         $stmnt->bind_param("i", $owner_id);
         $stmnt->execute();
         $result = $stmnt->get_result();
@@ -86,6 +86,52 @@ class Expense {
             return $total_expense->total_amount ?? 0;
         } else {
             return null;
+        }
+    }
+
+    // Get total amount sum of all expenses filter by vehicle's owner_id and day
+    public static function filter_total_expense_amount($owner_id, $days) {
+        global $tx, $db;
+        $stmnt = $db->prepare("SELECT SUM(e.amount) as total_amount FROM {$tx}expenses e JOIN {$tx}vehicles v ON e.vehicle_id = v.id WHERE v.vehicle_owner_id = ? AND e.created_at BETWEEN DATE_SUB(CURDATE(), INTERVAL ? DAY) AND CURDATE()");
+        $stmnt->bind_param("ii", $owner_id, $days);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+
+        if ($result) {
+            $total_expense = $result->fetch_object();
+            return $total_expense->total_amount ?? 0;
+        } else {
+            return null;
+        }
+    }
+
+    // Get All Expenses By specific Owner
+    public static function filter_expenses_by_owner($owner_id) {
+        global $tx, $db;
+        $stmnt = $db->prepare("SELECT e.*, v.vehicle_name FROM {$tx}expenses e JOIN {$tx}vehicles v ON v.id = e.vehicle_id WHERE v.vehicle_owner_id = ?");
+        $stmnt->bind_param("i", $owner_id);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        if ($result) {
+            $expenses = $result->fetch_all(MYSQLI_ASSOC);
+            return $expenses;
+        } else {
+            return [];
+        }
+    }
+
+    // Get All Expenses By specific Owner and Filter by date
+    public static function filter_expenses_by_owner_and_date($owner_id, $days) {
+        global $tx, $db;
+        $stmnt = $db->prepare("SELECT e.*, v.vehicle_name FROM {$tx}expenses e JOIN {$tx}vehicles v ON v.id = e.vehicle_id WHERE v.vehicle_owner_id = ? AND e.created_at BETWEEN DATE_SUB(CURDATE(), INTERVAL ? DAY) AND CURDATE()");
+        $stmnt->bind_param("ii", $owner_id, $days);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        if ($result) {
+            $expenses = $result->fetch_all(MYSQLI_ASSOC);
+            return $expenses;
+        } else {
+            return [];
         }
     }
 }

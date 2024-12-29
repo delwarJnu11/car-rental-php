@@ -33,4 +33,126 @@ class ExpenseApi {
             ]);
         }
     }
+
+    // Filter All Expenses By Owner
+    function filter_expenses_by_owner() {
+        $owner_id = $_POST['owner_id'];
+
+        if (!$owner_id) {
+            echo json_encode([
+                "message" => "Owner ID is Required",
+                "status"  => 403,
+                "success => false",
+            ]);
+        } else {
+            $expenses = Expense::filter_expenses_by_owner($owner_id);
+            if (count($expenses)) {
+                echo json_encode([
+                    "message"  => "Expenses Found Successfully",
+                    "status"   => 200,
+                    "success"  => true,
+                    "expenses" => $expenses,
+                ]);
+            } else {
+                echo json_encode([
+                    "message"  => "Expenses Not Found",
+                    "status"   => 404,
+                    "success"  => false,
+                    "expenses" => [],
+                ]);
+            }
+        }
+    }
+
+    // Filter All Expenses By Owner And Date
+    function filter_expenses_by_date() {
+        $owner_id = $_POST['owner_id'];
+        $days = $_POST['days'];
+
+        if (!$owner_id && !$days) {
+            echo json_encode([
+                "message" => "Owner ID And Filter Day is Required",
+                "status"  => 403,
+                "success => false",
+            ]);
+        } else {
+            $expenses = Expense::filter_expenses_by_owner_and_date($owner_id, $days);
+            if (count($expenses)) {
+                echo json_encode([
+                    "message"  => "Expenses Found Successfully",
+                    "status"   => 200,
+                    "success"  => true,
+                    "expenses" => $expenses,
+                ]);
+            } else {
+                echo json_encode([
+                    "message"  => "Expenses Not Found",
+                    "status"   => 404,
+                    "success"  => false,
+                    "expenses" => [],
+                ]);
+            }
+        }
+    }
+
+    // Filter Expense to Amount
+    function filter_expense_amount_by_owner() {
+        $owner_id = $_POST['owner_id'];
+
+        if (!$owner_id) {
+            echo json_encode([
+                "message" => "Owner ID is Required",
+                "status"  => 403,
+                "success" => false,
+            ]);
+        } else {
+            $total_expense_amount = Expense::get_total_expense_amount($owner_id);
+            if ($total_expense_amount) {
+                echo json_encode([
+                    "message" => "Total Expense Amount Found!",
+                    "status"  => 200,
+                    "success" => true,
+                    "amount"  => $total_expense_amount,
+                ]);
+            } else {
+                echo json_encode([
+                    "message" => "Total Expense Amount not Found!",
+                    "status"  => 404,
+                    "success" => false,
+                    "amount"  => 0,
+                ]);
+            }
+        }
+    }
+
+    // Filter Expense to Amount
+    function filter_expense_amount_by_owner_and_day() {
+        $owner_id = $_POST['owner_id'];
+        $days = $_POST['days'];
+
+        if (!$owner_id) {
+            echo json_encode([
+                "message" => "Owner ID is Required",
+                "status"  => 403,
+                "success" => false,
+            ]);
+        } else {
+            $total_expense_amount = Expense::filter_total_expense_amount($owner_id, $days);
+            if ($total_expense_amount) {
+                echo json_encode([
+                    "message" => "Total Expense Amount Found!",
+                    "status"  => 200,
+                    "success" => true,
+                    "amount"  => $total_expense_amount,
+                ]);
+            } else {
+                echo json_encode([
+                    "message" => "Total Expense Amount not Found!",
+                    "status"  => 404,
+                    "success" => false,
+                    "amount"  => 0,
+                ]);
+            }
+        }
+    }
 }

@@ -1,7 +1,13 @@
 <?php
 
 class RevenueController {
-    function index() {
+    function owner_revenues() {
+        view("revenue");
+    }
+    function owner_expenses() {
+        view("revenue");
+    }
+    function owner_net_earnings() {
         view("revenue");
     }
 }

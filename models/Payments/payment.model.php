@@ -76,6 +76,21 @@ class Payment {
         }
     }
 
+    // Get All Payments Join Booking booking_id Join Vehicle vehicle_id Vehicle Table vehicle Owner id Filter By Days
+    public static function get_all_revenue_by_owner_filter_by_days($owner_id, $days) {
+        global $tx, $db;
+        $stmnt = $db->prepare("SELECT p.*,b.vehicle_id, v.vehicle_name, c.first_name, c.last_name, ps.payment_status, b.net_payable_amount, b.paid_amount FROM {$tx}payments p JOIN {$tx}customers c ON p.customer_id = c.id JOIN {$tx}payment_status ps ON p.payment_status_id = ps.id JOIN {$tx}bookings b ON b.id = p.booking_id JOIN {$tx}vehicles v ON v.id = b.vehicle_id WHERE p.payment_status_id = 1 AND v.vehicle_owner_id = ? AND b.journey_end_date BETWEEN DATE_SUB(CURDATE(), INTERVAL ? DAY) AND CURDATE()");
+        $stmnt->bind_param("ii", $owner_id, $days);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        if ($result) {
+            $payments = $result->fetch_all(MYSQLI_ASSOC);
+            return $payments;
+        } else {
+            return [];
+        }
+    }
+
     // Update Payment
     public static function update_payment() {}
 

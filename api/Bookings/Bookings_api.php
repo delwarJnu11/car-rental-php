@@ -114,4 +114,64 @@ class BookingsApi {
         }
     }
 
+    // Filter Revenue Amount by Owner ID
+    function filter_revenue_amount_by_owner() {
+        $owner_id = $_POST['owner_id'];
+
+        if (!$owner_id) {
+            echo json_encode([
+                "message" => "Owner ID is Required",
+                "status"  => 403,
+                "success" => false,
+            ]);
+        } else {
+            $total_revenue_amount = Booking::get_total_revenue($owner_id);
+            if ($total_revenue_amount) {
+                echo json_encode([
+                    "message" => "Total Revenue Amount Found!",
+                    "status"  => 200,
+                    "success" => true,
+                    "amount"  => $total_revenue_amount,
+                ]);
+            } else {
+                echo json_encode([
+                    "message" => "Total Revenue Amount not Found!",
+                    "status"  => 404,
+                    "success" => false,
+                    "amount"  => 0,
+                ]);
+            }
+        }
+    }
+
+// Filter Revenue By Owner ID and Day
+    function filter_revenue_amount_by_owner_and_day() {
+        $owner_id = $_POST['owner_id'];
+        $days = $_POST['days'];
+
+        if (!$owner_id) {
+            echo json_encode([
+                "message" => "Owner ID is Required",
+                "status"  => 403,
+                "success" => false,
+            ]);
+        } else {
+            $total_revenue_amount = Booking::get_total_revenue_by_day($owner_id, $days);
+            if ($total_revenue_amount) {
+                echo json_encode([
+                    "message" => "Total Revenue Amount Found!",
+                    "status"  => 200,
+                    "success" => true,
+                    "amount"  => $total_revenue_amount,
+                ]);
+            } else {
+                echo json_encode([
+                    "message" => "Total Revenue Amount not Found!",
+                    "status"  => 404,
+                    "success" => false,
+                    "amount"  => 0,
+                ]);
+            }
+        }
+    }
 }

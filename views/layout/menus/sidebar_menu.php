@@ -111,11 +111,13 @@
         <div class="menu-title">Maintenance</div>
       </a>
       <ul>
+        <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager' || $_SESSION['urole'] == 'Driver'): ?>
         <li><a href="<?=$base_url?>/maintenance/create"><i class="material-icons-outlined">arrow_right</i>Request Maintenance</a>
         </li>
-        <li><a href="<?=$base_url?>/fuel"><i class="material-icons-outlined">arrow_right</i>Fuel Tracking</a>
-        </li>
         <li><a href="<?=$base_url?>/fuel/create"><i class="material-icons-outlined">arrow_right</i>ReFuel Vehicle</a>
+        </li>
+        <?php endif?>
+        <li><a href="<?=$base_url?>/fuel"><i class="material-icons-outlined">arrow_right</i>Fuel Tracking</a>
         </li>
         <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager' || $_SESSION['urole'] === 'Owner'): ?>
         <li><a href="<?=$base_url?>/maintenance"><i class="material-icons-outlined">arrow_right</i>Maintenance Requests</a>
@@ -207,7 +209,7 @@
      <?php endif;?>
     <!-- Dashboard Staff Management Menu End -->
     <!-- Dashboard Owner Management Menu Start -->
-     <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager' || $_SESSION['urole'] === 'Owner'): ?>
+     <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager'): ?>
       <li>
         <a class="has-arrow" href="javascript:;">
           <div class="parent-icon"><i class="material-icons-outlined">engineering</i>
@@ -259,22 +261,27 @@
         <div class="menu-title">Revenue & Payment</div>
       </a>
       <ul>
+        <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager'): ?>
         <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Admin Revenue</a>
           <ul>
             <li><a href="<?=$base_url?>"><i class="material-icons-outlined">arrow_right</i>All Revenue</a>
             </li>
           </ul>
         </li>
+        <?php endif?>
+<?php if ($_SESSION['urole'] === 'Owner'): ?>
         <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Owner Revenue</a>
           <ul>
-            <li><a href="<?=$base_url?>/revenue"><i class="material-icons-outlined">arrow_right</i>Revenue Tracking</a>
+            <li><a href="<?=$base_url?>/revenue/owner_revenues"><i class="material-icons-outlined">arrow_right</i>Revenue Tracking</a>
             </li>
-            <li><a href="<?=$base_url?>"><i class="material-icons-outlined">arrow_right</i>Expense Tracking</a>
+            <li><a href="<?=$base_url?>/revenue/owner_expenses"><i class="material-icons-outlined">arrow_right</i>Expense Tracking</a>
             </li>
-            <li><a href="<?=$base_url?>"><i class="material-icons-outlined">arrow_right</i>Net Earnings</a>
+            <li><a href="<?=$base_url?>/revenue/owner_net_earnings"><i class="material-icons-outlined">arrow_right</i>Net Earnings</a>
             </li>
           </ul>
         </li>
+        <?php endif;?>
+<?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager'): ?>
         <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Payments</a>
           <ul>
             <li><a href="<?=$base_url?>/payments"><i class="material-icons-outlined">arrow_right</i>All Payments</a>
@@ -283,6 +290,7 @@
             </li>
           </ul>
         </li>
+        <?php endif;?>
       </ul>
     </li>
      <?php endif;?>
