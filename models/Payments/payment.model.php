@@ -50,7 +50,23 @@ class Payment {
     // Get All Payments
     public static function get_payments() {
         global $tx, $db;
-        $stmnt = $db->prepare("SELECT p.*,b.vehicle_id, v.vehicle_name, c.first_name, c.last_name, ps.payment_status FROM {$tx}payments p JOIN {$tx}customers c ON p.customer_id = c.id JOIN {$tx}payment_status ps ON p.payment_status_id = ps.id JOIN {$tx}bookings b ON b.id = p.booking_id JOIN {$tx}vehicles v ON v.id = b.vehicle_id WHERE p.payment_status_id = 1");
+        $stmnt = $db->prepare("SELECT
+        b.id AS booking_id,
+        v.vehicle_name,
+        c.first_name,
+        c.last_name,
+        MAX(ps.payment_status) AS payment_status,  -- Use MAX or another aggregation function
+        b.net_payable_amount,
+        SUM(p.paid_amount) AS paid_amount,
+        (b.net_payable_amount - SUM(p.paid_amount)) AS due_amount
+    FROM {$tx}payments p
+    JOIN {$tx}customers c ON p.customer_id = c.id
+    JOIN {$tx}payment_status ps ON p.payment_status_id = ps.id
+    JOIN {$tx}bookings b ON b.id = p.booking_id
+    JOIN {$tx}vehicles v ON v.id = b.vehicle_id
+    WHERE p.payment_status_id IN (1, 2)
+    GROUP BY b.id, v.vehicle_name, c.first_name, c.last_name, b.net_payable_amount
+");
         $stmnt->execute();
         $result = $stmnt->get_result();
         if ($result) {

@@ -144,7 +144,7 @@ class BookingsApi {
         }
     }
 
-// Filter Revenue By Owner ID and Day
+    // Filter Revenue By Owner ID and Day
     function filter_revenue_amount_by_owner_and_day() {
         $owner_id = $_POST['owner_id'];
         $days = $_POST['days'];
@@ -157,6 +157,38 @@ class BookingsApi {
             ]);
         } else {
             $total_revenue_amount = Booking::get_total_revenue_by_day($owner_id, $days);
+            if ($total_revenue_amount) {
+                echo json_encode([
+                    "message" => "Total Revenue Amount Found!",
+                    "status"  => 200,
+                    "success" => true,
+                    "amount"  => $total_revenue_amount,
+                ]);
+            } else {
+                echo json_encode([
+                    "message" => "Total Revenue Amount not Found!",
+                    "status"  => 404,
+                    "success" => false,
+                    "amount"  => 0,
+                ]);
+            }
+        }
+    }
+
+    // Filter Revenue By Owner ID and Day Range
+    function filter_revenue_amount_by_owner_and_date_range() {
+        $owner_id = $_POST['owner_id'];
+        $from_date = $_POST['from_date'];
+        $to_date = $_POST['to_date'];
+
+        if (!$owner_id && $from_date && $to_date) {
+            echo json_encode([
+                "message" => "Owner ID is Required",
+                "status"  => 403,
+                "success" => false,
+            ]);
+        } else {
+            $total_revenue_amount = Booking::get_total_revenue_by_date_range($owner_id, $from_date, $to_date);
             if ($total_revenue_amount) {
                 echo json_encode([
                     "message" => "Total Revenue Amount Found!",

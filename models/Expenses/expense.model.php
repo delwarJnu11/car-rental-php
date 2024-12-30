@@ -134,4 +134,22 @@ class Expense {
             return [];
         }
     }
+
+    // Get All Expenses By specific Owner and Filter by date Range
+    public static function filter_expenses_by_owner_date_range($owner_id, $from_date, $to_date) {
+        global $tx, $db;
+        $stmnt = $db->prepare("SELECT SUM(e.amount) AS total_expense FROM {$tx}expenses e
+        JOIN {$tx}vehicles v ON v.id = e.vehicle_id
+        WHERE v.vehicle_owner_id = ?
+          AND e.created_at BETWEEN ? AND ?");
+        $stmnt->bind_param("iss", $owner_id, $from_date, $to_date);
+        $stmnt->execute();
+        $result = $stmnt->get_result();
+        if ($result) {
+            $expenses = $result->fetch_object();
+            return $expenses->total_expense ?? 0;
+        } else {
+            return [];
+        }
+    }
 }

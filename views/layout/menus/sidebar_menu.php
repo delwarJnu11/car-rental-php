@@ -264,7 +264,9 @@
         <?php if ($_SESSION['urole'] === 'Admin' || $_SESSION['urole'] === 'Manager'): ?>
         <li><a class="has-arrow" href="javascript:;"><i class="material-icons-outlined">arrow_right</i>Admin Revenue</a>
           <ul>
-            <li><a href="<?=$base_url?>"><i class="material-icons-outlined">arrow_right</i>All Revenue</a>
+            <li><a href="<?=$base_url?>/agency/agency_revenue"><i class="material-icons-outlined">arrow_right</i>Agency Revenue</a>
+            </li>
+            <li><a href="<?=$base_url?>/agency/owner_payment"><i class="material-icons-outlined">arrow_right</i>Owner's Payment</a>
             </li>
           </ul>
         </li>

@@ -155,4 +155,37 @@ class ExpenseApi {
             }
         }
     }
+
+    // Filter Expenses by Owner ID and Date Range
+    function filter_expenses_by_date_range() {
+        $owner_id = $_POST['owner_id'];
+        $from_date = $_POST['from_date'];
+        $to_date = $_POST['to_date'];
+
+        if ($owner_id && $from_date && $to_date) {
+            $expense_amount = Expense::filter_expenses_by_owner_date_range($owner_id, $from_date, $to_date);
+
+            if ($expense_amount) {
+                echo json_encode([
+                    "message" => "Total Expense Amount Found!",
+                    "status"  => 200,
+                    "success" => true,
+                    "amount"  => $expense_amount,
+                ]);
+            } else {
+                echo json_encode([
+                    "message" => "Total Expense Amount Not Found!",
+                    "status"  => 404,
+                    "success" => false,
+                    "amount"  => 0,
+                ]);
+            }
+        } else {
+            echo json_encode([
+                "message" => "Owner ID is Required",
+                "status"  => 403,
+                "success" => false,
+            ]);
+        }
+    }
 }

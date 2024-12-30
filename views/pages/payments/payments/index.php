@@ -2,6 +2,7 @@
 
     $payments = Payment::get_payments();
 
+    $sl = 1;
     // echo "<pre>";
     // print_r($payments);
 
@@ -13,10 +14,10 @@
         <hr>
         <div class="card shadow">
             <div class="card-body">
-                <table class="table table-striped table-hover align-middle">
+                <table class="table table-bordered table-striped table-hover align-middle">
                     <thead class="table-dark">
                         <tr class="text-center">
-                            <th scope="col">ID</th>
+                            <th scope="col">SL.</th>
                             <th scope="col">Vehicle Name</th>
                             <th scope="col">Customer Name</th>
                             <th scope="col">Rent Amount</th>
@@ -29,13 +30,13 @@
                     <tbody>
                         <?php foreach ($payments as $payment): ?>
                             <tr class="text-center">
-                                <td><?=$payment['id']?></td>
+                                <td><?=$sl++?></td>
                                 <td><?=$payment['vehicle_name']?></td>
                                 <td><?=$payment['first_name'] . " " . $payment['last_name']?></td>
-                                <td><?=$payment['total_rent_amount']?></td>
+                                <td><?=$payment['net_payable_amount']?></td>
                                 <td><?=$payment['paid_amount']?></td>
                                 <td><?=$payment['due_amount']?></td>
-                                <td><?=$payment['payment_method']?></td>
+                                <td>cash</td>
                                 <td><span class="badge px-2 py-1 fs-6 <?=$payment['payment_status'] == "Paid" ? "bg-success" : "bg-grd-primary"?>"><?=$payment['payment_status']?></span></td>
                             </tr>
                         <?php endforeach?>
